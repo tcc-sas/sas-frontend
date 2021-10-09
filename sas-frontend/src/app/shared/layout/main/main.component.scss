@@ -1,0 +1,56 @@
+@import '../../../../styles.scss';
+mat-sidenav-container {
+    height: 100%;
+}
+.sidenav{
+    width: 240px;
+    margin-top: 0;
+    border-right: none !important;
+    background-color: $menu-background; 
+}
+
+    
+.nav-list a{
+    // color: $gray;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.nav-list a:hover{
+    color: $contrast-color !important;
+    background-color: $more-gray;
+    transition: background-color 0.2s, color 0.2s; 
+}
+
+.not-pressed-btn {
+    color: $gray !important;
+    transition: background-color 0.2s, color 0.2s !important; 
+}
+
+.pressed-btn{
+    color: $contrast-color !important;
+    background-color: $gray !important;
+    transition: background-color 0.2s, color 0.2s !important; 
+}
+
+.nav-list i {
+    font-size: 20px;
+}
+
+.content{
+    padding: 50px;
+    background-color: $gray;
+    height: 100vh;
+}
+
+.nav-list a::after {
+    display: block;
+    height: 1px;
+    background-color: #4286f44b;
+    width: 100%;
+    content: "";
+}
+
+.text-button{
+    letter-spacing: 0.5px;
+}

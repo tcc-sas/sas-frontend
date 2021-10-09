@@ -1,1 +1,37 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.min.css";
+
+$gray: #f3f5f7;
+$more-gray: #dcdddd;
+$menu-background: #323232;
+$base-text-color: #323232;
+$contrast-color: #4145d1;
+$contrast-color-dark: #2a2c7c;
+$contrast-color-light: #6569dfcc;
+$constrast-color-light-light: #b8baf8;
+$red-color-dark: #9e4242;
+$red-color: #c74343;
+$red-color-light: #f06767;
+
+html,
+body {
+  height: 100%;
+  box-sizing: border-box;
+  font-size: 20px;
+  font-weight: 400;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  letter-spacing: 0.3px !important;
+}
+
+//material override
+.mat-list-item-content {
+  justify-content: space-between;
+}
+
+.mat-list-base{
+  padding: 0 !important;
+}

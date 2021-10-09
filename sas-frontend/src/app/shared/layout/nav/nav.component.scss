@@ -1,0 +1,35 @@
+@import '../../../../styles.scss';
+
+.navbar{
+    height: 60px;
+}
+
+.brand {
+    width: 240px;
+    text-align: center;
+}
+
+img {
+    width: 90px;
+    margin-bottom: 5px;
+}
+
+.text-name {
+    margin-left: 30px;
+    font-size: 16px;
+}
+
+.logout {
+    text-align: center;
+    width: 200px;
+    margin-left: auto;
+}
+
+a {
+    text-decoration: none;
+    color: $base-text-color;
+}
+
+a:hover {
+    color: $contrast-color;
+}
