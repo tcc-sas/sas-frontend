@@ -2,6 +2,7 @@
 @import "~bootstrap/dist/css/bootstrap.min.css";
 
 $gray: #f3f5f7;
+$menu-text: #f3f5f7;
 $more-gray: #dcdddd;
 $menu-background: #323232;
 $base-text-color: #323232;
@@ -25,6 +26,18 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
   letter-spacing: 0.3px !important;
+  overflow: hidden;
+}
+
+
+.customFormError {
+    color: #842029;
+    background-color: #f8d7da;
+    border-color: #f5c2c7;
+    position: relative;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+    padding: 3px 5px;
 }
 
 //material override

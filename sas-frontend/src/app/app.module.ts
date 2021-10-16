@@ -16,12 +16,18 @@ import { AppComponent } from './app.component';
 import { MainComponent } from './shared/layout/main/main.component';
 import { NavComponent } from './shared/layout/nav/nav.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LoginComponent } from './shared/layout/login/login.component';
+import { PainelAdminComponent } from './components/painel-admin/painel-admin.component';
+import { BeneficiariosComponent } from './components/beneficiarios/beneficiarios.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainComponent,
-    NavComponent
+    NavComponent,
+    LoginComponent,
+    PainelAdminComponent,
+    BeneficiariosComponent,
   ],
   imports: [
     BrowserModule,

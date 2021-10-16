@@ -1,5 +1,10 @@
 <mat-sidenav-container [hasBackdrop]="false">
     <mat-sidenav class="sidenav" mode="side" opened [fixedInViewport]="false">
+        <div>
+            <a routerLink="/home">
+                <img src="../../../../assets/logo.svg" style="width: 240px;" alt="">
+            </a>
+        </div>
         <mat-nav-list class="nav-list">
             <a  mat-list-item
                 (click)="onClickBtn('memorando')"
@@ -14,7 +19,7 @@
                 (click)="onClickBtn('beneficiarios')"
                 [ngClass]="pressedBtn == 'beneficiarios' ? 'pressed-btn' : 'not-pressed-btn'" 
                 class="text-button"
-                routerLink="/beneficiarios"
+                routerLink="beneficiarios"
                 routerLinkActive="active">
                 Beneficiários
                 <i class="material-icons">
@@ -25,7 +30,7 @@
                 (click)="onClickBtn('contemplados')"
                 [ngClass]="pressedBtn == 'contemplados' ? 'pressed-btn' : 'not-pressed-btn'" 
                 class="text-button"
-                routerLink="/contemplados"
+                routerLink="contemplados"
                 routerLinkActive="active">
                 Contemplados
                 <i class="material-icons">
@@ -36,7 +41,7 @@
                 (click)="onClickBtn('estoque')"
                 [ngClass]="pressedBtn == 'estoque' ? 'pressed-btn' : 'not-pressed-btn'" 
                 class="text-button"
-                routerLink="/estoque"
+                routerLink="estoque"
                 routerLinkActive="active">
                 Estoque
                 <i class="material-icons">
@@ -47,30 +52,19 @@
                 (click)="onClickBtn('administrador')"
                 [ngClass]="pressedBtn == 'administrador' ? 'pressed-btn' : 'not-pressed-btn'" 
                 class="text-button"
-                routerLink="/administrador"
+                routerLink="/painel-admin"
                 routerLinkActive="active">
                 Painel Administrador
                 <i class="material-icons">
                     paid
                 </i>
             </a>
-            <!-- <a  mat-list-item
-                (click)="onClickBtn('vendedores')"
-                [ngClass]="pressedBtn == 'vendedores' ? 'pressed-btn' : 'not-pressed-btn'" 
-                class="text-button"
-                routerLink="/vendedores"
-                routerLinkActive="active">
-                Vendedores
-                <i class="material-icons">
-                    work
-                </i>
-            </a> -->
         </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>
         <app-nav></app-nav>
         <div class="content">
-            <router-outlet></router-outlet>
+            <router-outlet name="content"></router-outlet>
         </div>
     </mat-sidenav-content>
 </mat-sidenav-container>
