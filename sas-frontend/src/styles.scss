@@ -1,15 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~bootstrap/dist/css/bootstrap.min.css";
 
-$gray: #f3f5f7;
-$menu-text: #f3f5f7;
+$background-content: #f4f7fa;
+$menu-text: #ffffff;
 $more-gray: #dcdddd;
-$menu-background: #323232;
-$base-text-color: #323232;
+$menu-background: #3f4d67;
+$base-text-color: #3f4d67;
 $contrast-color: #4145d1;
 $contrast-color-dark: #2a2c7c;
 $contrast-color-light: #6569dfcc;
-$constrast-color-light-light: #b8baf8;
+$constrast-color-light-light: #f4f7fa;
 $red-color-dark: #9e4242;
 $red-color: #c74343;
 $red-color-light: #f06767;
@@ -47,4 +47,8 @@ body {
 
 .mat-list-base{
   padding: 0 !important;
+}
+
+.mat-drawer-inner-container {
+  overflow: hidden !important;
 }

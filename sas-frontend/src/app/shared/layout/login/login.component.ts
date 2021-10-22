@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validator, Validators } from '@angular/forms';
-import { RouteConfigLoadEnd } from '@angular/router';
+import { RouteConfigLoadEnd, Router } from '@angular/router';
 import { AuthService } from 'src/app/service/auth.service';
 
 @Component({
@@ -11,10 +11,17 @@ import { AuthService } from 'src/app/service/auth.service';
 export class LoginComponent implements OnInit, OnDestroy {
   loginForm!: FormGroup;
 
-  constructor(private fb: FormBuilder, private authService: AuthService) { }
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private router: Router
+  ) { }
   
 
   ngOnInit(): void {
+    if(this.authService.isLoggedIn()){
+      this.router.navigate(['/']);
+    }
     this.createLoginForm();
   }
 
@@ -47,9 +54,10 @@ export class LoginComponent implements OnInit, OnDestroy {
     console.log(this.loginForm.value)
     this.authService.login(this.loginForm.value).subscribe(
       result => {
-        console.log(result)
-        this.authService.saveUserData(result)
-        this.authService.saveToken(result.token)
+        console.log(result);
+        this.authService.saveUserData(result);
+        this.authService.saveToken(result.token);
+        this.router.navigate(['/']);
       },
       error => {
         console.log(error);

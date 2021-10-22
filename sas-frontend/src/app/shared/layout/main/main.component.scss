@@ -29,7 +29,7 @@ mat-sidenav-container {
 
 .pressed-btn{
     color: $contrast-color !important;
-    background-color: $gray !important;
+    background-color: $background-content !important;
     transition: background-color 0.2s, color 0.2s !important; 
 }
 
@@ -39,7 +39,7 @@ mat-sidenav-container {
 
 .content{
     padding: 50px;
-    background-color: $gray;
+    background-color: $background-content;
     height: 100vh;
 }
 
