@@ -8,6 +8,7 @@ import { AuthService } from 'src/app/service/auth.service';
 })
 export class MainComponent implements OnInit {
 
+  subMenu: string = '';
   pressedBtn: string = '';
   isAdminUser: boolean = false;
   constructor(private authService: AuthService) { }
@@ -18,6 +19,10 @@ export class MainComponent implements OnInit {
 
   onClickBtn(btn: string) {
     this.pressedBtn = btn;
+  }
+
+  openSubMenu(menu: string){
+    this.subMenu = this.subMenu != menu ? menu : '';
   }
 
 

@@ -1,15 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~bootstrap/dist/css/bootstrap.min.css";
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,600");
 
+$main-color: #3f4d67;
+$menu-btn-hover: #dddedf;
 $background-content: #f4f7fa;
-$menu-text: #ffffff;
-$more-gray: #dcdddd;
-$menu-background: #3f4d67;
-$base-text-color: #3f4d67;
-$contrast-color: #4145d1;
-$contrast-color-dark: #2a2c7c;
-$contrast-color-light: #6569dfcc;
-$constrast-color-light-light: #f4f7fa;
+$background-nav: #f4f7fa;
+$white-text: #ffffff;
+
+
+
 $red-color-dark: #9e4242;
 $red-color: #c74343;
 $red-color-light: #f06767;
@@ -20,24 +20,23 @@ body {
   box-sizing: border-box;
   font-size: 20px;
   font-weight: 400;
+  font-family: "Open Sans", Roboto, "Helvetica Neue", sans-serif !important;
 }
 
 body {
   margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
   letter-spacing: 0.3px !important;
   overflow: hidden;
 }
 
-
 .customFormError {
-    color: #842029;
-    background-color: #f8d7da;
-    border-color: #f5c2c7;
-    position: relative;
-    border: 1px solid transparent;
-    border-radius: .25rem;
-    padding: 3px 5px;
+  color: #842029;
+  background-color: #f8d7da;
+  border-color: #f5c2c7;
+  position: relative;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+  padding: 3px 5px;
 }
 
 //material override
@@ -45,10 +44,14 @@ body {
   justify-content: space-between;
 }
 
-.mat-list-base{
-  padding: 0 !important;
-}
+// .mat-list-base{
+//   padding: 0 !important;
+// }
 
 .mat-drawer-inner-container {
   overflow: hidden !important;
+}
+
+.mat-body, .mat-body-1, .mat-typograph, .mat-list-item {
+  font: 400 14px/20px "Open Sans", Roboto, "Helvetica Neue", sans-serif !important;
 }

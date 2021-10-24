@@ -2,12 +2,12 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PainelAdminComponent } from './painel-admin.component';
 import { PainelAdminRoutingModule } from './painel-admin-routing.module';
-import { CadastroFuncionarioComponent } from './cadastro-funcionario/cadastro-funcionario.component';
+import { FuncionariosComponent } from './funcionarios/funcionarios.component'
 
 
 
 @NgModule({
-  declarations: [PainelAdminComponent, CadastroFuncionarioComponent],
+  declarations: [PainelAdminComponent, FuncionariosComponent],
   imports: [
     CommonModule,
     PainelAdminRoutingModule

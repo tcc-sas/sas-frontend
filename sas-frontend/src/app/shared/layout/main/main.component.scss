@@ -2,13 +2,17 @@
 mat-sidenav-container {
     height: 100%;
 }
+
+.logo {
+    width: 240px;
+}
+
 .sidenav{
     width: 240px;
     margin-top: 0;
     border-right: none !important;
-    background-color: $menu-background; 
+    background-color: $main-color; 
 }
-
     
 .nav-list a{
     // color: $gray;
@@ -17,18 +21,18 @@ mat-sidenav-container {
 }
 
 .nav-list a:hover{
-    color: $contrast-color !important;
-    background-color: $more-gray;
+    color: $main-color !important;
+    background-color: $menu-btn-hover;
     transition: background-color 0.2s, color 0.2s; 
 }
 
 .not-pressed-btn {
-    color: $menu-text !important;
+    color: $white-text !important;
     transition: background-color 0.2s, color 0.2s !important; 
 }
 
 .pressed-btn{
-    color: $contrast-color !important;
+    color: $main-color !important;
     background-color: $background-content !important;
     transition: background-color 0.2s, color 0.2s !important; 
 }
@@ -46,7 +50,7 @@ mat-sidenav-container {
 .nav-list a::after {
     display: block;
     height: 1px;
-    background-color: #4286f44b;
+    background-color: #ffffff4b;
     width: 100%;
     content: "";
 }

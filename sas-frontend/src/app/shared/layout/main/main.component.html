@@ -2,7 +2,7 @@
   <mat-sidenav class="sidenav" mode="side" opened [fixedInViewport]="false">
     <div>
       <a routerLink="/">
-        <img src="../../../../assets/logo.svg" style="width: 240px" alt="" />
+        <img src="../../../../assets/logo.svg" class="logo" alt="" />
       </a>
     </div>
     <mat-nav-list class="nav-list">
@@ -58,6 +58,20 @@
       <a
         *ngIf="isAdminUser"
         mat-list-item
+        (click)="onClickBtn('painelAdmin'); openSubMenu('painelAdmin')"
+        [ngClass]="
+          pressedBtn == 'painelAdmin' ? 'pressed-btn' : 'not-pressed-btn'
+        "
+        class="text-button"
+        routerLink="painel-admin"
+        routerLinkActive="active"
+      >
+        Painel Administrador
+        <i class="material-icons"> paid </i>
+      </a>
+      <a
+        *ngIf="subMenu == 'painelAdmin'"
+        mat-list-item
         (click)="onClickBtn('administrador')"
         [ngClass]="
           pressedBtn == 'administrador' ? 'pressed-btn' : 'not-pressed-btn'
@@ -66,7 +80,7 @@
         routerLink="painel-admin"
         routerLinkActive="active"
       >
-        Painel Administrador
+        <span class="ms-3">Funcionarios</span>
         <i class="material-icons"> paid </i>
       </a>
     </mat-nav-list>
