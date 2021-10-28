@@ -10,7 +10,7 @@ const routes: Routes = [
     path: '', 
     component: PainelAdminComponent,
     children: [{
-      path: 'cadastro-funcionario',
+      path: 'funcionarios',
       component: FuncionariosComponent,
     }]
   }

@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, pipe } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { ILogin, IUserData } from '../models/auth.models';
+import { ILogin, IUser, IUserData } from '../models/auth.models';
 import { } from '../app-constants';
 
 const TOKEN_KEY = 'auth-token';
@@ -60,5 +60,10 @@ export class AuthService {
   login(login: ILogin): Observable<any> {
     const url = environment.endpoints.authController.login;
     return this.http.post<ILogin>(url, login);
+  }
+
+  register(user: IUser): Observable<any>{
+    const url = environment.endpoints.authController.register;
+    return this.http.post<IUser>(url, user);
   }
 }

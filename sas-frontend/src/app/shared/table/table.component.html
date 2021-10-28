@@ -1,0 +1,76 @@
+<div class="main-table">
+
+    <table class="table table-hover">
+        <thead class="bg-main">
+            <tr>
+                <th *ngFor="let field of tableFields" scope="col" [style]="tableSpacing">
+                    <span (click)="orderBy(field.apiObjectField)">
+                        {{field.name}}
+                    </span>
+                </th>
+                <th scope="col">Opções</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr scope="row" *ngFor="let row of data?.content">
+                
+                <td class="align-texto padding-coluna-codigo" *ngFor="let field of tableFields">
+                   
+                    <div *ngIf="field.isObject">
+                        <span>
+                            {{ row[field.apiObjectField][field.fieldObject] }}
+                        </span>
+                    </div>
+
+                    <div *ngIf="!field.isObject">
+
+                        <span *ngIf="field.tableType == 'currency' ">
+                            {{ row[field.apiObjectField] | currency : 'R$ ' }} 
+                        </span>
+
+                        <span *ngIf="field.tableType == 'boolean' ">
+                            {{ row[field.apiObjectField] ? 'Disponível' : 'Indisponível'}} 
+                        </span>
+
+                        <span *ngIf="!field.tableType">
+                            {{ row[field.apiObjectField] }} 
+                        </span>
+
+                    </div>
+
+                </td>
+                
+                <td>
+                    <button
+                        mat-icon-button
+                        class="menu-button icone-opcoes" 
+                        [matMenuTriggerFor]="menu"
+                        aria-label="Example icon-button with a menu">
+                        
+                        <mat-icon>more_horiz</mat-icon>
+                    </button>
+                    <mat-menu #menu="matMenu">
+                        <button mat-menu-item class="icone-opcoes"  (click)="teste()">
+                            <mat-icon>edit</mat-icon>
+                            <span>Editar</span>
+                        </button>
+                        <button mat-menu-item class="icone-opcoes">
+                            <mat-icon>remove_circle_outline</mat-icon>
+                            <span>Excluir</span>
+                        </button>
+                    </mat-menu>
+                </td>
+            </tr>
+        </tbody>
+
+    </table>
+
+    <mat-paginator 
+        [length]="paginatorLength"
+        [pageSize]="pageSize"
+        [pageSizeOptions]="pageSizeOptions"
+        [pageIndex]="pageIndex"
+        (page)="handlePageEvent($event)">
+    </mat-paginator>
+</div>

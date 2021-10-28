@@ -2,11 +2,10 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
-import { MatTableModule } from '@angular/material/table';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { ReactiveFormsModule } from '@angular/forms'
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { FormsModule } from '@angular/forms';
 
@@ -17,6 +16,11 @@ import { NavComponent } from './shared/layout/nav/nav.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './shared/layout/login/login.component';
 import { BeneficiariosComponent } from './components/beneficiarios/beneficiarios.component';
+import { AuthService } from './service/auth.service';
+import { FuncionarioService } from './service/funcionario.service';
+import { AuthGuard } from './guards/auth.guard';
+import { JwtInterceptor } from './interceptor/jwt.interceptor';
+
 
 @NgModule({
   declarations: [
@@ -39,7 +43,19 @@ import { BeneficiariosComponent } from './components/beneficiarios/beneficiarios
     MatPaginatorModule,
     BrowserAnimationsModule,
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+    AuthGuard,
+    AuthService,
+    FuncionarioService, 
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JwtInterceptor,
+      multi: true,
+    }
+  ],
+  bootstrap: [
+    AppComponent
+  ],
+ 
 })
 export class AppModule { }
