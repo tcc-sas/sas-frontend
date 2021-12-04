@@ -11,12 +11,12 @@ import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MainComponent } from './shared/layout/main/main.component';
-import { NavComponent } from './shared/layout/nav/nav.component';
+import { MainComponent } from './shared/components/main/main.component';
+import { NavComponent } from './shared/components/nav/nav.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { LoginComponent } from './shared/layout/login/login.component';
+import { LoginComponent } from './shared/components/login/login.component';
 import { BeneficiariosComponent } from './components/beneficiarios/beneficiarios.component';
-import { AuthService } from './service/auth.service';
+import { AuthService } from './shared/service/auth.service';
 import { FuncionarioService } from './service/funcionario.service';
 import { AuthGuard } from './guards/auth.guard';
 import { JwtInterceptor } from './interceptor/jwt.interceptor';

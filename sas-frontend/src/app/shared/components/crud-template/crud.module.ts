@@ -6,6 +6,7 @@ import { TableComponent } from '../table/table.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -21,6 +22,7 @@ import { MatMenuModule } from '@angular/material/menu';
     MatPaginatorModule,
     MatIconModule,
     MatMenuModule,
+    FormsModule
   ],
   exports: [CrudTemplateComponent]
 })

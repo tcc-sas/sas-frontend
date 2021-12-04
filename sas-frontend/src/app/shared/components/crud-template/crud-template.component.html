@@ -1,0 +1,25 @@
+<div class="crud-template">
+    <app-filter
+        [constants]="constants"
+    ></app-filter>
+
+    <div class="content-template">
+        <div class="info">
+          {{ data?.totalElements }} {{ constants.infoText }} !
+        </div>
+        <div>
+          <button
+            class="btn btn-sm btn-primary shadow-none"
+            routerLink=""
+          >
+            Cadastrar
+          </button>
+        </div>
+    </div>
+    
+    <app-table
+        [data]="data"
+        [constants]="constants"
+    ></app-table>
+
+</div>

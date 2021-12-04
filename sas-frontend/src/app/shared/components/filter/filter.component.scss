@@ -1,0 +1,45 @@
+@import "../../../styles.scss";
+
+.filter {
+  padding: 0 15px;
+  background-color: white;
+  background-color: #e0eafc;
+  border-top-left-radius: 5px ;
+  border-top-right-radius: 5px;
+}
+
+.form-label {
+  color: #3f80ea;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.filter-fields {
+  padding: 20px;
+  color: black;
+}
+
+.filter-search {
+    color: #3f80ea;
+  margin-top: 35px;
+}
+
+.filter-search:hover {
+  color: #1f63cf;
+  margin-top: 35px;
+}
+
+.filter-clear {
+    color:  #9e4242;
+  margin-top: 35px;
+}
+
+.filter-clear:hover {
+  color: #7a2b2b;
+  margin-top: 35px;
+}
+
+.filter-button {
+  background-color: transparent;
+  border: none;
+}

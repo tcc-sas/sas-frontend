@@ -1,8 +1,7 @@
 export class MessageData {
-    name: string;
-    data: any;
-    constructor(name: string, data: any){
-        this.name = name;
-        this.data = data;
-    }
+    constructor(
+        public target?: string,
+        public action?: string,
+        public data?: any
+    ){}
 }

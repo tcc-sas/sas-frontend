@@ -14,5 +14,5 @@ export class CrudTemplateComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  
 }

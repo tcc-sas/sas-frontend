@@ -2,7 +2,7 @@ import { Location } from '@angular/common';
 import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { Router } from '@angular/router';
-import { IConstants } from 'src/app/models/constants.models';
+import { IConstants } from 'src/app/shared/models/constants.models';
 import { MessageData } from 'src/app/models/message-data.models';
 import { MessageService } from 'src/app/service/message.service';
 
@@ -123,9 +123,7 @@ export class TableComponent implements OnInit {
   }
 
   teste(){
-    this.msgService.emit(
-      new MessageData('funcionarios', {valor: 1})
-    )
+    
   }
 
   teste2(){

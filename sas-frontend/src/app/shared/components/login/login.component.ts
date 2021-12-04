@@ -1,7 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validator, Validators } from '@angular/forms';
 import { RouteConfigLoadEnd, Router } from '@angular/router';
-import { AuthService } from 'src/app/service/auth.service';
+import { AuthService } from 'src/app/shared/service/auth.service';
+import { SweetAlertService } from 'src/app/shared/service/sweet-alert.service';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,8 @@ export class LoginComponent implements OnInit, OnDestroy {
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private sweetAlert: SweetAlertService
   ) { }
   
 
@@ -60,7 +62,7 @@ export class LoginComponent implements OnInit, OnDestroy {
         this.router.navigate(['/']);
       },
       error => {
-        console.log(error);
+        this.sweetAlert.error(error)
       }
     );
 

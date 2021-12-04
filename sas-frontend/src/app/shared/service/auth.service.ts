@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { Observable, pipe } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { ILogin, IUser, IUserData } from '../models/auth.models';
-import { } from '../app-constants';
+import { } from '../../app-constants';
 
 const TOKEN_KEY = 'auth-token';
 const USER_KEY = 'auth-user';

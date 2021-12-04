@@ -1,0 +1,19 @@
+@import '../../../styles.scss';
+
+.main-table {
+  padding: 20px;
+}
+
+.menu-button {
+  background-color: transparent;
+  border: none;
+}
+
+.icone-opcoes:hover {
+  color: $main-color;
+  mat-icon {
+    color: $main-color;
+    font-size: 24px;
+  }
+  transition: color 0.2s;
+}
