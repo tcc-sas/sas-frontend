@@ -3,8 +3,7 @@ import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { Router } from '@angular/router';
 import { IConstants } from 'src/app/shared/models/constants.models';
-import { MessageData } from 'src/app/models/message-data.models';
-import { MessageService } from 'src/app/service/message.service';
+import { BroadcastService } from 'src/app/shared/service/broadcast.service';
 
 @Component({
   selector: 'app-table',
@@ -28,10 +27,10 @@ export class TableComponent implements OnInit {
   tableSortDirection: string = 'asc';
   constructor(
     // private alert: SweetAlertService,
-    // private messageService: MessageService,
+    // private BroadcastService: MessageService,
     private router: Router,
     private location: Location,
-    private msgService: MessageService
+    private msgService: BroadcastService
   ) {}
 
   ngOnInit(): void {
@@ -122,12 +121,5 @@ export class TableComponent implements OnInit {
     this.handleQueryParamsIfExists(paginationQuery);
   }
 
-  teste(){
-    
-  }
-
-  teste2(){
-    console.log('ué')
-  }
 
 }

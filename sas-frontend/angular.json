@@ -63,7 +63,18 @@
                   "maximumError": "4kb"
                 }
               ]
+            },
+            "development": {
+              "optimization": false,
+              "sourceMap": true,
+              "namedChunks": true,
+              "aot": false,
+              "extractLicenses": false,
+              "vendorChunk": true,
+              "buildOptimizer": false
             }
+            
+            
           }
         },
         "serve": {
@@ -74,8 +85,12 @@
           "configurations": {
             "production": {
               "browserTarget": "sas-frontend:build:production"
+            },
+            "development": {
+              "browserTarget": "sas-frontend:build:development"
             }
-          }
+          },
+          "defaultConfiguration": "development"
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",

@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './shared/components/login/login.component';
 import { MainComponent } from './shared/components/main/main.component';
-import { AuthGuard } from './guards/auth.guard';
-import { BeneficiariosComponent } from './components/beneficiarios/beneficiarios.component';
+import { AuthGuard } from './core/guards/auth.guard';
+import { BeneficiaryComponent } from './components/beneficiary/beneficiary.component';
 
 const routes: Routes = [
   {
@@ -20,14 +20,14 @@ const routes: Routes = [
         canActivateChild: [AuthGuard],
         children: [
           {
-            path: 'painel-admin',
-            loadChildren: () => import('./components/painel-admin/painel-admin.module').then((m) => m.PainelAdminModule),
+            path: 'admin',
+            loadChildren: () => import('./components/admin/admin.module').then((m) => m.AdminModule),
           },
         ]
       },
       {
         path: 'beneficiarios',
-        component: BeneficiariosComponent,
+        component: BeneficiaryComponent,
       }
     ]
   },

@@ -2,7 +2,7 @@ export function endpoints(host: string) {
     return {
         host: host,
         authController: authController(host + '/api/auth'),
-        funcionarioController: funcionarioController(host + '/api/funcionarios'),
+        userController: userController(host + '/api/user'),
     }
 }
 
@@ -11,6 +11,8 @@ const authController = (baseApiUrl: string) => ({
     register: baseApiUrl + '/register'
 })
 
-const funcionarioController = (baseApiUrl: string) => ({
-    getAllFuncionarios: baseApiUrl + '/all'
+const userController = (baseApiUrl: string) => ({
+    getAllUsers: (query?: string) => baseApiUrl + `/all${query}`,
+    getUsersByFilter: (query: string) => baseApiUrl + `/filter${query}`
 });
+

@@ -1,10 +1,11 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { IConstants } from 'src/app/shared/models/constants.models';
-import { MessageData } from 'src/app/models/message-data.models';
-import { MessageService } from 'src/app/service/message.service';
+import { Broadcast, BroadcastType } from 'src/app/shared/models/broadcast.models';
+import { BroadcastService } from 'src/app/shared/service/broadcast.service';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
+import { Filter, Reload } from '../../actions/broadcast.actions';
 
 
 @Component({
@@ -12,22 +13,20 @@ import { Router } from '@angular/router';
   templateUrl: './filter.component.html',
   styleUrls: ['./filter.component.scss']
 })
-export class FilterComponent implements OnInit, OnDestroy {
+export class FilterComponent implements OnInit {
   
   @Input() constants!: IConstants;
-  subscription!: Subscription;
   filterObj: { [k: string]: any } = {};
+  
   constructor(
-    private msgService: MessageService,
+    private broadcastService: BroadcastService,
     private router: Router,
     private location: Location
   ) { }
  
 
   ngOnInit(): void {
-    this.subscription = this.msgService.listen('filter', (data: any) => {
-      console.log(data)
-    })
+   
   }
 
   createFilterObject(): object {
@@ -45,50 +44,42 @@ export class FilterComponent implements OnInit, OnDestroy {
     if (!Object.values(this.filterObj).some((value) => value)) {
       return;
     }
+    //seta a url com os parametros
+    this.setUrlParams(this.filterObj);
+    const queryParams = this.retrieveQueryParams();
 
-    //constroi a query p/ o endpoint com o que foi digitado nos filtros
+    //envia a msg p/ o 1º component 
+    this.broadcastService.notify(Filter(queryParams));
+  }
+
+  retrieveQueryParams(): string{
     let queryParams = `?`
     Object.keys(this.filterObj).forEach((key) => {
       queryParams += `${key}=${this.filterObj[key]}&`;
     });
 
-    //seta a url com os parametros
-    this.setUrlParams(this.filterObj);
-
-    //envia a msg p/ o 1º component 
-    this.msgService.notify({
-      action: "filter",
-      data: queryParams
-    });
+    return queryParams;
   }
 
-
-  clearFilters(): void { 
+  clearFiltersAndReload(): void { 
     Object.keys(this.filterObj).forEach((key) => {
       this.filterObj[key] = '';
     });
-    
-    const url = this.router.url.split('?')[0];
-    this.location.replaceState(url, '');
-    
-    this.msgService.notify({
-      target: this.constants.route,
-      action: 'reload',
-      data: null
-    });
+    this.clearUrl();
+    this.broadcastService.notify(Reload());
   }
 
-  setUrlParams(params: object): void{
+  setUrlParams(queryParams: object): void{
     this.router.navigate([], {
       queryParams: {
-        ...params,
+        ...queryParams,
       },
     });
   }
- 
 
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+  clearUrl(): void {
+    const url = this.router.url.split('?')[0];
+    this.location.replaceState(url, '');
   }
-
+ 
 }

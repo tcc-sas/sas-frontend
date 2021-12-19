@@ -58,27 +58,24 @@
       <a
         *ngIf="isAdminUser"
         mat-list-item
-        (click)="onClickBtn('painelAdmin'); openSubMenu('painelAdmin')"
-        [ngClass]="
-          pressedBtn == 'painelAdmin' ? 'pressed-btn' : 'not-pressed-btn'
-        "
-        class="text-button"
+        (click)="onClickBtn('admin'); openSubMenu('admin')"
+        class="text-button not-pressed-btn"
       >
         Painel Administrador
         <i class="material-icons"> paid </i>
       </a>
       <a
-        *ngIf="subMenu == 'painelAdmin'"
+        *ngIf="subMenu == 'admin'"
         mat-list-item
         (click)="onClickBtn('administrador')"
         [ngClass]="
           pressedBtn == 'administrador' ? 'pressed-btn' : 'not-pressed-btn'
         "
         class="text-button"
-        routerLink="painel-admin/funcionarios"
+        routerLink="admin/usuarios"
         routerLinkActive="active"
       >
-        <span class="ms-3">Funcionarios</span>
+        <span class="ms-3">Usuários</span>
         <i class="material-icons"> paid </i>
       </a>
     </mat-nav-list>

@@ -15,11 +15,11 @@ import { MainComponent } from './shared/components/main/main.component';
 import { NavComponent } from './shared/components/nav/nav.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './shared/components/login/login.component';
-import { BeneficiariosComponent } from './components/beneficiarios/beneficiarios.component';
+import { BeneficiaryComponent } from './components/beneficiary/beneficiary.component';
 import { AuthService } from './shared/service/auth.service';
-import { FuncionarioService } from './service/funcionario.service';
-import { AuthGuard } from './guards/auth.guard';
-import { JwtInterceptor } from './interceptor/jwt.interceptor';
+import { UserService } from './service/user.service';
+import { AuthGuard } from './core/guards/auth.guard';
+import { JwtInterceptor } from './core/interceptor/jwt.interceptor';
 
 
 @NgModule({
@@ -28,7 +28,7 @@ import { JwtInterceptor } from './interceptor/jwt.interceptor';
     MainComponent,
     NavComponent,
     LoginComponent,
-    BeneficiariosComponent,
+    BeneficiaryComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,7 +46,7 @@ import { JwtInterceptor } from './interceptor/jwt.interceptor';
   providers: [
     AuthGuard,
     AuthService,
-    FuncionarioService, 
+    UserService, 
     {
       provide: HTTP_INTERCEPTORS,
       useClass: JwtInterceptor,
