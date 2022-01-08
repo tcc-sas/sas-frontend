@@ -1,11 +1,9 @@
-import { Location } from '@angular/common';
 import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
-import { Router } from '@angular/router';
-import { IConstants } from 'src/app/shared/models/constants.models';
-import { BroadcastService } from 'src/app/shared/service/broadcast.service';
-import { Filter, Reload } from '../../actions/broadcast.actions';
-import { QueryUtilService } from '../../service/query-util.service';
+import { IConstants, IFields } from 'src/app/shared/models/constants.models';
+import {PaginationOptions} from '../../models/pagination-options.models';
+import { TableOptions, ASC, DESC } from '../../models/table-options.models';
+import { QueryUtilService } from '../../../core/service/query-util.service';
 
 @Component({
   selector: 'app-table',
@@ -16,42 +14,33 @@ export class TableComponent implements OnInit {
   @Input() data!: any;
   @Input() constants!: IConstants;
 
-  tableFields: Array<any> = [];
-  tableSpacing: string = '';
-
   pageEvent: PageEvent = new PageEvent();
-  pageSizeOptions: Array<number> = [1, 2, 3];
-  paginatorLength: number = 0;
-  pageSize: number = 1;
-  pageIndex: number = 0;
-
-  tableFieldToSort: string = '';
-  tableSortDirection: string = 'asc';
+  paginationOptions = new PaginationOptions();
+  tableOptions = new TableOptions();
+  
   constructor(
-    private router: Router,
-    private location: Location,
-    private broadcastService: BroadcastService,
     private queryUtilService: QueryUtilService
   ) {}
 
   ngOnInit(): void {
+    this.paginationOptions
     this.getTableFields();
-    this.getTableSpacingByAmountOfColumns(this.tableFields.length);
+    this.getTableSpacingByAmountOfColumns(this.tableOptions.tableFields.length);
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['data']) {
-      this.paginatorLength = changes?.data?.currentValue?.totalElements | 0;
-      this.pageIndex = changes?.data?.currentValue?.number | 0;
+      this.paginationOptions.paginatorLength = changes?.data?.currentValue?.totalElements ?? 0;
+      this.paginationOptions.pageIndex = changes?.data?.currentValue?.number ?? 0;
     }
     if (changes['constants']) {
-      this.tableFieldToSort =
-        changes.constants.currentValue.fields[1].apiObjectField;
+      this.tableOptions.tableFieldToSort =
+        changes.constants?.currentValue?.fields[1]?.apiField ?? null;
     }
   }
 
   private getTableFields(): void {
-    this.tableFields = this.constants.fields.filter(
+    this.tableOptions.tableFields = this.constants.fields.filter(
       (field) => field.isTableField
     );
   }
@@ -59,14 +48,14 @@ export class TableComponent implements OnInit {
   private getTableSpacingByAmountOfColumns(amountColumns: number): void {
     if (amountColumns) {
       let colsWidth = (100 / (amountColumns + 1)).toFixed(2);
-      this.tableSpacing = `width: ${colsWidth}%;`;
+      this.tableOptions.tableSpacing = `width: ${colsWidth}%;`;
     }
-    this.tableSpacing = 'width: auto;';
+    this.tableOptions.tableSpacing = 'width: auto;';
   }
 
-  handlePageEvent(pageEvent: PageEvent) {
-    this.pageIndex = pageEvent.pageIndex;
-    this.pageSize = pageEvent.pageSize;
+  handlePageEvent(pageEvent: PageEvent): void {
+    this.paginationOptions.pageIndex = pageEvent.pageIndex;
+    this.paginationOptions.pageSize = pageEvent.pageSize;
 
     const paginationQuery: string = this.retrievePaginationQuery();
     this.queryUtilService.fetchDataByUrl(paginationQuery);
@@ -74,8 +63,8 @@ export class TableComponent implements OnInit {
 
   
   orderBy(fieldName: string): void {
-    this.tableFieldToSort = fieldName;
-    this.tableSortDirection = this.tableSortDirection == 'asc' ? 'desc' : 'asc';
+    this.tableOptions.tableFieldToSort = fieldName;
+    this.tableOptions.tableSortDirection = this.tableOptions.tableSortDirection == ASC ? DESC : ASC;
 
     const paginationQuery = this.retrievePaginationQuery();
     this.queryUtilService.fetchDataByUrl(paginationQuery);
@@ -83,32 +72,10 @@ export class TableComponent implements OnInit {
 
   private retrievePaginationQuery(): string {
     return (
-      `page=${this.pageIndex}&` +
-      `size=${this.pageSize}&` +
-      `sort=${this.tableFieldToSort},${this.tableSortDirection}`
+      `page=${this.paginationOptions.pageIndex}&` +
+      `size=${this.paginationOptions.pageSize}&` +
+      `sort=${this.tableOptions.tableFieldToSort},${this.tableOptions.tableSortDirection}`
     );
   }
-
-  // handleQueryParamsIfExists(paginationQuery: string) {
-  //   let query: string = '';
-
-
-  //   this.templateService.retrieveQueryParams(filterOptionsName).then(
-  //     (filterQuery) => {
-  //       if (filterQuery) {
-  //         query = `?${filterQuery}${paginationQuery}`;
-  //         this.broadcastService.notify(Filter(query));
-  //         this.replaceUrl(query);
-  //       }
-  //     },
-  //     (reject) => {
-  //       query = `?${paginationQuery}`;
-  //       this.broadcastService.notify(Reload(query));
-  //       this.replaceUrl(query);
-  //     }
-  //   );
-  // }
-
-  
 
 }

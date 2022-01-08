@@ -1,25 +1,24 @@
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { MatSidenavModule } from '@angular/material/sidenav';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
-import { MatIconModule } from '@angular/material/icon';
-import { ReactiveFormsModule } from '@angular/forms'
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { MatPaginatorModule } from '@angular/material/paginator';
-import { FormsModule } from '@angular/forms';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MainComponent } from './shared/components/main/main.component';
-import { NavComponent } from './shared/components/nav/nav.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { LoginComponent } from './shared/components/login/login.component';
 import { BeneficiaryComponent } from './components/beneficiary/beneficiary.component';
-import { AuthService } from './shared/service/auth.service';
-import { UserService } from './service/user.service';
+import { LoginComponent } from './core/components/login/login.component';
+import { MainComponent } from './core/components/main/main.component';
+import { NavComponent } from './core/components/nav/nav.component';
 import { AuthGuard } from './core/guards/auth.guard';
 import { JwtInterceptor } from './core/interceptor/jwt.interceptor';
+import { AuthService } from './core/service/auth.service';
+import { UserService } from './core/service/user.service';
+
 
 
 @NgModule({
@@ -28,7 +27,6 @@ import { JwtInterceptor } from './core/interceptor/jwt.interceptor';
     MainComponent,
     NavComponent,
     LoginComponent,
-    BeneficiaryComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,10 +35,8 @@ import { JwtInterceptor } from './core/interceptor/jwt.interceptor';
     MatListModule,
     MatMenuModule,
     MatIconModule,
-    FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    MatPaginatorModule,
     BrowserAnimationsModule,
   ],
   providers: [

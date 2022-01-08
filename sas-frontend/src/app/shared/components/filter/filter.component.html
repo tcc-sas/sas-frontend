@@ -1,25 +1,36 @@
 <div class="filter">
 
-    <div class="d-flex">
-        <div *ngFor="let field of constants.fields">
-            <div *ngIf="field.isFilterField" class="filter-fields w-100">
-                
-                <label class="form-label" for="{{field.name}}">{{field.name}}</label>
+    <div class="row">
+        <div *ngFor="let field of filterFields" class="col-3 filter-fields">
+            
+            <label class="form-label" for="{{field.name}}">{{field.name}}</label>
 
-                <!-- GENERIC TYPE INPUT FIELD -->
-                <input 
-                    *ngIf="field.genericType && !field.filterType"
-                    class="form-control form-control-sm shadow-none" 
-                    type="{{field.genericType}}" 
-                    name="{{field.name}}"
-                    id="{{field.id}}"
-                    [(ngModel)]="filterObj[field.apiObjectField]"
+            <input 
+                *ngIf="field.filterType !== 'select' && !field.isObject"
+                class="form-control form-control-sm shadow-none" 
+                type="{{field.filterType}}" 
+                name="{{field.name}}"
+                id="{{field.id}}"
+                [(ngModel)]="filterObj[field.apiField]"
+            >
+
+            <select
+                *ngIf="field.filterType === 'select' && field.isObject && selectOptions"
+                class="form-control form-control-sm shadow-none" 
+                [(ngModel)]="filterObj[field.apiField]"
+            >
+
+                <option 
+                    *ngFor="let option of selectOptions[field.apiField]"
+                    [value]="option.id"
                 >
-                <!-- GENERIC TYPE INPUT FIELD -->
+                    {{option.name}}
+                </option>
 
-            </div>
+            </select>
+
         </div>
-        <div class="d-flex">
+        <div class="col-2">
             <button (click)="search()" class="filter-button" mat-icon-button>
                 <mat-icon class="filter-search">search</mat-icon>
             </button>

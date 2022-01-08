@@ -2,10 +2,10 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { observable, Observable, Subscription } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { Constants } from 'src/app/core/constants/components-constants';
-import { UserService } from 'src/app/service/user.service';
+import { UserService } from 'src/app/core/service/user.service';
 import { BroadcastType } from 'src/app/shared/models/broadcast.models';
-import { BroadcastService } from 'src/app/shared/service/broadcast.service';
-import { QueryUtilService } from 'src/app/shared/service/query-util.service';
+import { BroadcastService } from 'src/app/core/service/broadcast.service';
+import { QueryUtilService } from 'src/app/core/service/query-util.service';
 
 @Component({
   selector: 'app-users',
@@ -15,6 +15,7 @@ import { QueryUtilService } from 'src/app/shared/service/query-util.service';
 export class UsersComponent implements OnInit, OnDestroy {
   constants = Constants.users;
   data: any;
+  selectOptions: any;
   subscription!: Subscription;
 
   constructor(
@@ -26,21 +27,21 @@ export class UsersComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.fetchUserData();
+    this.getUserData();
+    this.getUserSelectOptions();
     this.listenToBroadcasts();
   }
 
-  fetchUserData() {
+  private getUserSelectOptions(): void {
+    this.userService.getUserSelectOptions().subscribe(selectOptions => {
+      this.selectOptions = selectOptions;
+    })
+  }
+
+  private getUserData(): void {
     this.queryUtilService.fetchDataByUrl();
   }
   
-
-  private getAllUsers(query?: string) {
-    this.userService
-      .getAllUsers(query)
-      .subscribe((result) => (this.data = result));
-  }
-
   private listenToBroadcasts(): void {
     this.reloadBroadcast();
     this.filterBroadcast();
@@ -50,10 +51,11 @@ export class UsersComponent implements OnInit, OnDestroy {
     this.subscription = this.broadcastService
       .listen(BroadcastType.Reload)
       .pipe(
-        switchMap((value) => this.userService.getAllUsers(value.payload))
+        switchMap((value) => 
+          this.userService.getAllUsers(value.payload)
+        )
       )
       .subscribe((userData) => {
-        console.log('reload');
         return this.data = userData
       });
   }
@@ -62,10 +64,11 @@ export class UsersComponent implements OnInit, OnDestroy {
     this.subscription = this.broadcastService
       .listen(BroadcastType.Filter)
       .pipe(
-        switchMap((value) => this.userService.getUsersByFilter(value.payload))
+        switchMap((value) => 
+          this.userService.getUsersByFilter(value.payload)
+        )
       )
       .subscribe((userData) => {
-        console.log('filter');
         return this.data = userData
       });
   }

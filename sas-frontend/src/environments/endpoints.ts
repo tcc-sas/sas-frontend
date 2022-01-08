@@ -1,3 +1,5 @@
+import { query } from "@angular/animations";
+
 export function endpoints(host: string) {
     return {
         host: host,
@@ -13,6 +15,7 @@ const authController = (baseApiUrl: string) => ({
 
 const userController = (baseApiUrl: string) => ({
     getAllUsers: (query?: string) => baseApiUrl + `/all${query}`,
-    getUsersByFilter: (query: string) => baseApiUrl + `/filter${query}`
+    getUsersByFilter: (query: string) => baseApiUrl + `/filter${query}`,
+    getUserSelectOptions: () => baseApiUrl + `/selectOptions`
 });
 

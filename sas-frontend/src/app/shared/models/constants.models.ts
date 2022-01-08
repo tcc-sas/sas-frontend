@@ -8,12 +8,16 @@ export interface IConstants {
 export interface IFields {
     id: number;
     name: string;
-    apiObjectField: string;
-    genericType: string;
-    filterType?: string;
+
+    apiField: string;
+    
     isTableField: boolean
+    tableType?: string;
+    
     isFilterField: boolean;
+    filterType?: string;
+    
     isObject: boolean;
-    idObject: string;
-    fieldObject: string;
+    objectId: string;
+    objectName: string;
 }

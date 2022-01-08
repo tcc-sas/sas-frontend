@@ -1,8 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
-import { BroadcastType } from 'src/app/shared/models/broadcast.models';
-import { BroadcastService } from 'src/app/shared/service/broadcast.service';
+import { BroadcastService } from 'src/app/core/service/broadcast.service';
 
 @Component({
   selector: 'app-beneficiary',
@@ -16,7 +14,7 @@ export class BeneficiaryComponent implements OnInit, OnDestroy {
   subscription!: Subscription;
 
   ngOnInit(): void {
-    
+    console.log("dasuhuihdashuidsa") 
   }
 
   ngOnDestroy(): void {

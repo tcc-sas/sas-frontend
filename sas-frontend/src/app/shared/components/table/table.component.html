@@ -1,10 +1,10 @@
 <div class="main-table">
 
-    <table class="table table-hover">
+    <table class="table table-hover table-striped">
         <thead class="bg-main">
             <tr>
-                <th *ngFor="let field of tableFields" scope="col" [style]="tableSpacing">
-                    <span (click)="orderBy(field.apiObjectField)">
+                <th *ngFor="let field of tableOptions.tableFields" scope="col" [style]="tableOptions.tableSpacing">
+                    <span (click)="orderBy(field.apiField)">
                         {{field.name}}
                     </span>
                 </th>
@@ -15,26 +15,26 @@
         <tbody>
             <tr scope="row" *ngFor="let row of data?.content">
                 
-                <td class="align-texto padding-coluna-codigo" *ngFor="let field of tableFields">
+                <td class="align-texto padding-coluna-codigo" *ngFor="let field of tableOptions.tableFields">
                    
                     <div *ngIf="field.isObject">
                         <span>
-                            {{ row[field.apiObjectField][field.fieldObject] }}
+                            {{ row[field.apiField][field.objectName] }}
                         </span>
                     </div>
 
                     <div *ngIf="!field.isObject">
 
                         <span *ngIf="field.tableType == 'currency' ">
-                            {{ row[field.apiObjectField] | currency : 'R$ ' }} 
+                            {{ row[field.apiField] | currency : 'R$ ' }} 
                         </span>
 
-                        <span *ngIf="field.tableType == 'boolean' ">
-                            {{ row[field.apiObjectField] ? 'Disponível' : 'Indisponível'}} 
-                        </span>
+                        <!-- <span *ngIf="field.tableType == 'boolean' ">
+                            {{ row[field.apiField] ? 'Disponível' : 'Indisponível'}} 
+                        </span> -->
 
                         <span *ngIf="!field.tableType">
-                            {{ row[field.apiObjectField] }} 
+                            {{ row[field.apiField] }} 
                         </span>
 
                     </div>
@@ -67,10 +67,10 @@
     </table>
 
     <mat-paginator 
-        [length]="paginatorLength"
-        [pageSize]="pageSize"
-        [pageSizeOptions]="pageSizeOptions"
-        [pageIndex]="pageIndex"
+        [length]="paginationOptions.paginatorLength"
+        [pageSize]="paginationOptions.pageSize"
+        [pageSizeOptions]="paginationOptions.pageSizeOptions"
+        [pageIndex]="paginationOptions.pageIndex"
         (page)="handlePageEvent($event)">
     </mat-paginator>
 </div>

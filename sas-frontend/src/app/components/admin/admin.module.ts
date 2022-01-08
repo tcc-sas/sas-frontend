@@ -3,19 +3,25 @@ import { CommonModule } from '@angular/common';
 import { AdminComponent } from './admin.component';
 import { AdminRoutingModule } from './admin-routing.module';
 import { UsersComponent } from './users/users.component'
-import { CrudModule } from 'src/app/shared/components/crud-template/crud.module';
+import { FilterTableTemplateModule } from 'src/app/shared/components/filter-table-template.component.ts/filter-table-template.module';
+import { UsersRegistrationComponent } from './users/users-registration/users-registration.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
 @NgModule({
   declarations: [
     AdminComponent,
-    UsersComponent
+    UsersComponent,
+    UsersRegistrationComponent
   ],
   imports: [
     CommonModule,
     AdminRoutingModule,
-    CrudModule
+    FilterTableTemplateModule,
+    ReactiveFormsModule,
+    
+
   ]
 })
 export class AdminModule { }
