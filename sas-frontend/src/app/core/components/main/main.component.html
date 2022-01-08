@@ -1,0 +1,89 @@
+<mat-sidenav-container [hasBackdrop]="false">
+  <mat-sidenav class="sidenav" mode="side" opened [fixedInViewport]="false">
+    <div>
+      <a routerLink="/">
+        <img src="../../../../assets/logo.svg" class="logo" alt="" />
+      </a>
+    </div>
+    <mat-nav-list class="nav-list">
+      <a
+        mat-list-item
+        (click)="onClickBtn('beneficiarios')"
+        [ngClass]="
+          pressedBtn == 'beneficiarios' ? 'pressed-btn' : 'not-pressed-btn'
+        "
+        class="text-button"
+        routerLink="beneficiarios"
+        routerLinkActive="active"
+      >
+        Beneficiários
+        <i class="material-icons"> place </i>
+      </a>
+      <a
+        mat-list-item
+        (click)="onClickBtn('contemplados')"
+        [ngClass]="
+          pressedBtn == 'contemplados' ? 'pressed-btn' : 'not-pressed-btn'
+        "
+        class="text-button"
+        routerLink="contemplados"
+        routerLinkActive="active"
+      >
+        Contemplados
+        <i class="material-icons"> people </i>
+      </a>
+      <a
+        mat-list-item
+        (click)="onClickBtn('estoque')"
+        [ngClass]="pressedBtn == 'estoque' ? 'pressed-btn' : 'not-pressed-btn'"
+        class="text-button"
+        routerLink="estoque"
+        routerLinkActive="active"
+      >
+        Estoque
+        <i class="material-icons"> house </i>
+      </a>
+      <a
+        *ngIf="isAdminUser"
+        mat-list-item
+        (click)="onClickBtn('memorando')"
+        [ngClass]="
+          pressedBtn == 'memorando' ? 'pressed-btn' : 'not-pressed-btn'
+        "
+        class="text-button"
+      >
+        Painel Memorando
+        <i class="material-icons"> dashboard </i>
+      </a>
+      <a
+        *ngIf="isAdminUser"
+        mat-list-item
+        (click)="onClickBtn('admin'); openSubMenu('admin')"
+        class="text-button not-pressed-btn"
+      >
+        Painel Administrador
+        <i class="material-icons"> paid </i>
+      </a>
+      <a
+        *ngIf="subMenu == 'admin'"
+        mat-list-item
+        (click)="onClickBtn('administrador')"
+        [ngClass]="
+          pressedBtn == 'administrador' ? 'pressed-btn' : 'not-pressed-btn'
+        "
+        class="text-button"
+        routerLink="admin/usuarios"
+        routerLinkActive="active"
+      >
+        <span class="ms-3">Usuários</span>
+        <i class="material-icons"> paid </i>
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <app-nav></app-nav>
+    <div class="content">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
