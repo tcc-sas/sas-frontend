@@ -1,7 +1,14 @@
-<mat-sidenav-container [hasBackdrop]="false">
-  <mat-sidenav class="sidenav" mode="side" opened [fixedInViewport]="false">
+<mat-sidenav-container [hasBackdrop]="false" autosize>
+  <mat-sidenav
+    #sidenav
+    class="sidenav"
+    mode="side"
+    opened
+    [fixedInViewport]="false"
+    [ngClass]="isExpanded ? 'sidenav-expanded' : 'sidenav-contracted'"
+  >
     <div>
-      <a routerLink="/">
+      <a routerLink="/" (click)="isExpanded = !isExpanded">
         <img src="../../../../assets/logo.svg" class="logo" alt="" />
       </a>
     </div>
@@ -80,7 +87,9 @@
       </a>
     </mat-nav-list>
   </mat-sidenav>
-  <mat-sidenav-content>
+
+    
+    <mat-sidenav-content  >
     <app-nav></app-nav>
     <div class="content">
       <router-outlet></router-outlet>

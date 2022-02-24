@@ -4,6 +4,7 @@ import { BeneficiaryComponent } from '../beneficiary/beneficiary.component';
 import { UsersComponent } from './users/users.component';
 import { AdminComponent } from './admin.component';
 import { UsersRegistrationComponent } from './users/users-registration/users-registration.component';
+import { UserResolver } from 'src/app/core/resolvers/users-route.resolver';
 
 
 const routes: Routes = [
@@ -17,8 +18,15 @@ const routes: Routes = [
       },
       {
         path: 'cadastro-usuario',
-        component: UsersRegistrationComponent
-      }
+        component: UsersRegistrationComponent,
+        resolve: {selectOptions: UserResolver}
+      },
+      {
+        path: 'cadastro-usuario/:id',
+        component: UsersRegistrationComponent,
+        resolve: {selectOptions: UserResolver}
+      },
+      
    ]
   }
 ]

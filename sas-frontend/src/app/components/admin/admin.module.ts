@@ -6,6 +6,7 @@ import { UsersComponent } from './users/users.component'
 import { FilterTableTemplateModule } from 'src/app/shared/components/filter-table-template.component.ts/filter-table-template.module';
 import { UsersRegistrationComponent } from './users/users-registration/users-registration.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UserResolver } from 'src/app/core/resolvers/users-route.resolver';
 
 
 
@@ -20,8 +21,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     AdminRoutingModule,
     FilterTableTemplateModule,
     ReactiveFormsModule,
-    
-
+    FormsModule
+  ],
+  providers: [
+    UserResolver
   ]
 })
 export class AdminModule { }

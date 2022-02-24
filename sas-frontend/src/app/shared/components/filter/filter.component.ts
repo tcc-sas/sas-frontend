@@ -1,4 +1,10 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnChanges,
+  OnInit,
+  SimpleChanges,
+} from '@angular/core';
 import { IConstants, IFields } from 'src/app/shared/models/constants.models';
 import { BroadcastService } from 'src/app/core/service/broadcast.service';
 import { Location } from '@angular/common';
@@ -22,23 +28,22 @@ export class FilterComponent implements OnInit, OnChanges {
     private router: Router,
     private location: Location
   ) {}
-  
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   ngOnChanges(changes: SimpleChanges): void {
     this.retrieveFilterFields(changes);
+    this.createFilterObject();
   }
 
-  retrieveFilterFields(changes: SimpleChanges){
-    if(changes['constants']){
+  retrieveFilterFields(changes: SimpleChanges) {
+    if (changes['constants']) {
       const fields: IFields[] = changes.constants.currentValue?.fields ?? [];
-      this.filterFields = fields.filter(field => field.isFilterField);
+      this.filterFields = fields.filter((field) => field.isFilterField);
     }
   }
 
-  createFilterObject() {
+  private createFilterObject(): void {
     this.constants.fields
       .filter((field) => field.isFilterField)
       .map((field) => {

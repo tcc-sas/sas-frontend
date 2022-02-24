@@ -3,13 +3,7 @@ export interface ILogin {
     password: string;
 }
 
-export interface IUser {
-    name: string;
-    username: string;
-    password: string;
-}
-
-export interface IUserData {
+export interface IUserLoginData {
     id: number;
     name: string;
     roles: Array<string>

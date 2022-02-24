@@ -10,12 +10,13 @@ export function endpoints(host: string) {
 
 const authController = (baseApiUrl: string) => ({
     login: baseApiUrl + '/login',
-    register: baseApiUrl + '/register'
 })
 
 const userController = (baseApiUrl: string) => ({
     getAllUsers: (query?: string) => baseApiUrl + `/all${query}`,
     getUsersByFilter: (query: string) => baseApiUrl + `/filter${query}`,
-    getUserSelectOptions: () => baseApiUrl + `/selectOptions`
+    getUserSelectOptions: () => baseApiUrl + `/selectOptions`,
+    getUserById: (userId: string) => baseApiUrl + `/${userId}`,
+    registerUser: () => baseApiUrl + `/register`
 });
 

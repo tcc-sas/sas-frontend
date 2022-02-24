@@ -1,3 +1,25 @@
+h2 {
+    margin-bottom: 0;
+}
+
 .background {
     background-color: white;
+    max-width: 900px;
+    padding: 50px;
+    margin: 0 auto;
+}
+
+.linha {
+    height: 2px;
+    background-color: black;
+    margin-bottom: 30px;
+}
+
+
+.green-input {
+    border-color: #198754;
+}
+
+.default-input {
+    border-color: #ced4da;
 }

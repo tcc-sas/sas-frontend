@@ -1,14 +1,186 @@
-<div class="background">
-    <form [formGroup]="userRegistrationForm" (ngSubmit)="onSubmit()">
-        <div *ngFor="let fields of constants.fields">
-            
-            <div class="row">
+<div class="background mat-elevation-z11">
+  <h2>{{getActionText()}} Usuário</h2>
+  <div class="linha"></div>
 
+  <!-- #61b586 -->
+
+  <form
+    action="post"
+    [formGroup]="userRegistrationForm"
+    (ngSubmit)="onSubmit()"
+  >
+    <div class="row">
+      <input type="hidden" id="userId" formControlName="userId" />
+
+      <!---------- NAME ---------->
+      <div class="form-group col-6">
+        <label for="name" class="label-size col-form-label">Nome</label>
+        <div class="">
+          <input
+            [ngClass]="form('name')?.valid ? 'green-input' : 'default-input'"
+            class="form-control form-control-sm shadow-none"
+            formControlName="name"
+            type="text"
+            id="name"
+          />
+
+          <div
+            class="customFormError m-auto"
+            role="alert"
+            *ngIf="form('name')?.invalid && form('name')?.touched"
+          >
+            <div *ngIf="form('name')?.errors?.required">Campo Obrigatório</div>
+
+            <div *ngIf="form('name')?.errors?.minlength">
+              Mínimo 3 caracteres
             </div>
-       
-        
 
+            <div *ngIf="form('name')?.errors?.maxlength">
+              Máximo 45 caracteres
+            </div>
+          </div>
         </div>
-    </form>
-    
+      </div>
+
+      <!---------- USERNAME ---------->
+      <div class="form-group col-6">
+        <label for="username" class="label-size col-form-label">Usuario</label>
+        <div class="">
+          <input
+            [ngClass]="
+              form('username')?.valid ? 'green-input' : 'default-input'
+            "
+            class="form-control form-control-sm shadow-none"
+            formControlName="username"
+            type="text"
+            id="username"
+          />
+
+          <div
+            class="customFormError m-auto"
+            role="alert"
+            *ngIf="form('username')?.invalid && form('username')?.touched"
+          >
+            <div *ngIf="form('username')?.errors?.required">
+              Campo Obrigatório
+            </div>
+
+            <div *ngIf="form('username')?.errors?.minlength">
+              Mínimo 3 caracteres
+            </div>
+
+            <div *ngIf="form('username')?.errors?.maxlength">
+              Máximo 20 caracteres
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mt-2">
+      <!---------- PASSWORD ---------->
+      <div class="form-group col-4">
+        <label for="password" class="label-size col-form-label">Senha</label>
+        <div class="">
+          <input
+            [ngClass]="
+              form('password')?.valid ? 'green-input' : 'default-input'
+            "
+            class="form-control form-control-sm shadow-none"
+            formControlName="password"
+            type="password"
+            id="password"
+          />
+
+          <div
+            class="customFormError m-auto"
+            role="alert"
+            *ngIf="form('password')?.invalid && form('password')?.touched"
+          >
+            <div *ngIf="form('password')?.errors?.required">
+              Campo Obrigatório
+            </div>
+
+            <div *ngIf="form('password')?.errors?.minlength">
+              Mínimo 6 caracteres
+            </div>
+
+            <div *ngIf="form('password')?.errors?.maxlength">
+              Máximo 8 caracteres
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!---------- CRAS ---------->
+      <div class="form-group col-4">
+        <label for="cras" class="label-size col-form-label">Unidade</label>
+        <div class="">
+          <select
+            [ngClass]="form('cras')?.valid ? 'green-input' : 'default-input'"
+            class="form-select form-select-sm shadow-none"
+            formControlName="cras"
+            name="cras"
+            id="cras"
+          >
+            <option value=""></option>
+            <option 
+              [ngValue]="un" 
+              [selected]="user?.cras?.name == un.name" 
+              *ngFor="let un of selectOptions.cras"
+            > 
+              {{ un.name }} 
+            </option>
+          </select>
+
+          <div
+            class="customFormError m-auto"
+            role="alert"
+            *ngIf="form('cras')?.invalid && form('cras')?.touched"
+          >
+            <div *ngIf="form('cras')?.errors">Campo Obrigatório</div>
+          </div>
+        </div>
+      </div>
+
+      <!---------- ROLE ---------->
+      <div class="form-group col-4">
+        <label for="roles" class="label-size col-form-label">Permissão</label>
+        <div class="">
+          <select
+            [ngClass]="form('cras')?.valid ? 'green-input' : 'default-input'"
+            class="form-select form-select-sm shadow-none"
+            formControlName="roles"
+            name="roles"
+            id="roles"
+          >
+            <option value=""></option>
+            <option
+              [ngValue]="role"
+              [selected]="user?.roles?.name == role.name"
+              *ngFor="let role of selectOptions.roles"
+            >
+              {{ role.name }}
+            </option>
+          </select>
+
+          <div
+            class="customFormError m-auto"
+            role="alert"
+            *ngIf="form('roles')?.invalid && form('roles')?.touched"
+          >
+            <div *ngIf="form('roles')?.errors">Campo Obrigatório</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {{userRegistrationForm.value | json}}
+
+    <div class="d-flex">
+      <button class="btn shadow-none btn-sm btn-primary mt-5" type="submit">
+        {{ getActionText() }}
+      </button>
+    </div>
+  </form>
 </div>

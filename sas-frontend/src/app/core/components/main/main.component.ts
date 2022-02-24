@@ -11,6 +11,8 @@ export class MainComponent implements OnInit {
   subMenu: string = '';
   pressedBtn: string = '';
   isAdminUser: boolean = false;
+  isExpanded: boolean = true;
+
   constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
@@ -20,6 +22,8 @@ export class MainComponent implements OnInit {
   onClickBtn(btn: string) {
     this.pressedBtn = btn;
   }
+
+
 
   openSubMenu(menu: string){
     this.subMenu = this.subMenu != menu ? menu : '';

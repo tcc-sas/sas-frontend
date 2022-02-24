@@ -16,7 +16,7 @@
 
             <select
                 *ngIf="field.filterType === 'select' && field.isObject && selectOptions"
-                class="form-control form-control-sm shadow-none" 
+                class="form-select form-select-sm form-control form-control-sm shadow-none" 
                 [(ngModel)]="filterObj[field.apiField]"
             >
 

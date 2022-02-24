@@ -2,8 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, pipe } from 'rxjs';
+import { IUser } from 'src/app/shared/models/user/user.model';
 import { environment } from 'src/environments/environment';
-import { ILogin, IUser, IUserData } from '../../shared/models/auth.models';
+import { ILogin, IUserLoginData } from '../../shared/models/auth.models';
 import { } from '../constants/components-constants';
 
 const TOKEN_KEY = 'auth-token';
@@ -33,12 +34,12 @@ export class AuthService {
     return userData.roles.some(role => role === DEFAULT_USER)
   }
 
-  saveUserData(userData: IUserData): void {
+  saveUserData(userData: IUserLoginData): void {
     window.sessionStorage.removeItem(USER_KEY);
     window.sessionStorage.setItem(USER_KEY, JSON.stringify(userData))
   }
 
-  getUserData(): IUserData {
+  getUserData(): IUserLoginData {
     const userData = window.sessionStorage.getItem(USER_KEY);
     return userData ? JSON.parse(userData) : null;
   }
@@ -62,8 +63,5 @@ export class AuthService {
     return this.http.post<ILogin>(url, login);
   }
 
-  register(user: IUser): Observable<any>{
-    const url = environment.endpoints.authController.register;
-    return this.http.post<IUser>(url, user);
-  }
+  
 }

@@ -9,12 +9,19 @@ mat-sidenav-container {
 }
 
 .sidenav{
-    width: 240px;
     margin-top: 0;
     border-right: none !important;
     background-color: $main-color; 
 }
-    
+
+.sidenav-expanded {
+    width: 240px;
+}
+
+.sidenav-contracted {
+    width: 100px;
+}
+
 .nav-list a{
     // color: $gray;
     font-size: 14px;
