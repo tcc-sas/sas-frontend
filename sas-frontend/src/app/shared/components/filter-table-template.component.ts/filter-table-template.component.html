@@ -1,0 +1,20 @@
+<div class="crud-template">
+  <app-filter
+    [constants]="constants"
+    [selectOptions]="selectOptions"
+  ></app-filter>
+
+  <div class="content-template">
+    <div class="info">{{ data?.totalElements }} {{ constants.infoText }} !</div>
+    <div>
+      <a
+        class="btn btn-sm btn-primary shadow-none custom-btn-witdh"
+        routerLink="../cadastro-{{ constants.route }}"
+      >
+        Novo
+      </a>
+    </div>
+  </div>
+
+  <app-table [data]="data" [constants]="constants"></app-table>
+</div>

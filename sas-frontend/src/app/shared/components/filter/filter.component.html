@@ -1,0 +1,43 @@
+<div class="filter">
+
+    <div class="row">
+        <div *ngFor="let field of filterFields" class="col-3 filter-fields">
+            
+            <label class="form-label" for="{{field.name}}">{{field.name}}</label>
+
+            <input 
+                *ngIf="field.filterType !== 'select' && !field.isObject"
+                class="form-control form-control-sm shadow-none" 
+                type="{{field.filterType}}" 
+                name="{{field.name}}"
+                id="{{field.id}}"
+                [(ngModel)]="filterObj[field.apiField]"
+            >
+
+            <select
+                *ngIf="field.filterType === 'select' && field.isObject && selectOptions"
+                class="form-select form-select-sm form-control form-control-sm shadow-none" 
+                [(ngModel)]="filterObj[field.apiField]"
+            >
+
+                <option 
+                    *ngFor="let option of selectOptions[field.apiField]"
+                    [value]="option.id"
+                >
+                    {{option.name}}
+                </option>
+
+            </select>
+
+        </div>
+        <div class="col-2">
+            <button (click)="search()" class="filter-button" mat-icon-button>
+                <mat-icon class="filter-search">search</mat-icon>
+            </button>
+            <button (click)="clearFiltersAndReload()" class="filter-button" mat-icon-button>
+                <mat-icon class="filter-clear">close</mat-icon>
+            </button>
+        </div>
+    </div>
+
+</div>

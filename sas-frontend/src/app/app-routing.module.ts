@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './shared/layout/login/login.component';
-import { MainComponent } from './shared/layout/main/main.component';
-import { AuthGuard } from './guards/auth.guard';
-import { BeneficiariosComponent } from './components/beneficiarios/beneficiarios.component';
+import { LoginComponent } from './core/components/login/login.component';
+import { MainComponent } from './core/components/main/main.component';
+import { AuthGuard } from './core/guards/auth.guard';
+import { BeneficiaryComponent } from './components/beneficiary/beneficiary.component';
+import { AdminGuard } from './core/guards/admin.guard';
 
 const routes: Routes = [
   {
@@ -17,23 +18,23 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        canActivateChild: [AuthGuard],
+        canActivateChild: [AdminGuard],
         children: [
           {
-            path: 'painel-admin',
-            loadChildren: () => import('./components/painel-admin/painel-admin.module').then((m) => m.PainelAdminModule),
+            path: 'admin',
+            loadChildren: () => import('./components/admin/admin.module').then((m) => m.AdminModule),
           },
         ]
       },
       {
         path: 'beneficiarios',
-        component: BeneficiariosComponent,
+        component: BeneficiaryComponent,
       }
     ]
   },
-  
- 
-  
+
+
+
 ];
 
 @NgModule({
