@@ -1,5 +1,5 @@
 <div class="background mat-elevation-z11">
-  <h2>{{getActionText()}} Usuário</h2>
+  <h2>{{ actionText }} Usuário</h2>
   <div class="linha"></div>
 
   <!-- #61b586 -->
@@ -29,7 +29,9 @@
             role="alert"
             *ngIf="form('name')?.invalid && form('name')?.touched"
           >
-            <div *ngIf="form('name')?.errors?.required">Campo Obrigatório</div>
+            <div *ngIf="form('name')?.errors?.required">
+              Campo Obrigatório
+            </div>
 
             <div *ngIf="form('name')?.errors?.minlength">
               Mínimo 3 caracteres
@@ -84,10 +86,11 @@
         <div class="">
           <input
             [ngClass]="
-              form('password')?.valid ? 'green-input' : 'default-input'
+              form('password')?.valid && !user?.userId ? 'green-input' : 'default-input'
             "
             class="form-control form-control-sm shadow-none"
             formControlName="password"
+            [readonly]="user?.userId"
             type="password"
             id="password"
           />
@@ -124,12 +127,12 @@
             id="cras"
           >
             <option value=""></option>
-            <option 
-              [ngValue]="un" 
-              [selected]="user?.cras?.name == un.name" 
+            <option
+              [ngValue]="un"
+              [selected]="user?.cras?.name == un.name"
               *ngFor="let un of selectOptions.cras"
-            > 
-              {{ un.name }} 
+            >
+              {{ un.name }}
             </option>
           </select>
 
@@ -175,11 +178,11 @@
       </div>
     </div>
 
-    {{userRegistrationForm.value | json}}
+    {{ userRegistrationForm.value | json }}
 
     <div class="d-flex">
       <button class="btn shadow-none btn-sm btn-primary mt-5" type="submit">
-        {{ getActionText() }}
+        {{ actionText }}
       </button>
     </div>
   </form>

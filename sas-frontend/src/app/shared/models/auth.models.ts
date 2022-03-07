@@ -6,7 +6,7 @@ export interface ILogin {
 export interface IUserLoginData {
     id: number;
     name: string;
-    roles: Array<string>
+    role: string;
     token: string;
     type: string;
     username: string;

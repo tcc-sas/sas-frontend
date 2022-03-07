@@ -20,8 +20,7 @@ import { UserResolver } from 'src/app/core/resolvers/users-route.resolver';
     CommonModule,
     AdminRoutingModule,
     FilterTableTemplateModule,
-    ReactiveFormsModule,
-    FormsModule
+   
   ],
   providers: [
     UserResolver

@@ -56,4 +56,13 @@ export class UserService {
       })
     );
   }
+
+  updateUser(user: IUser): Observable<any>{
+    const url = USER_ENDPOINTS.updateUser();
+    return this.http.put<IUser>(url, user).pipe(
+      catchError((error) => {
+        return of(error?.error);
+      })
+    );
+  }
 }

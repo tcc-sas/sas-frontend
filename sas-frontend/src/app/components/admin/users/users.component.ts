@@ -33,9 +33,7 @@ export class UsersComponent implements OnInit, OnDestroy {
   }
 
   private getUserSelectOptions(): void {
-    this.userService.getUserSelectOptions().subscribe(selectOptions => {
-      this.selectOptions = selectOptions;
-    })
+    this.selectOptions = this.userService.getUserSelectOptions();
   }
 
   private getUserData(): void {
@@ -54,8 +52,7 @@ export class UsersComponent implements OnInit, OnDestroy {
         switchMap((value) => 
           this.userService.getAllUsers(value.payload)
         )
-      )
-      .subscribe((userData) => {
+      ).subscribe((userData) => {
         return this.data = userData
       });
   }

@@ -17,6 +17,7 @@ const userController = (baseApiUrl: string) => ({
     getUsersByFilter: (query: string) => baseApiUrl + `/filter${query}`,
     getUserSelectOptions: () => baseApiUrl + `/selectOptions`,
     getUserById: (userId: string) => baseApiUrl + `/${userId}`,
-    registerUser: () => baseApiUrl + `/register`
+    registerUser: () => baseApiUrl + `/register`,
+    updateUser: () => baseApiUrl + `/update`,
 });
 

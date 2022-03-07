@@ -1,76 +1,77 @@
 <div class="main-table">
+  <table class="table table-hover table-striped">
+    <thead class="bg-main">
+      <tr>
+        <th
+          *ngFor="let field of tableOptions.tableFields"
+          scope="col"
+          [style]="tableOptions.tableSpacing"
+        >
+          <span (click)="orderBy(field.apiField)">
+            {{ field.name }}
+          </span>
+        </th>
+        <th scope="col">Opções</th>
+      </tr>
+    </thead>
 
-    <table class="table table-hover table-striped">
-        <thead class="bg-main">
-            <tr>
-                <th *ngFor="let field of tableOptions.tableFields" scope="col" [style]="tableOptions.tableSpacing">
-                    <span (click)="orderBy(field.apiField)">
-                        {{field.name}}
-                    </span>
-                </th>
-                <th scope="col">Opções</th>
-            </tr>
-        </thead>
+    <tbody>
+      <tr scope="row" *ngFor="let row of data?.content">
+        <td
+          class="align-texto padding-coluna-codigo"
+          *ngFor="let field of tableOptions.tableFields"
+        >
+          <div *ngIf="field.isObject">
+            <span>
+              {{ row[field.apiField][field.objectName] }}
+            </span>
+          </div>
 
-        <tbody>
-            <tr scope="row" *ngFor="let row of data?.content">
-                
-                <td class="align-texto padding-coluna-codigo" *ngFor="let field of tableOptions.tableFields">
-                   
-                    <div *ngIf="field.isObject">
-                        <span>
-                            {{ row[field.apiField][field.objectName] }}
-                        </span>
-                    </div>
+          <div *ngIf="!field.isObject">
+            <span *ngIf="field.tableType == 'currency'">
+              {{ row[field.apiField] | currency: "R$ " }}
+            </span>
 
-                    <div *ngIf="!field.isObject">
+            <span *ngIf="!field.tableType">
+              {{ row[field.apiField] }}
+            </span>
+          </div>
+        </td>
 
-                        <span *ngIf="field.tableType == 'currency' ">
-                            {{ row[field.apiField] | currency : 'R$ ' }} 
-                        </span>
+        <td>
+          <button
+            mat-icon-button
+            class="menu-button icone-opcoes"
+            [matMenuTriggerFor]="menu"
+            aria-label="Example icon-button with a menu"
+          >
+            <mat-icon>more_horiz</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button
+              routerLink="../cadastro-{{ constants.route }}/{{ row.id }}"
+              mat-menu-item
+              class="icone-opcoes"
+            >
+              <mat-icon>edit</mat-icon>
+              <span>Editar</span>
+            </button>
+            <button mat-menu-item class="icone-opcoes">
+              <mat-icon>remove_circle_outline</mat-icon>
+              <span>Excluir</span>
+            </button>
+          </mat-menu>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 
-                        <!-- <span *ngIf="field.tableType == 'boolean' ">
-                            {{ row[field.apiField] ? 'Disponível' : 'Indisponível'}} 
-                        </span> -->
-
-                        <span *ngIf="!field.tableType">
-                            {{ row[field.apiField] }} 
-                        </span>
-
-                    </div>
-
-                </td>
-                
-                <td>
-                    <button
-                        mat-icon-button
-                        class="menu-button icone-opcoes" 
-                        [matMenuTriggerFor]="menu"
-                        aria-label="Example icon-button with a menu">
-                        
-                        <mat-icon>more_horiz</mat-icon>
-                    </button>
-                    <mat-menu #menu="matMenu">
-                        <button mat-menu-item class="icone-opcoes">
-                            <mat-icon>edit</mat-icon>
-                            <span>Editar</span>
-                        </button>
-                        <button mat-menu-item class="icone-opcoes">
-                            <mat-icon>remove_circle_outline</mat-icon>
-                            <span>Excluir</span>
-                        </button>
-                    </mat-menu>
-                </td>
-            </tr>
-        </tbody>
-
-    </table>
-
-    <mat-paginator 
-        [length]="paginationOptions.paginatorLength"
-        [pageSize]="paginationOptions.pageSize"
-        [pageSizeOptions]="paginationOptions.pageSizeOptions"
-        [pageIndex]="paginationOptions.pageIndex"
-        (page)="handlePageEvent($event)">
-    </mat-paginator>
+  <mat-paginator
+    [length]="paginationOptions.paginatorLength"
+    [pageSize]="paginationOptions.pageSize"
+    [pageSizeOptions]="paginationOptions.pageSizeOptions"
+    [pageIndex]="paginationOptions.pageIndex"
+    (page)="handlePageEvent($event)"
+  >
+  </mat-paginator>
 </div>

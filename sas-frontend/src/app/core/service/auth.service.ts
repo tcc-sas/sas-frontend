@@ -1,8 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
-import { Observable, pipe } from 'rxjs';
-import { IUser } from 'src/app/shared/models/user/user.model';
+import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { ILogin, IUserLoginData } from '../../shared/models/auth.models';
 import { } from '../constants/components-constants';
@@ -17,7 +15,7 @@ const DEFAULT_USER = 'ROLE_USER'
 })
 export class AuthService {
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient) { }
 
 
   isLoggedIn(): boolean {
@@ -26,12 +24,12 @@ export class AuthService {
 
   isAdminUser(): boolean {
     const userData = this.getUserData();
-    return userData.roles.some(role => role === ADMIN_USER);
+    return userData.role === ADMIN_USER;
   }
 
   isDefaultUser(): boolean {
     const userData = this.getUserData();
-    return userData.roles.some(role => role === DEFAULT_USER)
+    return userData.role === DEFAULT_USER;
   }
 
   saveUserData(userData: IUserLoginData): void {

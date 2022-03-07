@@ -1,6 +1,16 @@
 import { ICras } from './cras.models';
 import { IRoles } from './roles.models';
 
+
+export interface IUser {
+  userId: number | null;
+  name: string;
+  username: string;
+  password: string;
+  roles: IRoles;
+  cras: ICras;
+}
+
 export class User implements IUser {
   userId: number | null;
   name: string;
@@ -23,6 +33,7 @@ export class User implements IUser {
           name: ""
       }
     ) {
+      
     this.userId = userId;
     this.name = name;
     this.username = username;
@@ -32,11 +43,3 @@ export class User implements IUser {
   }
 }
 
-export interface IUser {
-  userId: number | null;
-  name: string;
-  username: string;
-  password: string;
-  roles: IRoles;
-  cras: ICras;
-}

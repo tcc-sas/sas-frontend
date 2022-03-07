@@ -8,6 +8,7 @@ import { Broadcast, BroadcastType } from "../../shared/models/broadcast.models";
 })
 export class BroadcastService {
     private subject$ = new Subject<Broadcast>();
+    private broadcastMessages$ = this.subject$.asObservable();
 
     constructor() { }
 
@@ -16,7 +17,7 @@ export class BroadcastService {
     }
 
     listen(type: BroadcastType): Observable<Broadcast> {
-        return this.subject$.pipe(
+        return this.broadcastMessages$.pipe(
             filter((msg) => msg.type == type)
         )
     }

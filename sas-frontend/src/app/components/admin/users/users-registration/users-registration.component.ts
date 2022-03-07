@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import {
   AbstractControl,
+  AbstractControlDirective,
   FormBuilder,
   FormGroup,
   Validators,
 } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { pipe } from 'rxjs';
 import { Constants } from 'src/app/core/constants/components-constants';
 import { UserService } from 'src/app/core/service/user.service';
 import { IConstants } from 'src/app/shared/models/constants.models';
@@ -23,7 +23,8 @@ export class UsersRegistrationComponent implements OnInit {
   selectOptions: any;
   user!: IUser;
 
-  userId: string | null = null;
+  actionText: string = 'Cadastrar';
+
 
   constructor(
     private fb: FormBuilder,
@@ -43,16 +44,21 @@ export class UsersRegistrationComponent implements OnInit {
   }
 
   findUserById() {
-    console.log('teste');
     const userId = this.activatedRoute.snapshot.paramMap.get('id');
     if (userId) {
+      this.setActionText();
       this.userService.getUserById(userId).subscribe((user) => {
         if (user) {
           this.user = user;
           this.createUserRegistrationForm(user);
         }
       });
+
     }
+  }
+  
+  private setActionText(): void {
+    this.actionText = 'Atualizar';
   }
 
   createUserRegistrationForm(user: IUser = new User()): void {
@@ -76,7 +82,11 @@ export class UsersRegistrationComponent implements OnInit {
       ],
       password: [
         '',
-        [Validators.minLength(6), Validators.maxLength(8), Validators.required],
+        [
+          Validators.minLength(6),
+          Validators.maxLength(8),
+          ConditionalPasswordRequired
+        ],
       ],
       roles: [user.roles, [Validators.required, ValidateObject]],
       cras: [user.cras, [Validators.required, ValidateObject]],
@@ -89,10 +99,14 @@ export class UsersRegistrationComponent implements OnInit {
     }
 
     if (this.user?.userId) {
-      //@TODO - atualizar
+      this.updateUser();
     } else {
       this.registerUser();
     }
+  }
+
+  private updateUser() {
+    this.userService.updateUser(this.userRegistrationForm.value).subscribe(result => console.log(result))
   }
 
   private registerUser(): void {
@@ -105,9 +119,14 @@ export class UsersRegistrationComponent implements OnInit {
     return this.userRegistrationForm.get(formField);
   }
 
-  getActionText(): string {
-    return this.user?.userId ? 'Atualizar' : 'Cadastrar';
+
+}
+
+export function ConditionalPasswordRequired(control: AbstractControl) {
+  if(control.parent?.get('userId')?.value){
+    return null;
   }
+  return Validators.required(control)
 }
 
 export function ValidateObject(control: AbstractControl) {

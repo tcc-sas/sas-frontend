@@ -1,7 +1,7 @@
 import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { IConstants, IFields } from 'src/app/shared/models/constants.models';
-import {PaginationOptions} from '../../models/pagination-options.models';
+import { PaginationOptions } from '../../models/pagination-options.models';
 import { TableOptions, ASC, DESC } from '../../models/table-options.models';
 import { QueryUtilService } from '../../../core/service/query-util.service';
 
@@ -17,21 +17,21 @@ export class TableComponent implements OnInit {
   pageEvent: PageEvent = new PageEvent();
   paginationOptions = new PaginationOptions();
   tableOptions = new TableOptions();
-  
-  constructor(
-    private queryUtilService: QueryUtilService
-  ) {}
+
+  constructor(private queryUtilService: QueryUtilService) {}
 
   ngOnInit(): void {
-    this.paginationOptions
+    this.paginationOptions;
     this.getTableFields();
     this.getTableSpacingByAmountOfColumns(this.tableOptions.tableFields.length);
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['data']) {
-      this.paginationOptions.paginatorLength = changes?.data?.currentValue?.totalElements ?? 0;
-      this.paginationOptions.pageIndex = changes?.data?.currentValue?.number ?? 0;
+      this.paginationOptions.paginatorLength =
+        changes?.data?.currentValue?.totalElements ?? 0;
+      this.paginationOptions.pageIndex =
+        changes?.data?.currentValue?.number ?? 0;
     }
     if (changes['constants']) {
       this.tableOptions.tableFieldToSort =
@@ -43,6 +43,10 @@ export class TableComponent implements OnInit {
     this.tableOptions.tableFields = this.constants.fields.filter(
       (field) => field.isTableField
     );
+  }
+
+  goToEditData(row: any) {
+    console.log(row);
   }
 
   private getTableSpacingByAmountOfColumns(amountColumns: number): void {
@@ -61,10 +65,10 @@ export class TableComponent implements OnInit {
     this.queryUtilService.fetchDataByUrl(paginationQuery);
   }
 
-  
   orderBy(fieldName: string): void {
     this.tableOptions.tableFieldToSort = fieldName;
-    this.tableOptions.tableSortDirection = this.tableOptions.tableSortDirection == ASC ? DESC : ASC;
+    this.tableOptions.tableSortDirection =
+      this.tableOptions.tableSortDirection == ASC ? DESC : ASC;
 
     const paginationQuery = this.retrievePaginationQuery();
     this.queryUtilService.fetchDataByUrl(paginationQuery);
@@ -77,5 +81,4 @@ export class TableComponent implements OnInit {
       `sort=${this.tableOptions.tableFieldToSort},${this.tableOptions.tableSortDirection}`
     );
   }
-
 }
