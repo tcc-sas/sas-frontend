@@ -20,12 +20,14 @@ export class Constants {
     infoText: 'Beneficiários cadastrados!',
     route: 'beneficiarios',
     fields: [
-      { id: 1, name: 'ID',                 apiField: 'userId',     isTableField: false, tableType: '',  isFilterField: false, filterType: '',       isObject: false, objectId: '',   objectName: '',     },
-      { id: 2, name: 'Nome',               apiField: 'name',       isTableField: true,  tableType: '',  isFilterField: true,  filterType: 'string', isObject: false, objectId: '',   objectName: '',     },
-      { id: 3, name: 'Usuario',            apiField: 'username',   isTableField: true,  tableType: '',  isFilterField: false, filterType: 'string', isObject: false, objectId: '',   objectName: '',     },
-      { id: 4, name: 'Senha',              apiField: 'password',   isTableField: false, tableType: '',  isFilterField: false, filterType: '',       isObject: false, objectId: '',   objectName: '',     },
-      { id: 5, name: 'Nivel de permissão', apiField: 'roles',      isTableField: true,  tableType: '',  isFilterField: false, filterType: 'select', isObject: true,  objectId: 'id', objectName: 'name', },
-      { id: 6, name: 'Unidade',            apiField: 'cras',       isTableField: true,  tableType: '',  isFilterField: true,  filterType: 'select', isObject: true,  objectId: 'id', objectName: 'name', },
+      { id: 1, name: 'ID',                 apiField: 'id',             isTableField: false, tableType: '',  isFilterField: false, filterType: '',       isObject: false, objectId: '',   objectName: '',     },
+      { id: 2, name: 'Nome',               apiField: 'name',           isTableField: true,  tableType: '',  isFilterField: true,  filterType: 'string', isObject: false, objectId: '',   objectName: '',     },
+      { id: 3, name: 'CPF',                apiField: 'beneficiaryId',  isTableField: true,  tableType: '',  isFilterField: true,  filterType: 'string', isObject: false, objectId: '',   objectName: '',     },
+      { id: 4, name: 'Unidade',            apiField: 'cras',           isTableField: true,  tableType: '',  isFilterField: true,  filterType: 'select', isObject: true,  objectId: 'id', objectName: 'name', },
+      { id: 5, name: 'Telefone',           apiField: 'phoneNumber',    isTableField: true,  tableType: '',  isFilterField: false, filterType: '',       isObject: false, objectId: '',   objectName: '',     },
+      { id: 6, name: 'CEP',                apiField: 'zipCode',        isTableField: true,  tableType: '',  isFilterField: false, filterType: '',       isObject: false, objectId: '',   objectName: '',     },
+      { id: 7, name: 'Endereço',           apiField: 'adress',         isTableField: true,  tableType: '',  isFilterField: false, filterType: '',       isObject: false, objectId: '',   objectName: '',     },
+      { id: 8, name: 'Data de nascimento', apiField: 'birthDate',      isTableField: true,  tableType: '',  isFilterField: false, filterType: '',       isObject: false, objectId: '',   objectName: '',     },
     ],
   };
 }

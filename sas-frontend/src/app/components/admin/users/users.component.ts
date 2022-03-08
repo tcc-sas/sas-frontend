@@ -15,8 +15,9 @@ import { QueryUtilService } from 'src/app/core/service/query-util.service';
 export class UsersComponent implements OnInit, OnDestroy {
   constants = Constants.users;
   data: any;
-  selectOptions: any;
-  subscription!: Subscription;
+  selectOptions$!: Observable<any>;
+  reloadSubscription = new Subscription();
+  filterSubscription = new Subscription();
 
   constructor(
     private userService: UserService,
@@ -33,7 +34,7 @@ export class UsersComponent implements OnInit, OnDestroy {
   }
 
   private getUserSelectOptions(): void {
-    this.selectOptions = this.userService.getUserSelectOptions();
+    this.selectOptions$ = this.userService.getUserSelectOptions();
   }
 
   private getUserData(): void {
@@ -46,7 +47,7 @@ export class UsersComponent implements OnInit, OnDestroy {
   }
 
   private reloadBroadcast() {
-    this.subscription = this.broadcastService
+    this.reloadSubscription = this.broadcastService
       .listen(BroadcastType.Reload)
       .pipe(
         switchMap((value) => 
@@ -54,11 +55,14 @@ export class UsersComponent implements OnInit, OnDestroy {
         )
       ).subscribe((userData) => {
         return this.data = userData
-      });
+      })
+
+      
+
   }
 
   private filterBroadcast() {
-    this.subscription = this.broadcastService
+    this.filterSubscription = this.broadcastService
       .listen(BroadcastType.Filter)
       .pipe(
         switchMap((value) => 
@@ -71,6 +75,7 @@ export class UsersComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+   this.reloadSubscription.unsubscribe();
+   this.filterSubscription.unsubscribe();
   }
 }

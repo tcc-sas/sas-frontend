@@ -5,33 +5,15 @@ import { catchError, map, mapTo, shareReplay, take, tap } from 'rxjs/operators';
 import { IUser } from 'src/app/shared/models/user/user.model';
 import { environment } from 'src/environments/environment';
 
-const USER_ENDPOINTS = environment.endpoints.userController;
+const USER_ENDPOINTS = environment.endpoints.beneficiaryController;
 @Injectable({
   providedIn: 'root',
 })
-export class UserService {
+export class BeneficiaryService {
   constructor(private http: HttpClient) {}
 
-  getAllUsers(query = ''): Observable<any> {
-    const url = USER_ENDPOINTS.getAllUsers(query);
-    return this.http.get(url).pipe(
-      catchError((error) => {
-        return of(null);
-      })
-    );
-  }
-
-  getUsersByFilter(query = ''): Observable<any> {
-    const url = USER_ENDPOINTS.getUsersByFilter(query);
-    return this.http.get(url).pipe(
-      catchError((error) => {
-        return of(null);
-      })
-    );
-  }
-
-  getUserSelectOptions(): Observable<any> {
-    const url = USER_ENDPOINTS.getUserSelectOptions();
+  getAllBeneficiary(query = ''): Observable<any> {
+    const url = USER_ENDPOINTS.getAllBeneficiary(query);
     return this.http.get(url).pipe(
       catchError((error) => {
         return of(null);
@@ -39,8 +21,8 @@ export class UserService {
     );
   }
 
-  getUserById(userId: string): Observable<any> {
-    const url = USER_ENDPOINTS.getUserById(userId);
+  getBeneficiaryByFilter(query = ''): Observable<any> {
+    const url = USER_ENDPOINTS.getBeneficiaryByFilter(query);
     return this.http.get(url).pipe(
       catchError((error) => {
         return of(null);
@@ -48,8 +30,26 @@ export class UserService {
     );
   }
 
-  registerUser(user: IUser): Observable<any>{
-    const url = USER_ENDPOINTS.registerUser();
+  getBeneficiarySelectOptions(): Observable<any> {
+    const url = USER_ENDPOINTS.getBeneficiarySelectOptions();
+    return this.http.get(url).pipe(
+      catchError((error) => {
+        return of(null);
+      })
+    );
+  }
+
+  getBeneficiaryById(userId: string): Observable<any> {
+    const url = USER_ENDPOINTS.getBeneficiaryById(userId);
+    return this.http.get(url).pipe(
+      catchError((error) => {
+        return of(null);
+      })
+    );
+  }
+
+  registerBeneficiary(user: IUser): Observable<any>{
+    const url = USER_ENDPOINTS.registerBeneficiary();
     return this.http.post<IUser>(url, user).pipe(
       catchError((error) => {
         return of(error?.error);
@@ -57,8 +57,8 @@ export class UserService {
     );
   }
 
-  updateUser(user: IUser): Observable<any>{
-    const url = USER_ENDPOINTS.updateUser();
+  updateBeneficiary(user: IUser): Observable<any>{
+    const url = USER_ENDPOINTS.updateBeneficiary();
     return this.http.put<IUser>(url, user).pipe(
       catchError((error) => {
         return of(error?.error);

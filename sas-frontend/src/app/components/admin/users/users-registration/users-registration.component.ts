@@ -40,7 +40,6 @@ export class UsersRegistrationComponent implements OnInit {
 
   retrieveSelectOptions() {
     this.selectOptions = this.activatedRoute.snapshot.data?.selectOptions;
-    console.log(this.selectOptions);
   }
 
   findUserById() {

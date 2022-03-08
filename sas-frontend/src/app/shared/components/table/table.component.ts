@@ -45,10 +45,6 @@ export class TableComponent implements OnInit {
     );
   }
 
-  goToEditData(row: any) {
-    console.log(row);
-  }
-
   private getTableSpacingByAmountOfColumns(amountColumns: number): void {
     if (amountColumns) {
       let colsWidth = (100 / (amountColumns + 1)).toFixed(2);

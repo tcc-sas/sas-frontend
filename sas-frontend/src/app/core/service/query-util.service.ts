@@ -4,7 +4,6 @@ import { IConstants } from '../../shared/models/constants.models';
 import { Location } from '@angular/common';
 import { BroadcastService } from './broadcast.service';
 import { Filter, Reload } from '../../shared/actions/broadcast.actions';
-import * as Q from 'q';
 
 @Injectable({
   providedIn: 'root',
@@ -14,7 +13,8 @@ export class QueryUtilService {
     private activatedRoute: ActivatedRoute,
     private location: Location,
     private router: Router,
-    private broadcastService: BroadcastService
+    private broadcastService: BroadcastService,
+    
   ) {}
 
   private _filterOptions: string[] = [];

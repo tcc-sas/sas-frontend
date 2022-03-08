@@ -1,25 +1,25 @@
-import { Injectable } from "@angular/core";
-import { Observable, Subject, Subscription } from "rxjs";
-import { filter, map } from "rxjs/operators";
-import { Broadcast, BroadcastType } from "../../shared/models/broadcast.models";
+import { Injectable } from '@angular/core';
+import { Observable, Subject, Subscription } from 'rxjs';
+import { filter, finalize, map, shareReplay, take, tap } from 'rxjs/operators';
+import { Broadcast, BroadcastType } from '../../shared/models/broadcast.models';
 
 @Injectable({
-    providedIn: "root"
+  providedIn: 'root',
 })
 export class BroadcastService {
-    private subject$ = new Subject<Broadcast>();
-    private broadcastMessages$ = this.subject$.asObservable();
+  private subject$ = new Subject<Broadcast>();
+  subjectObservable$ = this.subject$.asObservable();
 
-    constructor() { }
+  constructor() {}
 
-    notify(message: Broadcast) {
-        this.subject$.next(message);
-    }
+  notify(message: Broadcast) {
+    this.subject$.next(message);
+  }
 
-    listen(type: BroadcastType): Observable<Broadcast> {
-        return this.broadcastMessages$.pipe(
-            filter((msg) => msg.type == type)
-        )
-    }
+  listen(type: BroadcastType): Observable<Broadcast> {
+    return this.subjectObservable$.pipe(
+        filter((msg) => msg.type == type),
+    );
+  }
+
 }
-

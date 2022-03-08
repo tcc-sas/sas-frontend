@@ -5,6 +5,7 @@ export function endpoints(host: string) {
         host: host,
         authController: authController(host + '/api/auth'),
         userController: userController(host + '/api/user'),
+        beneficiaryController: beneficiaryController(host + '/api/beneficiary'),
     }
 }
 
@@ -21,3 +22,11 @@ const userController = (baseApiUrl: string) => ({
     updateUser: () => baseApiUrl + `/update`,
 });
 
+const beneficiaryController = (baseApiUrl: string) => ({
+    getAllBeneficiary: (query?: string) => baseApiUrl + `/all${query}`,
+    getBeneficiaryByFilter: (query: string) => baseApiUrl + `/filter${query}`,
+    getBeneficiarySelectOptions: () => baseApiUrl + `/selectOptions`,
+    getBeneficiaryById: (beneficiaryId: string) => baseApiUrl + `/${beneficiaryId}`,
+    registerBeneficiary: () => baseApiUrl + `/register`,
+    updateBeneficiary: () => baseApiUrl + `/update`,
+});

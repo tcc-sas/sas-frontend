@@ -57,10 +57,8 @@ export class LoginComponent implements OnInit, OnDestroy {
       return this.loginForm.markAllAsTouched()
     }
 
-    console.log(this.loginForm.value)
     this.authService.login(this.loginForm.value).subscribe(
       result => {
-        console.log(result);
         this.authService.saveUserData(result);
         this.authService.saveToken(result.token);
         this.router.navigate(['/']);
