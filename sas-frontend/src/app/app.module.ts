@@ -44,10 +44,6 @@ import { UserService } from './core/service/user.service';
     LoginModule
   ],
   providers: [
-    AuthGuard,
-    AuthService,
-    UserService,
-    BeneficiaryService, 
     {
       provide: HTTP_INTERCEPTORS,
       useClass: JwtInterceptor,

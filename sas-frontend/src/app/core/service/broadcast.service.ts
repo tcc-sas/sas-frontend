@@ -8,7 +8,7 @@ import { Broadcast, BroadcastType } from '../../shared/models/broadcast.models';
 })
 export class BroadcastService {
   private subject$ = new Subject<Broadcast>();
-  subjectObservable$ = this.subject$.asObservable();
+  private subjectObservable$ = this.subject$.asObservable();
 
   constructor() {}
 

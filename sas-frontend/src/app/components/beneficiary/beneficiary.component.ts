@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { Constants } from 'src/app/core/constants/components-constants';
 import { BeneficiaryService } from 'src/app/core/service/beneficiary.service';
@@ -15,7 +15,7 @@ import { BroadcastType } from 'src/app/shared/models/broadcast.models';
 export class BeneficiaryComponent implements OnInit, OnDestroy {
   constants = Constants.beneficiary;
   data: any;
-  selectOptions: any;
+  selectOptions$!: Observable<any>;
   reloadSubscription = new Subscription();
   filterSubscription = new Subscription();
 
@@ -34,7 +34,7 @@ export class BeneficiaryComponent implements OnInit, OnDestroy {
   }
 
   private getBeneficiarySelectOptions(): void {
-    this.selectOptions = this.beneficiaryService.getBeneficiarySelectOptions();
+    this.selectOptions$ = this.beneficiaryService.getBeneficiarySelectOptions();
   }
 
   private getBeneficiaryData(): void {

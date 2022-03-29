@@ -5,6 +5,7 @@ import { MainComponent } from './core/components/main/main.component';
 import { AuthGuard } from './core/guards/auth.guard';
 import { BeneficiaryComponent } from './components/beneficiary/beneficiary.component';
 import { AdminGuard } from './core/guards/admin.guard';
+import { BeneficiaryRegistrationComponent } from './components/beneficiary/beneficiary-registration/beneficiary-registration.component';
 
 const routes: Routes = [
   {
@@ -30,6 +31,14 @@ const routes: Routes = [
       {
         path: 'beneficiarios',
         component: BeneficiaryComponent,
+      },
+      {
+        path: 'cadastro-beneficiarios',
+        component: BeneficiaryRegistrationComponent,
+      },
+      {
+        path: 'cadastro-beneficiarios/:id',
+        component: BeneficiaryRegistrationComponent,
       }
     ]
   },

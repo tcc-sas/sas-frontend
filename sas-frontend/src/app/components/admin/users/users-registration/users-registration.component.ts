@@ -10,7 +10,11 @@ import { ActivatedRoute } from '@angular/router';
 import { Constants } from 'src/app/core/constants/components-constants';
 import { UserService } from 'src/app/core/service/user.service';
 import { IConstants } from 'src/app/shared/models/constants.models';
-import { IUser, User } from 'src/app/shared/models/user/user.model';
+import { IUser, User } from 'src/app/shared/models/user.model';
+import {
+  ConditionalPasswordRequired,
+  ValidateObject,
+} from 'src/app/shared/util/form-validators';
 
 @Component({
   selector: 'app-users-registration',
@@ -24,7 +28,6 @@ export class UsersRegistrationComponent implements OnInit {
   user!: IUser;
 
   actionText: string = 'Cadastrar';
-
 
   constructor(
     private fb: FormBuilder,
@@ -52,10 +55,9 @@ export class UsersRegistrationComponent implements OnInit {
           this.createUserRegistrationForm(user);
         }
       });
-
     }
   }
-  
+
   private setActionText(): void {
     this.actionText = 'Atualizar';
   }
@@ -84,7 +86,7 @@ export class UsersRegistrationComponent implements OnInit {
         [
           Validators.minLength(6),
           Validators.maxLength(8),
-          ConditionalPasswordRequired
+          ConditionalPasswordRequired,
         ],
       ],
       roles: [user.roles, [Validators.required, ValidateObject]],
@@ -105,7 +107,9 @@ export class UsersRegistrationComponent implements OnInit {
   }
 
   private updateUser() {
-    this.userService.updateUser(this.userRegistrationForm.value).subscribe(result => console.log(result))
+    this.userService
+      .updateUser(this.userRegistrationForm.value)
+      .subscribe((result) => console.log(result));
   }
 
   private registerUser(): void {
@@ -117,20 +121,4 @@ export class UsersRegistrationComponent implements OnInit {
   form(formField: string) {
     return this.userRegistrationForm.get(formField);
   }
-
-
-}
-
-export function ConditionalPasswordRequired(control: AbstractControl) {
-  if(control.parent?.get('userId')?.value){
-    return null;
-  }
-  return Validators.required(control)
-}
-
-export function ValidateObject(control: AbstractControl) {
-  if (Object.values(control.value).every((value) => value)) {
-    return null;
-  }
-  return { invalidObject: true };
 }
