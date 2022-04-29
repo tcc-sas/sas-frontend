@@ -8,7 +8,7 @@ export function ValidateObject(control: AbstractControl) {
 }
 
 export function ConditionalPasswordRequired(control: AbstractControl) {
-  if (control.parent?.get('userId')?.value) {
+  if (control.parent?.get('id')?.value) {
     return null;
   }
   return Validators.required(control);

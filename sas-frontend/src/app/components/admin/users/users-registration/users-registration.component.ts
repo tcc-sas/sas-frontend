@@ -33,11 +33,12 @@ export class UsersRegistrationComponent implements OnInit {
     private fb: FormBuilder,
     private activatedRoute: ActivatedRoute,
     private userService: UserService
-  ) {}
+  ) {
+    this.retrieveSelectOptions();
+  }
 
   ngOnInit(): void {
     this.createUserRegistrationForm();
-    this.retrieveSelectOptions();
     this.findUserById();
   }
 
@@ -64,7 +65,7 @@ export class UsersRegistrationComponent implements OnInit {
 
   createUserRegistrationForm(user: IUser = new User()): void {
     this.userRegistrationForm = this.fb.group({
-      userId: [user['userId']],
+      id: [user['id']],
       name: [
         user.name,
         [
@@ -99,7 +100,7 @@ export class UsersRegistrationComponent implements OnInit {
       return alert('formulario invalido');
     }
 
-    if (this.user?.userId) {
+    if (this.user?.id) {
       this.updateUser();
     } else {
       this.registerUser();

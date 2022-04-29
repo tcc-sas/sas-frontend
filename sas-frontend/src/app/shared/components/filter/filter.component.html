@@ -1,8 +1,8 @@
-<div class="filter">
+<div class="filter d-flex">
 
-    <div class="row">
-        <div *ngFor="let field of filterFields" class="col-3 filter-fields">
-            
+    <div class="row flex-grow-1">
+
+        <div *ngFor="let field of filterFields" class="col-6 col-lg-4 col-xl-3 filter-fields">
             <label class="form-label" for="{{field.name}}">{{field.name}}</label>
 
             <input 
@@ -30,14 +30,15 @@
             </select>
 
         </div>
-        <div class="col-2">
-            <button (click)="search()" class="filter-button" mat-icon-button>
-                <mat-icon class="filter-search">search</mat-icon>
-            </button>
-            <button (click)="clearFiltersAndReload()" class="filter-button" mat-icon-button>
-                <mat-icon class="filter-clear">close</mat-icon>
-            </button>
-        </div>
+      
+    </div>
+    <div class="d-flex align-items-start">
+        <button (click)="search()" class="filter-button" mat-icon-button>
+            <mat-icon class="filter-search">search</mat-icon>
+        </button>
+        <button (click)="clearFiltersAndReload()" class="filter-button" mat-icon-button>
+            <mat-icon class="filter-clear">close</mat-icon>
+        </button>
     </div>
 
 </div>

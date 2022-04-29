@@ -1,7 +1,8 @@
 @import '../../../../styles.scss';
 
 .main-table {
-  padding: 20px;
+  margin: 20px;
+  overflow: auto;
 }
 
 .menu-button {

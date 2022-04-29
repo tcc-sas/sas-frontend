@@ -23,3 +23,19 @@ h2 {
 .default-input {
     border-color: #ced4da;
 }
+
+.change-password {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+
+    button {
+        height: 38.25px;
+        line-height: 0;
+        border-color: #198754;
+    }
+
+    button:hover {
+        background-color:#d8f1cc ;
+    }
+}

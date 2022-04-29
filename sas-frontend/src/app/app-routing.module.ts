@@ -6,6 +6,7 @@ import { AuthGuard } from './core/guards/auth.guard';
 import { BeneficiaryComponent } from './components/beneficiary/beneficiary.component';
 import { AdminGuard } from './core/guards/admin.guard';
 import { BeneficiaryRegistrationComponent } from './components/beneficiary/beneficiary-registration/beneficiary-registration.component';
+import { BeneficiaryResolver } from './core/resolvers/beneficiary-route.resolver';
 
 const routes: Routes = [
   {
@@ -35,10 +36,12 @@ const routes: Routes = [
       {
         path: 'cadastro-beneficiarios',
         component: BeneficiaryRegistrationComponent,
+        resolve: [BeneficiaryResolver]
       },
       {
         path: 'cadastro-beneficiarios/:id',
         component: BeneficiaryRegistrationComponent,
+        resolve: [BeneficiaryResolver]
       }
     ]
   },

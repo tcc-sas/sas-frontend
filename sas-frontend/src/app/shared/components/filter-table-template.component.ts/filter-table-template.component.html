@@ -5,7 +5,7 @@
   ></app-filter>
 
   <div class="content-template">
-    <div class="info">{{ data?.totalElements }} {{ constants.infoText }} !</div>
+    <div class="info">{{ data?.totalElements ?? 0 }} {{ constants.infoText }} !</div>
     <div>
       <a
         class="btn btn-sm btn-primary shadow-none custom-btn-witdh"

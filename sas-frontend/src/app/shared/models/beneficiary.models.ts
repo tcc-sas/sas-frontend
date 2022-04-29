@@ -1,7 +1,7 @@
 import { Cras, ICras } from './cras.models';
 
 export interface IBeneficiary {
-  beneficiaryId: number | null;
+  id: number | null;
   name: string;
   rg: string;
   cpf: string;
@@ -17,7 +17,7 @@ export interface IBeneficiary {
 
 export class Beneficiary implements IBeneficiary {
   constructor(
-    public beneficiaryId = null,
+    public id = null,
     public name = '',
     public cpf = '',
     public rg = '',

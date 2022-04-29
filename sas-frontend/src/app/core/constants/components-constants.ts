@@ -6,7 +6,7 @@ export class Constants {
     infoText: 'Usuários cadastrados!',
     route: 'usuario',
     fields: [
-      { id: 1, name: 'ID',                 apiField: 'userId',     isTableField: false, tableType: '',  isFilterField: false, filterType: '',       isObject: false, objectId: '',   objectName: '',     },
+      { id: 1, name: 'ID',                 apiField: 'id',         isTableField: false, tableType: '',  isFilterField: false, filterType: '',       isObject: false, objectId: '',   objectName: '',     },
       { id: 2, name: 'Nome',               apiField: 'name',       isTableField: true,  tableType: '',  isFilterField: true,  filterType: 'string', isObject: false, objectId: '',   objectName: '',     },
       { id: 3, name: 'Usuario',            apiField: 'username',   isTableField: true,  tableType: '',  isFilterField: false, filterType: 'string', isObject: false, objectId: '',   objectName: '',     },
       { id: 4, name: 'Senha',              apiField: 'password',   isTableField: false, tableType: '',  isFilterField: false, filterType: '',       isObject: false, objectId: '',   objectName: '',     },

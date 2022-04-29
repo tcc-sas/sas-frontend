@@ -29,16 +29,17 @@ export class BeneficiaryRegistrationComponent implements OnInit {
     private fb: FormBuilder,
     private activatedRoute: ActivatedRoute,
     private beneficiaryService: BeneficiaryService
-  ) {}
-
+  ) {
+  }
+  
   ngOnInit(): void {
     this.createBeneficiaryRegistrationForm();
     this.retrieveSelectOptions();
     this.findBeneficiaryById();
   }
 
-  retrieveSelectOptions() {
-    this.selectOptions = this.activatedRoute.snapshot.data?.selectOptions;
+  retrieveSelectOptions(){
+    this.selectOptions = this.activatedRoute.snapshot.data?.[0];
   }
 
   findBeneficiaryById() {
@@ -48,10 +49,9 @@ export class BeneficiaryRegistrationComponent implements OnInit {
       this.beneficiaryService.getBeneficiaryById(beneficiaryId).subscribe((beneficiary) => {
         if (beneficiary) {
           this.beneficiary = beneficiary;
-          // this.createBeneficiaryRegistrationForm(beneficiary);
+          this.createBeneficiaryRegistrationForm(beneficiary);
         }
       });
-
     }
   }
   
@@ -61,7 +61,7 @@ export class BeneficiaryRegistrationComponent implements OnInit {
 
   createBeneficiaryRegistrationForm(beneficiary: IBeneficiary = new Beneficiary()): void {
     this.beneficiaryRegistrationForm = this.fb.group({
-      beneficiaryId: [beneficiary['beneficiaryId']],
+      id: [beneficiary['id']],
       name: [
         beneficiary.name,
         [
@@ -84,19 +84,23 @@ export class BeneficiaryRegistrationComponent implements OnInit {
   }
 
   onSubmit() {
-    if (!this.beneficiaryRegistrationForm.valid) {
-      return alert('formulario invalido');
-    }
+    // if (!this.beneficiaryRegistrationForm.valid) {
+    //   return alert('formulario invalido');
+    // }
 
-    if (this.beneficiary?.beneficiaryId) {
+    if (this.beneficiary?.id) {
       this.updateBeneficiary();
+      console.log(this.beneficiaryRegistrationForm.value)
     } else {
+      console.log(this.beneficiaryRegistrationForm.value)
       this.registerBeneficiary();
     }
   }
 
   private updateBeneficiary() {
-    this.beneficiaryService.updateBeneficiary(this.beneficiaryRegistrationForm.value).subscribe(result => console.log(result))
+    this.beneficiaryService
+      .updateBeneficiary(this.beneficiaryRegistrationForm.value)
+      .subscribe(result => console.log(result))
   }
 
   private registerBeneficiary(): void {
