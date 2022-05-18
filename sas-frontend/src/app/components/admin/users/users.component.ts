@@ -56,9 +56,6 @@ export class UsersComponent implements OnInit, OnDestroy {
       ).subscribe((userData) => {
         return this.data = userData
       })
-
-      
-
   }
 
   private filterBroadcast() {

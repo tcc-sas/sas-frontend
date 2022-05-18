@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { catchError, map, mapTo, shareReplay, take, tap } from 'rxjs/operators';
+import { Observable, of, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+import { IPage } from 'src/app/shared/models/page.models';
 import { IUser } from 'src/app/shared/models/user.model';
 import { environment } from 'src/environments/environment';
 
@@ -12,30 +13,32 @@ const USER_ENDPOINTS = environment.endpoints.userController;
 export class UserService {
   constructor(private http: HttpClient) {}
 
-  getAllUsers(query = ''): Observable<any> {
+  getAllUsers(query = ''): Observable<IPage<IUser>> {
     const url = USER_ENDPOINTS.getAllUsers(query);
-    return this.http.get(url).pipe(
-      catchError((error) => {
-        return of(null);
-      })
-    );
+    return this.http
+      .get<IPage<IUser>>(url)
+      .pipe(
+        catchError((error) => {
+          return of(error)
+        })
+      );
   }
 
   getUsersByFilter(query = ''): Observable<any> {
     const url = USER_ENDPOINTS.getUsersByFilter(query);
     return this.http.get(url).pipe(
       catchError((error) => {
-        return of(null);
+        return of(error);
       })
     );
   }
 
-  getUserSelectOptions(): Observable<any> {
-    const url = USER_ENDPOINTS.getUserSelectOptions();
-    return this.http.get(url).pipe(
+  registerUser(user: IUser): Observable<any> {
+    const url = USER_ENDPOINTS.registerUser();
+    return this.http.post<IUser>(url, user).pipe(
       catchError((error) => {
-        return of(null);
-      }),
+        return of(error?.error);
+      })
     );
   }
 
@@ -48,16 +51,9 @@ export class UserService {
     );
   }
 
-  registerUser(user: IUser): Observable<any>{
-    const url = USER_ENDPOINTS.registerUser();
-    return this.http.post<IUser>(url, user).pipe(
-      catchError((error) => {
-        return of(error?.error);
-      })
-    );
-  }
+ 
 
-  updateUser(user: IUser): Observable<any>{
+  updateUser(user: IUser): Observable<any> {
     const url = USER_ENDPOINTS.updateUser();
     return this.http.put<IUser>(url, user).pipe(
       catchError((error) => {
@@ -65,4 +61,20 @@ export class UserService {
       })
     );
   }
+
+  deleteUser(id: number): Observable<IUser> {
+    const url = '';
+    return this.http.delete<IUser>(url);
+  }
+
+  getUserSelectOptions(): Observable<any> {
+    const url = USER_ENDPOINTS.getUserSelectOptions();
+    return this.http.get(url).pipe(
+      catchError((error) => {
+        return of(null);
+      })
+    );
+  }
+
+ 
 }

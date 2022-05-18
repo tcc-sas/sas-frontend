@@ -1,9 +1,9 @@
 import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
-import { IConstants, IFields } from 'src/app/shared/models/constants.models';
-import { PaginationOptions } from '../../models/pagination-options.models';
-import { TableOptions, ASC, DESC } from '../../models/table-options.models';
+import { IConstants } from 'src/app/shared/models/constants.models';
 import { QueryUtilService } from '../../../core/service/query-util.service';
+import { PaginationOptions } from '../../models/pagination-options.models';
+import { ASC, DESC, TableOptions } from '../../models/table-options.models';
 
 @Component({
   selector: 'app-table',

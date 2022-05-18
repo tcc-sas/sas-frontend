@@ -13,8 +13,7 @@ export class QueryUtilService {
     private activatedRoute: ActivatedRoute,
     private location: Location,
     private router: Router,
-    private broadcastService: BroadcastService,
-    
+    private broadcastService: BroadcastService
   ) {}
 
   private _filterOptions: string[] = [];
@@ -25,7 +24,22 @@ export class QueryUtilService {
       .map((field) => field.apiField);
   }
 
-  
+  fetchDataByUrl(paginationQuery = ''): void {
+    let query = '';
+    this.queryStringFactory().then(
+      (filterQuery) => {
+        query = this.formatFilterQuery(filterQuery, paginationQuery);
+        this.broadcastService.notify(Filter(query));
+        this.replaceUrl(query);
+      },
+      (query) => {
+        query = this.formatReloadQuery(query, paginationQuery);
+        this.broadcastService.notify(Reload(query));
+        this.replaceUrl(query);
+      }
+    );
+  }
+
   private queryStringFactory(): Promise<string> {
     return new Promise((resolve, reject) => {
       this.activatedRoute.queryParams
@@ -48,39 +62,26 @@ export class QueryUtilService {
     });
   }
 
-  fetchDataByUrl(paginationQuery = ''): void {
-    let query = '';
-    this.queryStringFactory().then(
-      (filterQuery) => {
-        query = this.formatFilterQuery(filterQuery, paginationQuery);
-        this.broadcastService.notify(Filter(query));
-        this.replaceUrl(query);
-      },
-      (query) => {
-        query = this.formatReloadQuery(query, paginationQuery);
-        this.broadcastService.notify(Reload(query));
-        this.replaceUrl(query);
-      }
-    );
-  }
-
-  private formatFilterQuery(filterQuery: string, paginationQuery: string): string {
+  private formatFilterQuery(
+    filterQuery: string,
+    paginationQuery: string
+  ): string {
     let query = '';
     if (filterQuery.includes('page') && paginationQuery) {
-        query = filterQuery.split('page')[0];
-        query += paginationQuery;
-        return `${query}`
+      query = filterQuery.split('page')[0];
+      query += paginationQuery;
+      return `${query}`;
     }
     return `?${filterQuery}${paginationQuery}`;
   }
 
   private formatReloadQuery(query: string, paginationQuery: string): string {
-    if(query && paginationQuery){
-        return `?${paginationQuery}`
-    }else if(query && !paginationQuery){
-        return `?${query}`
-    } else if(!query && paginationQuery){
-        return `?${paginationQuery}`
+    if (query && paginationQuery) {
+      return `?${paginationQuery}`;
+    } else if (query && !paginationQuery) {
+      return `?${query}`;
+    } else if (!query && paginationQuery) {
+      return `?${paginationQuery}`;
     }
     return '';
   }

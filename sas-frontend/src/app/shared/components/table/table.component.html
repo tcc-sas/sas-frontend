@@ -1,5 +1,5 @@
 <div class="main-table">
-  <table class="table table-hover table-striped">
+  <table class="table table-hover">
     <thead class="bg-main">
       <tr>
         <th
@@ -7,7 +7,7 @@
           scope="col"
           [style]="tableOptions.tableSpacing"
         >
-          <span (click)="orderBy(field.apiField)">
+          <span class="text-nowrap" (click)="orderBy(field.apiField)">
             {{ field.name }}
           </span>
         </th>
@@ -18,7 +18,7 @@
     <tbody>
       <tr scope="row" *ngFor="let row of data?.content">
         <td
-          class="align-texto padding-coluna-codigo"
+          class="y-align text-nowrap"
           *ngFor="let field of tableOptions.tableFields"
         >
           <div *ngIf="field.isObject">
@@ -65,13 +65,12 @@
       </tr>
     </tbody>
   </table>
-
-  <mat-paginator
-    [length]="paginationOptions.paginatorLength"
-    [pageSize]="paginationOptions.pageSize"
-    [pageSizeOptions]="paginationOptions.pageSizeOptions"
-    [pageIndex]="paginationOptions.pageIndex"
-    (page)="handlePageEvent($event)"
-  >
-  </mat-paginator>
 </div>
+<mat-paginator
+  [length]="paginationOptions.paginatorLength"
+  [pageSize]="paginationOptions.pageSize"
+  [pageSizeOptions]="paginationOptions.pageSizeOptions"
+  [pageIndex]="paginationOptions.pageIndex"
+  (page)="handlePageEvent($event)"
+>
+</mat-paginator>
