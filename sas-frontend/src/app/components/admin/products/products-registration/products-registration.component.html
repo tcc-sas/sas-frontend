@@ -1,0 +1,156 @@
+<div class="background mat-elevation-z11">
+  <h2>{{ actionText }} Usuário</h2>
+  <div class="linha"></div>
+
+  <!-- #61b586 -->
+
+  <form
+    action="post"
+    [formGroup]="productRegistrationForm"
+    (ngSubmit)="onSubmit()"
+  >
+    <div class="row">
+      <input type="hidden" id="id" formControlName="id" />
+
+      <!---------- NAME ---------->
+      <div class="form-group col-3">
+        <label for="productId" class="label-size col-form-label">Código</label>
+        <div class="">
+          <input
+            [ngClass]="form('productId')?.valid ? 'green-input' : 'default-input'"
+            class="form-control form-control-sm shadow-none"
+            formControlName="productId"
+            type="text"
+            id="productId"
+          />
+
+          <!-- <div
+            class="customFormError m-auto"
+            role="alert"
+            *ngIf="form('name')?.invalid && form('name')?.touched"
+          >
+            <div *ngIf="form('name')?.errors?.required">
+              Campo Obrigatório
+            </div>
+
+            <div *ngIf="form('name')?.errors?.minlength">
+              Mínimo 3 caracteres
+            </div>
+
+            <div *ngIf="form('name')?.errors?.maxlength">
+              Máximo 45 caracteres
+            </div>
+          </div> -->
+        </div>
+      </div>
+
+      <!---------- USERNAME ---------->
+      <div class="form-group col-6">
+        <label for="name" class="label-size col-form-label">Nome Produto</label>
+        <div class="">
+          <input
+            [ngClass]="
+              form('name')?.valid ? 'green-input' : 'default-input'
+            "
+            class="form-control form-control-sm shadow-none"
+            formControlName="name"
+            type="text"
+            id="name"
+          />
+
+          <!-- <div
+            class="customFormError m-auto"
+            role="alert"
+            *ngIf="form('username')?.invalid && form('username')?.touched"
+          >
+            <div *ngIf="form('username')?.errors?.required">
+              Campo Obrigatório
+            </div>
+
+            <div *ngIf="form('username')?.errors?.minlength">
+              Mínimo 3 caracteres
+            </div>
+
+            <div *ngIf="form('username')?.errors?.maxlength">
+              Máximo 20 caracteres
+            </div>
+          </div> -->
+        </div>
+      </div>
+
+      <div class="form-group col-3">
+        <label for="unity" class="label-size col-form-label">Undidade</label>
+        <div class="">
+          <input
+            [ngClass]="form('unity')?.valid ? 'green-input' : 'default-input'"
+            class="form-control form-control-sm shadow-none"
+            formControlName="unity"
+            type="text"
+            id="unity"
+          />
+
+          <!-- <div
+            class="customFormError m-auto"
+            role="alert"
+            *ngIf="form('name')?.invalid && form('name')?.touched"
+          >
+            <div *ngIf="form('name')?.errors?.required">
+              Campo Obrigatório
+            </div>
+
+            <div *ngIf="form('name')?.errors?.minlength">
+              Mínimo 3 caracteres
+            </div>
+
+            <div *ngIf="form('name')?.errors?.maxlength">
+              Máximo 45 caracteres
+            </div>
+          </div> -->
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+
+      <div class="form-group col-12">
+        <label for="description" class="label-size col-form-label">Descrição</label>
+        <div class="">
+          <textarea
+            [ngClass]="
+              form('description')?.valid ? 'green-input' : 'default-input'
+            "
+            class="form-control form-control-sm shadow-none"
+            formControlName="description"
+            maxlength="250"
+            id="description">
+          </textarea>
+
+          <!-- <div
+            class="customFormError m-auto"
+            role="alert"
+            *ngIf="form('username')?.invalid && form('username')?.touched"
+          >
+            <div *ngIf="form('username')?.errors?.required">
+              Campo Obrigatório
+            </div>
+
+            <div *ngIf="form('username')?.errors?.minlength">
+              Mínimo 3 caracteres
+            </div>
+
+            <div *ngIf="form('username')?.errors?.maxlength">
+              Máximo 20 caracteres
+            </div>
+          </div> -->
+        </div>
+      </div>
+
+    </div>
+
+    <div class="d-flex">
+      <button class="btn shadow-none btn-sm btn-primary mt-5" type="submit">
+        {{ actionText }}
+      </button>
+    </div>
+  </form>
+</div>
