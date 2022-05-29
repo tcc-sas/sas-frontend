@@ -13,13 +13,15 @@ export class SweetAlertService {
     return Swal.fire({
       text: text,
       icon: 'success',
+      confirmButtonColor: '#a5dc86',
     })
   }
 
   error(text: string){
     return Swal.fire({
       text: text,
-      icon: 'error'
+      icon: 'error',
+      confirmButtonColor: '#f27474',
     })
   }
 }

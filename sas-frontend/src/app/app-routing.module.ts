@@ -30,16 +30,16 @@ const routes: Routes = [
         ]
       },
       {
-        path: 'beneficiarios',
+        path: 'beneficiario',
         component: BeneficiaryComponent,
       },
       {
-        path: 'cadastro-beneficiarios',
+        path: 'cadastro-beneficiario',
         component: BeneficiaryRegistrationComponent,
         resolve: [BeneficiaryResolver]
       },
       {
-        path: 'cadastro-beneficiarios/:id',
+        path: 'cadastro-beneficiario/:id',
         component: BeneficiaryRegistrationComponent,
         resolve: [BeneficiaryResolver]
       }

@@ -6,7 +6,7 @@ import { IBeneficiary } from 'src/app/shared/models/beneficiary.models';
 import { IUser } from 'src/app/shared/models/user.model';
 import { environment } from 'src/environments/environment';
 
-const USER_ENDPOINTS = environment.endpoints.beneficiaryController;
+const BENEFICIARY_ENDPOINTS = environment.endpoints.beneficiaryController;
 @Injectable({
   providedIn: 'root',
 })
@@ -14,7 +14,7 @@ export class BeneficiaryService {
   constructor(private http: HttpClient) {}
 
   getAllBeneficiary(query = ''): Observable<IBeneficiary[]> {
-    const url = USER_ENDPOINTS.getAllBeneficiary(query);
+    const url = BENEFICIARY_ENDPOINTS.getAllBeneficiary(query);
     return this.http.get<IBeneficiary[]>(url).pipe(
       catchError((error) => {
         return of([]);
@@ -23,7 +23,7 @@ export class BeneficiaryService {
   }
 
   getBeneficiaryByFilter(query = ''): Observable<any> {
-    const url = USER_ENDPOINTS.getBeneficiaryByFilter(query);
+    const url = BENEFICIARY_ENDPOINTS.getBeneficiaryByFilter(query);
     return this.http.get(url).pipe(
       catchError((error) => {
         return of(null);
@@ -32,7 +32,7 @@ export class BeneficiaryService {
   }
 
   getBeneficiarySelectOptions(): Observable<any> {
-    const url = USER_ENDPOINTS.getBeneficiarySelectOptions();
+    const url = BENEFICIARY_ENDPOINTS.getBeneficiarySelectOptions();
     return this.http.get(url).pipe(
       catchError((error) => {
         return of(null);
@@ -41,7 +41,7 @@ export class BeneficiaryService {
   }
 
   getBeneficiaryById(userId: string): Observable<IBeneficiary | null> {
-    const url = USER_ENDPOINTS.getBeneficiaryById(userId);
+    const url = BENEFICIARY_ENDPOINTS.getBeneficiaryById(userId);
     return this.http.get<IBeneficiary | null>(url).pipe(
       catchError((error) => {
         return of(null);
@@ -50,7 +50,7 @@ export class BeneficiaryService {
   }
 
   registerBeneficiary(user: IUser): Observable<any> {
-    const url = USER_ENDPOINTS.registerBeneficiary();
+    const url = BENEFICIARY_ENDPOINTS.registerBeneficiary();
     return this.http.post<IUser>(url, user).pipe(
       catchError((error) => {
         return of(error?.error);
@@ -59,10 +59,19 @@ export class BeneficiaryService {
   }
 
   updateBeneficiary(user: IUser): Observable<any> {
-    const url = USER_ENDPOINTS.updateBeneficiary();
+    const url = BENEFICIARY_ENDPOINTS.updateBeneficiary();
     return this.http.put<IUser>(url, user).pipe(
       catchError((error) => {
         return of(error?.error);
+      })
+    );
+  }
+
+  deleteProduct(id: string): Observable<any> {
+    const url = BENEFICIARY_ENDPOINTS.deleteProduct(id);
+    return this.http.delete<string>(url).pipe(
+      catchError(error => {
+        return of(error?.error)
       })
     );
   }

@@ -10,7 +10,7 @@ import { BroadcastService } from 'src/app/core/service/broadcast.service';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { Filter, Reload } from '../../actions/broadcast.actions';
-import { StringAnyMap } from '../../models/string-any-map.models';
+import { StringKeyAnyValueObject } from '../../models/string-any-map.models';
 
 @Component({
   selector: 'app-filter',
@@ -20,7 +20,7 @@ import { StringAnyMap } from '../../models/string-any-map.models';
 export class FilterComponent implements OnInit, OnChanges {
   @Input() constants!: IConstants;
   @Input() selectOptions: any;
-  filterObj: StringAnyMap = {};
+  filterObj: StringKeyAnyValueObject = {};
   filterFields: IFields[] = [];
 
   constructor(
@@ -32,15 +32,19 @@ export class FilterComponent implements OnInit, OnChanges {
   ngOnInit(): void {}
 
   ngOnChanges(changes: SimpleChanges): void {
-    this.retrieveFilterFields(changes);
-    this.createFilterObject();
+    this.onChangeConstants(changes);
   }
 
-  retrieveFilterFields(changes: SimpleChanges) {
-    if (changes['constants']) {
-      const fields: IFields[] = changes.constants.currentValue?.fields ?? [];
-      this.filterFields = fields.filter((field) => field.isFilterField);
+  private onChangeConstants(changes: SimpleChanges) {
+    if (changes['constants'] && changes['constants'].currentValue) {
+      this.retrieveFilterFields();
+      this.createFilterObject();
     }
+  }
+
+  retrieveFilterFields() {
+    const fields: IFields[] = this.constants.fields ?? [];
+    this.filterFields = fields.filter((field) => field.isFilterField);
   }
 
   private createFilterObject(): void {

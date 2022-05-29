@@ -1,4 +1,3 @@
-import { query } from "@angular/animations";
 
 export function endpoints(host: string) {
     return {
@@ -6,6 +5,7 @@ export function endpoints(host: string) {
         authController: authController(host + '/api/auth'),
         userController: userController(host + '/api/user'),
         beneficiaryController: beneficiaryController(host + '/api/beneficiary'),
+        productController: productController(host + '/api/product')
     }
 }
 
@@ -29,4 +29,14 @@ const beneficiaryController = (baseApiUrl: string) => ({
     getBeneficiaryById: (beneficiaryId: string) => baseApiUrl + `/${beneficiaryId}`,
     registerBeneficiary: () => baseApiUrl + `/register`,
     updateBeneficiary: () => baseApiUrl + `/update`,
+    deleteProduct: (id: string) => baseApiUrl + `/delete?id=${id}`
+});
+
+const productController = (baseApiUrl: string) => ({
+    getAllProducts: (query?: string) => baseApiUrl + `/all${query}`,
+    getProductsByFilter: (query: string) => baseApiUrl + `/filter${query}`,
+    getProductById: (id: string) => baseApiUrl + `/${id}`,
+    registerProduct: () => baseApiUrl + `/register`,
+    updateProduct: () => baseApiUrl + `/update`,
+    deleteProduct: (id: string) => baseApiUrl + `/delete?id=${id}`
 });

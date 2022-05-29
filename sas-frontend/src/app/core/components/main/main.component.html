@@ -20,7 +20,7 @@
           pressedBtn == 'beneficiarios' ? 'pressed-btn' : 'not-pressed-btn'
         "
         class="text-button"
-        routerLink="beneficiarios"
+        routerLink="beneficiario"
         routerLinkActive="active"
       >
         Beneficiários
@@ -33,12 +33,12 @@
           pressedBtn == 'contemplados' ? 'pressed-btn' : 'not-pressed-btn'
         "
         class="text-button"
-        routerLink="contemplados"
         routerLinkActive="active"
       >
         Contemplados
         <i class="material-icons"> people </i>
       </a>
+      
       <a
         mat-list-item
         (click)="onClickBtn('estoque')"
@@ -50,6 +50,11 @@
         Estoque
         <i class="material-icons"> house </i>
       </a>
+
+
+
+
+
       <a
         *ngIf="isAdminUser"
         mat-list-item
@@ -62,6 +67,11 @@
         Painel Memorando
         <i class="material-icons"> dashboard </i>
       </a>
+
+
+
+
+
       <a
         *ngIf="isAdminUser"
         mat-list-item
@@ -71,6 +81,7 @@
         Painel Administrador
         <i class="material-icons"> paid </i>
       </a>
+
       <a
         *ngIf="subMenu == 'admin'"
         mat-list-item
@@ -79,10 +90,25 @@
           pressedBtn == 'administrador' ? 'pressed-btn' : 'not-pressed-btn'
         "
         class="text-button"
-        routerLink="admin/usuarios"
+        routerLink="admin/usuario"
         routerLinkActive="active"
       >
         <span class="ms-3">Usuários</span>
+        <i class="material-icons"> paid </i>
+      </a>
+
+      <a
+        *ngIf="subMenu == 'admin'"
+        mat-list-item
+        (click)="onClickBtn('produtos')"
+        [ngClass]="
+          pressedBtn == 'produtos' ? 'pressed-btn' : 'not-pressed-btn'
+        "
+        class="text-button"
+        routerLink="admin/produto"
+        routerLinkActive="active"
+      >
+        <span class="ms-3">Produtos</span>
         <i class="material-icons"> paid </i>
       </a>
     </mat-nav-list>

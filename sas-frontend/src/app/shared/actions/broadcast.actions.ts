@@ -13,3 +13,10 @@ export const Filter = (query: any): Broadcast => {
     payload: query,
   };
 };
+
+export const Delete = (query: any): Broadcast => {
+  return {
+    type: BroadcastType.Delete,
+    payload: query
+  }
+}

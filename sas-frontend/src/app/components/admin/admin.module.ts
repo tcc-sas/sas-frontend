@@ -7,6 +7,8 @@ import { FilterTableTemplateModule } from 'src/app/shared/components/filter-tabl
 import { UsersRegistrationComponent } from './users/users-registration/users-registration.component';
 import { UserResolver } from 'src/app/core/resolvers/users-route.resolver';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ProductsComponent } from './products/products.component';
+import { ProductsRegistrationComponent } from './products/products-registration/products-registration.component';
 
 
 
@@ -14,7 +16,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   declarations: [
     AdminComponent,
     UsersComponent,
-    UsersRegistrationComponent
+    UsersRegistrationComponent,
+    ProductsComponent,
+    ProductsRegistrationComponent
   ],
   imports: [
     CommonModule,

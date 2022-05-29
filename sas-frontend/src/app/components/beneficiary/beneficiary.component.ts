@@ -18,7 +18,7 @@ export class BeneficiaryComponent implements OnInit, OnDestroy {
   selectOptions$!: Observable<any>;
   reloadSubscription = new Subscription();
   filterSubscription = new Subscription();
-
+  deleteSubscription = new Subscription();
   constructor(
     private broadcastService: BroadcastService,
     private queryUtilService: QueryUtilService,
@@ -44,6 +44,17 @@ export class BeneficiaryComponent implements OnInit, OnDestroy {
   private listenToBroadcasts(): void {
     this.reloadBroadcast();
     this.filterBroadcast();
+    this.deleteBroadcast();
+  }
+
+  private deleteBroadcast() {
+    this.deleteSubscription = this.broadcastService
+      .listen(BroadcastType.Delete)
+      .pipe(
+        switchMap((value) => this.beneficiaryService.deleteProduct(value.payload))
+      ).subscribe((teste) => {
+        alert(teste)
+      })
   }
 
   private reloadBroadcast() {
@@ -75,5 +86,6 @@ export class BeneficiaryComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.reloadSubscription.unsubscribe();
     this.filterSubscription.unsubscribe();
+    this.deleteSubscription.unsubscribe();
   }
 }

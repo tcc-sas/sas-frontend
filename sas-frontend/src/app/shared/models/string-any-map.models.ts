@@ -1,3 +1,3 @@
-export interface StringAnyMap {
+export type StringKeyAnyValueObject = {
     [key: string]: any;
 }

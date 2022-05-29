@@ -15,6 +15,5 @@ export class TableOptions {
         this.tableFieldToSort = '';
         this.tableSortDirection = ASC;
     }
-
-    
 }
+

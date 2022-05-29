@@ -1,5 +1,7 @@
 <div class="main-table">
+  
   <table class="table table-hover">
+    
     <thead class="bg-main">
       <tr>
         <th
@@ -17,10 +19,7 @@
 
     <tbody>
       <tr scope="row" *ngFor="let row of data?.content">
-        <td
-          class="y-align text-nowrap"
-          *ngFor="let field of tableOptions.tableFields"
-        >
+        <td class="y-align text-nowrap" *ngFor="let field of tableOptions.tableFields">
           <div *ngIf="field.isObject">
             <span>
               {{ row[field.apiField][field.objectName] }}
@@ -47,6 +46,7 @@
           >
             <mat-icon>more_horiz</mat-icon>
           </button>
+
           <mat-menu #menu="matMenu">
             <button
               routerLink="../cadastro-{{ constants.route }}/{{ row.id }}"
@@ -56,7 +56,8 @@
               <mat-icon>edit</mat-icon>
               <span>Editar</span>
             </button>
-            <button mat-menu-item class="icone-opcoes">
+
+            <button mat-menu-item class="icone-opcoes" (click)="delete(row?.id)">
               <mat-icon>remove_circle_outline</mat-icon>
               <span>Excluir</span>
             </button>
@@ -64,7 +65,9 @@
         </td>
       </tr>
     </tbody>
+
   </table>
+
 </div>
 <mat-paginator
   [length]="paginationOptions.paginatorLength"
