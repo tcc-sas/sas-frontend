@@ -84,7 +84,7 @@ export class ProductsRegistrationComponent implements OnInit {
       .subscribe((result) =>
         this.sweetAlert
           .success('Atualizado com sucesso!')
-          .then(() => this.router.navigate(['/produto']))
+          .then(() => this.router.navigate(['/admin/produto']))
       );
   }
 
@@ -94,7 +94,7 @@ export class ProductsRegistrationComponent implements OnInit {
       .subscribe((result) =>
         this.sweetAlert
           .success('Cadastrado com sucesso!')
-          .then(() => this.router.navigate(['/produto']))
+          .then(() => this.router.navigate(['/admin/produto']))
       );
   }
 

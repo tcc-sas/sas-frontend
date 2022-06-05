@@ -188,13 +188,17 @@
         <label for="zipCode" class="label-size col-form-label">CEP</label>
         <div class="">
           <input
-            [ngClass]="form('zipCode')?.value && form('zipCode')?.valid ? 'green-input' : 'default-input'"
+            [ngClass]="
+              form('zipCode')?.value && form('zipCode')?.valid
+                ? 'green-input'
+                : 'default-input'
+            "
             class="form-control form-control-sm shadow-none"
             formControlName="zipCode"
             type="text"
             id="zipCode"
           />
-<!-- 
+          <!-- 
           <div
             class="customFormError m-auto"
             role="alert"
@@ -220,7 +224,11 @@
         <label for="adress" class="label-size col-form-label">Endereço</label>
         <div class="">
           <input
-            [ngClass]="form('adress')?.value && form('adress')?.valid ? 'green-input' : 'default-input'"
+            [ngClass]="
+              form('adress')?.value && form('adress')?.valid
+                ? 'green-input'
+                : 'default-input'
+            "
             class="form-control form-control-sm shadow-none"
             formControlName="adress"
             type="text"
@@ -255,7 +263,9 @@
         <div class="">
           <input
             [ngClass]="
-            form('houseNumber')?.value && form('houseNumber')?.valid ? 'green-input' : 'default-input'
+              form('houseNumber')?.value && form('houseNumber')?.valid
+                ? 'green-input'
+                : 'default-input'
             "
             class="form-control form-control-sm shadow-none"
             formControlName="houseNumber"
@@ -291,8 +301,10 @@
         <label for="district" class="label-size col-form-label">Bairro</label>
         <div class="">
           <input
-            [ngClass]="form('district')?.value &&
-              form('district')?.valid ? 'green-input' : 'default-input'
+            [ngClass]="
+              form('district')?.value && form('district')?.valid
+                ? 'green-input'
+                : 'default-input'
             "
             class="form-control form-control-sm shadow-none"
             formControlName="district"
@@ -325,7 +337,11 @@
         <label for="city" class="label-size col-form-label">Cidade</label>
         <div class="">
           <input
-            [ngClass]="form('city')?.value && form('city')?.valid ? 'green-input' : 'default-input'"
+            [ngClass]="
+              form('city')?.value && form('city')?.valid
+                ? 'green-input'
+                : 'default-input'
+            "
             class="form-control form-control-sm shadow-none"
             formControlName="city"
             type="text"
@@ -383,7 +399,11 @@
     </div>
 
     <div class="d-flex">
-      <button class="btn shadow-none btn-sm btn-primary mt-5" type="submit">
+      <button
+        [disabled]="beneficiaryRegistrationForm.invalid"
+        class="btn shadow-none btn-sm btn-primary mt-5"
+        type="submit"
+      >
         {{ actionText }}
       </button>
     </div>

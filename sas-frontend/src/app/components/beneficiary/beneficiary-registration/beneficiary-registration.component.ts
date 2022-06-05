@@ -1,13 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import {
-  AbstractControl, FormBuilder,
+  AbstractControl,
+  FormBuilder,
   FormGroup,
-  Validators
+  Validators,
 } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Constants } from 'src/app/core/constants/components-constants';
 import { BeneficiaryService } from 'src/app/core/service/beneficiary.service';
-import { Beneficiary, IBeneficiary } from 'src/app/shared/models/beneficiary.models';
+import {
+  Beneficiary,
+  IBeneficiary,
+} from 'src/app/shared/models/beneficiary.models';
 import { IConstants } from 'src/app/shared/models/constants.models';
 import { ValidateObject } from 'src/app/shared/util/form-validators';
 
@@ -24,21 +28,19 @@ export class BeneficiaryRegistrationComponent implements OnInit {
 
   actionText: string = 'Cadastrar';
 
-
   constructor(
     private fb: FormBuilder,
     private activatedRoute: ActivatedRoute,
     private beneficiaryService: BeneficiaryService
-  ) {
-  }
-  
+  ) {}
+
   ngOnInit(): void {
     this.createBeneficiaryRegistrationForm();
     this.retrieveSelectOptions();
     this.findBeneficiaryById();
   }
 
-  retrieveSelectOptions(){
+  retrieveSelectOptions() {
     this.selectOptions = this.activatedRoute.snapshot.data?.[0];
   }
 
@@ -46,20 +48,24 @@ export class BeneficiaryRegistrationComponent implements OnInit {
     const beneficiaryId = this.activatedRoute.snapshot.paramMap.get('id');
     if (beneficiaryId) {
       this.setActionText();
-      this.beneficiaryService.getBeneficiaryById(beneficiaryId).subscribe((beneficiary) => {
-        if (beneficiary) {
-          this.beneficiary = beneficiary;
-          this.createBeneficiaryRegistrationForm(beneficiary);
-        }
-      });
+      this.beneficiaryService
+        .getBeneficiaryById(beneficiaryId)
+        .subscribe((beneficiary) => {
+          if (beneficiary) {
+            this.beneficiary = beneficiary;
+            this.createBeneficiaryRegistrationForm(beneficiary);
+          }
+        });
     }
   }
-  
+
   private setActionText(): void {
     this.actionText = 'Atualizar';
   }
 
-  createBeneficiaryRegistrationForm(beneficiary: IBeneficiary = new Beneficiary()): void {
+  createBeneficiaryRegistrationForm(
+    beneficiary: IBeneficiary = new Beneficiary()
+  ): void {
     this.beneficiaryRegistrationForm = this.fb.group({
       id: [beneficiary['id']],
       name: [
@@ -84,15 +90,15 @@ export class BeneficiaryRegistrationComponent implements OnInit {
   }
 
   onSubmit() {
-    // if (!this.beneficiaryRegistrationForm.valid) {
-    //   return alert('formulario invalido');
-    // }
+    if (this.beneficiaryRegistrationForm.invalid) {
+      return;
+    }
 
     if (this.beneficiary?.id) {
       this.updateBeneficiary();
-      console.log(this.beneficiaryRegistrationForm.value)
+      console.log(this.beneficiaryRegistrationForm.value);
     } else {
-      console.log(this.beneficiaryRegistrationForm.value)
+      console.log(this.beneficiaryRegistrationForm.value);
       this.registerBeneficiary();
     }
   }
@@ -100,7 +106,7 @@ export class BeneficiaryRegistrationComponent implements OnInit {
   private updateBeneficiary() {
     this.beneficiaryService
       .updateBeneficiary(this.beneficiaryRegistrationForm.value)
-      .subscribe(result => console.log(result))
+      .subscribe((result) => console.log(result));
   }
 
   private registerBeneficiary(): void {
@@ -112,8 +118,4 @@ export class BeneficiaryRegistrationComponent implements OnInit {
   form(formField: string) {
     return this.beneficiaryRegistrationForm.get(formField);
   }
-
-
 }
-
-

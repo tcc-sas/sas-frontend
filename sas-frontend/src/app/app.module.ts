@@ -13,6 +13,7 @@ import { BeneficiaryModule } from './components/beneficiary/beneficiary.module';
 import { LoginModule } from './core/components/login/login.module';
 import { MainComponent } from './core/components/main/main.component';
 import { NavComponent } from './core/components/nav/nav.component';
+import { HttpErrorInterceptor } from './core/interceptor/http-error.interceptor';
 import { JwtInterceptor } from './core/interceptor/jwt.interceptor';
 
 
@@ -41,9 +42,14 @@ import { JwtInterceptor } from './core/interceptor/jwt.interceptor';
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: JwtInterceptor,
+      useClass: JwtInterceptor, 
       multi: true,
-    }
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpErrorInterceptor, 
+      multi: true,
+    },
   ],
   bootstrap: [
     AppComponent
