@@ -7,6 +7,8 @@ import { BeneficiaryComponent } from './components/beneficiary/beneficiary.compo
 import { AdminGuard } from './core/guards/admin.guard';
 import { BeneficiaryRegistrationComponent } from './components/beneficiary/beneficiary-registration/beneficiary-registration.component';
 import { BeneficiaryResolver } from './core/resolvers/beneficiary-route.resolver';
+import { StockComponent } from './components/stock/stock.component';
+import { StockRegistrationComponent } from './components/stock/stock-registration/stock-registration.component';
 
 const routes: Routes = [
   {
@@ -42,7 +44,15 @@ const routes: Routes = [
         path: 'cadastro-beneficiario/:id',
         component: BeneficiaryRegistrationComponent,
         resolve: [BeneficiaryResolver]
-      }
+      },
+      {
+        path: 'estoque',
+        component: StockComponent,
+      },
+      {
+        path: 'cadastro-estoque',
+        component: StockRegistrationComponent,
+      },
     ]
   },
 

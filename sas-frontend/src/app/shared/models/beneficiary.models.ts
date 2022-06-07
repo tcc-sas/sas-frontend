@@ -7,7 +7,7 @@ export interface IBeneficiary {
   cpf: string;
   cras: ICras;
   zipCode: string;
-  adress: string;
+  address: string;
   houseNumber: number | null;
   district: string;
   city: string;
@@ -23,14 +23,11 @@ export class Beneficiary implements IBeneficiary {
     public rg = '',
     public cras = new Cras(),
     public zipCode = '',
-    public adress = '',
+    public address = '',
     public houseNumber = null,
     public district = '',
     public city = '',
     public phoneNumber  = '',
     public birthDate = []
-  ) {
-  }
-
-  
+  ) {}
 }

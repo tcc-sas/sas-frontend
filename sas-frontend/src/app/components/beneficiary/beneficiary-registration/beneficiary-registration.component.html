@@ -221,18 +221,18 @@
 
       <!---------- ENDERECO ---------->
       <div class="form-group col-6">
-        <label for="adress" class="label-size col-form-label">Endereço</label>
+        <label for="address" class="label-size col-form-label">Endereço</label>
         <div class="">
           <input
             [ngClass]="
-              form('adress')?.value && form('adress')?.valid
+              form('address')?.value && form('address')?.valid
                 ? 'green-input'
                 : 'default-input'
             "
             class="form-control form-control-sm shadow-none"
-            formControlName="adress"
+            formControlName="address"
             type="text"
-            id="adress"
+            id="address"
           />
 
           <!-- <div

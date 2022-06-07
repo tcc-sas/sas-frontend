@@ -15,6 +15,8 @@ import { MainComponent } from './core/components/main/main.component';
 import { NavComponent } from './core/components/nav/nav.component';
 import { HttpErrorInterceptor } from './core/interceptor/http-error.interceptor';
 import { JwtInterceptor } from './core/interceptor/jwt.interceptor';
+import { StockComponent } from './components/stock/stock.component';
+import { StockModule } from './components/stock/stock.module';
 
 
 
@@ -36,8 +38,10 @@ import { JwtInterceptor } from './core/interceptor/jwt.interceptor';
     HttpClientModule,
     BrowserAnimationsModule,
     FormsModule,
+
     BeneficiaryModule,
-    LoginModule
+    LoginModule,
+    StockModule
   ],
   providers: [
     {

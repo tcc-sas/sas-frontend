@@ -15,18 +15,18 @@
             >
 
             <select
-                *ngIf="field.filterType === 'select' && field.isObject && selectOptions"
+                *ngIf="field.filterType === 'select' && field.isObject"
                 class="form-select form-select-sm form-control form-control-sm shadow-none" 
                 [(ngModel)]="filterObj[field.apiField]"
             >
-
-                <option 
+                <ng-container *ngIf="selectOptions">
+                    <option 
                     *ngFor="let option of selectOptions[field.apiField]"
                     [value]="option.id"
                 >
                     {{option.name}}
                 </option>
-
+                </ng-container>
             </select>
             
 
@@ -34,10 +34,17 @@
       
     </div>
     <div class="d-flex align-items-start">
-        <button (click)="search()" class="filter-button" mat-icon-button>
+        <button 
+            (click)="search()"
+            class="filter-button"
+            mat-icon-button>
             <mat-icon class="filter-search">search</mat-icon>
         </button>
-        <button (click)="clearFiltersAndReload()" class="filter-button" mat-icon-button>
+
+        <button 
+            (click)="clearFiltersAndReload()"
+            class="filter-button"
+            mat-icon-button>
             <mat-icon class="filter-clear">close</mat-icon>
         </button>
     </div>

@@ -81,7 +81,7 @@ export class BeneficiaryRegistrationComponent implements OnInit {
       birthDate: [beneficiary.birthDate, [Validators.required]],
       phoneNumber: [beneficiary.phoneNumber],
       zipCode: [beneficiary.zipCode],
-      adress: [beneficiary.adress],
+      address: [beneficiary.address],
       houseNumber: [beneficiary.houseNumber],
       district: [beneficiary.district],
       city: [beneficiary.city],
