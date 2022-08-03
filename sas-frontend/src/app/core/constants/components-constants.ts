@@ -40,11 +40,13 @@ export class Constants {
     infoText: 'Produtos cadastrados!',
     route: 'produto',
     fields: [
-      { id: 1, name: 'ID',                 apiField: 'id',          isTableField: false, tableType: '',  isFilterField: false, filterType: '',       isObject: false, objectId: '',   objectName: '',  },
-      { id: 2, name: 'Codigo',             apiField: 'productId',   isTableField: true,  tableType: '',  isFilterField: true,  filterType: 'string', isObject: false, objectId: '',   objectName: '',  },
-      { id: 3, name: 'Nome Produto',       apiField: 'name',        isTableField: true,  tableType: '',  isFilterField: true,  filterType: 'string', isObject: false, objectId: '',   objectName: '',  },
-      { id: 4, name: 'Undidade',           apiField: 'unity',       isTableField: true,  tableType: '',  isFilterField: false, filterType: '',       isObject: false, objectId: '',   objectName: '',  },
-      { id: 5, name: 'Descrição',          apiField: 'description', isTableField: true,  tableType: '',  isFilterField: false, filterType: '',       isObject: false, objectId: '',   objectName: '',  },
+      { id: 1, name: 'ID',                    apiField: 'id',                isTableField: false, tableType: '',  isFilterField: false, filterType: '',       isObject: false, objectId: '',   objectName: '',  },
+      { id: 2, name: 'Codigo',                apiField: 'productId',         isTableField: true,  tableType: '',  isFilterField: true,  filterType: 'string', isObject: false, objectId: '',   objectName: '',  },
+      { id: 3, name: 'Nome Produto',          apiField: 'name',              isTableField: true,  tableType: '',  isFilterField: true,  filterType: 'string', isObject: false, objectId: '',   objectName: '',  },
+      { id: 4, name: 'Undidade',              apiField: 'unity',             isTableField: true,  tableType: '',  isFilterField: false, filterType: '',       isObject: false, objectId: '',   objectName: '',  },
+      { id: 5, name: 'Descrição',             apiField: 'description',       isTableField: true,  tableType: '',  isFilterField: false, filterType: '',       isObject: false, objectId: '',   objectName: '',  },
+      { id: 6, name: 'Quantidade Disponível', apiField: 'availableQuantity', isTableField: true,  tableType: '',  isFilterField: false, filterType: '',       isObject: false, objectId: '',   objectName: '',  },
+
     ],
   };
 
@@ -53,10 +55,10 @@ export class Constants {
     infoText: 'Produtos cadastrados no estoque!',
     route: 'estoque',
     fields: [
-      { id: 1, name: 'ID',                 apiField: 'id',          isTableField: false, tableType: '',  isFilterField: false,  filterType: '',       isObject: false, objectId: '',   objectName: '',      },
-      { id: 2, name: 'Produto',            apiField: 'product',     isTableField: true,  tableType: '',  isFilterField: true,   filterType: 'select', isObject: true,  objectId: 'id', objectName: 'name',  },
-      { id: 3, name: 'Quantidade',         apiField: 'quantity',    isTableField: true,  tableType: '',  isFilterField: false,  filterType: '',       isObject: false, objectId: '',   objectName: '',      },
-      { id: 4, name: 'Undidade',           apiField: 'cras',        isTableField: true,  tableType: '',  isFilterField: true,   filterType: 'select', isObject: true,  objectId: 'id', objectName: 'name',  },
+      { id: 1, name: 'ID',          apiField: 'id',        isTableField: false, tableType: '',  isFilterField: false,  filterType: '',       isObject: false, objectId: '',   objectName: '',      },
+      { id: 2, name: 'Produto',     apiField: 'product',   isTableField: true,  tableType: '',  isFilterField: true,   filterType: 'select', isObject: true,  objectId: 'id', objectName: 'name',  },
+      { id: 3, name: 'Quantidade',  apiField: 'quantity',  isTableField: true,  tableType: '',  isFilterField: false,  filterType: '',       isObject: false, objectId: '',   objectName: '',      },
+      { id: 4, name: 'Undidade',    apiField: 'cras',      isTableField: true,  tableType: '',  isFilterField: true,   filterType: 'select', isObject: true,  objectId: 'id', objectName: 'name',  },
     ],
   };
 }

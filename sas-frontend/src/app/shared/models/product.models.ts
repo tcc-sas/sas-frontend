@@ -4,6 +4,7 @@ export interface IProduct {
   name: string;
   unity: string;
   description: string;
+  availableQuantity: number | null;
 }
 
 export class Product implements IProduct {
@@ -13,5 +14,6 @@ export class Product implements IProduct {
     public name: string = '',
     public unity: string = '',
     public description: string = '',
+    public availableQuantity: number | null = 0
   ) {}
 }
