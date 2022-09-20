@@ -5,9 +5,12 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Constants } from 'src/app/core/constants/components-constants';
 import { BeneficiaryService } from 'src/app/core/service/beneficiary.service';
+import { ProductService } from 'src/app/core/service/product.service';
+import { SweetAlertService } from 'src/app/core/service/sweet-alert.service';
 import {
   Beneficiary,
   IBeneficiary,
@@ -21,17 +24,26 @@ import { ValidateObject } from 'src/app/shared/util/form-validators';
   styleUrls: ['./beneficiary-registration.component.scss'],
 })
 export class BeneficiaryRegistrationComponent implements OnInit {
+  //beneficiary
   constants: IConstants = Constants.beneficiary;
   beneficiaryRegistrationForm!: FormGroup;
   selectOptions: any;
   beneficiary!: IBeneficiary;
-
   actionText: string = 'Cadastrar';
+
+  screen = 'beneficiary';
+
+  //products
+  productsOptions: any;
+  currentProduct!: any
+
 
   constructor(
     private fb: FormBuilder,
     private activatedRoute: ActivatedRoute,
-    private beneficiaryService: BeneficiaryService
+    private beneficiaryService: BeneficiaryService,
+    private sweetAlert: SweetAlertService,
+    private router: Router,
   ) {}
 
   ngOnInit(): void {
@@ -42,6 +54,7 @@ export class BeneficiaryRegistrationComponent implements OnInit {
 
   retrieveSelectOptions() {
     this.selectOptions = this.activatedRoute.snapshot.data?.[0];
+    this.productsOptions = this.activatedRoute.snapshot.data?.[1];
   }
 
   findBeneficiaryById() {
@@ -106,16 +119,28 @@ export class BeneficiaryRegistrationComponent implements OnInit {
   private updateBeneficiary() {
     this.beneficiaryService
       .updateBeneficiary(this.beneficiaryRegistrationForm.value)
-      .subscribe((result) => console.log(result));
+      .subscribe((result) => {
+        this.sweetAlert
+          .success('Atualizado com sucesso!')
+          .then(() => this.router.navigate(['/beneficiario']));
+      });
   }
 
   private registerBeneficiary(): void {
     this.beneficiaryService
       .registerBeneficiary(this.beneficiaryRegistrationForm.value)
-      .subscribe((result) => console.log(result));
+      .subscribe((result) => {
+        this.sweetAlert
+          .success('Cadastrado com sucesso!')
+          .then(() => this.router.navigate(['/beneficiario']));
+      });
   }
 
   form(formField: string) {
     return this.beneficiaryRegistrationForm.get(formField);
+  }
+
+  changeScreen(screen: string) {
+    this.screen = screen;
   }
 }

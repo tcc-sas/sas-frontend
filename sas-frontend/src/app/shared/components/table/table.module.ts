@@ -4,6 +4,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { RouterModule } from '@angular/router';
+import { TableActionsModule } from '../table-actions/table-actions.module';
 import { TableComponent } from './table.component';
 
 @NgModule({
@@ -12,9 +13,8 @@ import { TableComponent } from './table.component';
   imports: [
     CommonModule,
     MatPaginatorModule,
-    MatIconModule,
-    MatMenuModule,
     RouterModule,
+    TableActionsModule
   ],
   exports: [TableComponent],
 })

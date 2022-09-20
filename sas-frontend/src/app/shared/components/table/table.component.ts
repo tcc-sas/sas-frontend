@@ -95,7 +95,7 @@ export class TableComponent implements OnInit {
     this.queryUtilService.fetchDataByUrl(paginationQuery);
   }
 
-  delete(rowId: string) {
+  deleteDataById(rowId: string) {
     this.broadcastService.notify(Delete(rowId));
   }
 }

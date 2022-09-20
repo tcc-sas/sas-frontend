@@ -64,4 +64,14 @@ export class ProductService {
       })
     );
   }
+
+
+  getAllProductsForBeneficiary(){
+    const url = PRODUCT_ENDPOINTS.getAllProductsForBeneficiary();
+    return this.http.get<any>(url).pipe(
+      catchError(error => {
+        return of(error?.error)
+      })
+    );
+  }
 }

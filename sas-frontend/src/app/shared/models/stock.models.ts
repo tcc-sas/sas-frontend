@@ -1,18 +1,44 @@
 import { Cras, ICras } from "./cras.models";
-import { IProduct, Product } from "./product.models";
 
-export interface IStock {
+export interface IStockProduct {
     id: number | null;
-    product: IProduct;
+    name: string;
     quantity: number;
+}
+
+export class StockProduct implements IStockProduct{
+    constructor(
+        public id = null,
+        public name = '',
+        public quantity = 0,
+    ){}
+}
+
+export interface IStockProductRegistration {
+    id: number | null;
+    product: IStockProduct;
+    productQuantity: number;
     cras: ICras;
 }
 
-export class Stock implements IStock {
+export class StockProductRegistration implements IStockProductRegistration {
     constructor(
         public id = null,
-        public product = new Product(),
-        public quantity = 0,
+        public product = new StockProduct(),
+        public productQuantity = 0,
         public cras = new Cras(),
     ){}
 }
+
+export interface StockRegistrationOptions {
+    cras: ICras[],
+    products: IStockProduct[]
+}
+
+
+
+
+
+
+
+

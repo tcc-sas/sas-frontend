@@ -9,6 +9,8 @@ import { BeneficiaryRegistrationComponent } from './components/beneficiary/benef
 import { BeneficiaryResolver } from './core/resolvers/beneficiary-route.resolver';
 import { StockComponent } from './components/stock/stock.component';
 import { StockRegistrationComponent } from './components/stock/stock-registration/stock-registration.component';
+import { StockResolver } from './core/resolvers/stock-route.resolver';
+import { ProductResolver } from './core/resolvers/product-route.resolver';
 
 const routes: Routes = [
   {
@@ -43,7 +45,7 @@ const routes: Routes = [
       {
         path: 'cadastro-beneficiario/:id',
         component: BeneficiaryRegistrationComponent,
-        resolve: [BeneficiaryResolver]
+        resolve: [BeneficiaryResolver, ProductResolver]
       },
       {
         path: 'estoque',
@@ -52,6 +54,7 @@ const routes: Routes = [
       {
         path: 'cadastro-estoque',
         component: StockRegistrationComponent,
+        resolve: [StockResolver]
       },
     ]
   },

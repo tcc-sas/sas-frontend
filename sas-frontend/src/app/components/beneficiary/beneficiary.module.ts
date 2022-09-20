@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FilterModule } from 'src/app/shared/components/filter/filter.module';
 import { MainBackgroundModule } from 'src/app/shared/components/main-background/main-background.module';
 import { MiddleSectionModule } from 'src/app/shared/components/middle-section/middle-section.module';
@@ -21,9 +21,11 @@ import { BeneficiaryComponent } from './beneficiary.component';
     RegistrationButtonModule,
     MainBackgroundModule,
     TableModule,
+    ReactiveFormsModule,
     FilterModule,
+    FormsModule,
     MiddleSectionModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ]
 })
 export class BeneficiaryModule {}

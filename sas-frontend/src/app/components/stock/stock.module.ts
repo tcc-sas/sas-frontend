@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FilterModule } from 'src/app/shared/components/filter/filter.module';
 import { MainBackgroundModule } from 'src/app/shared/components/main-background/main-background.module';
 import { MiddleSectionModule } from 'src/app/shared/components/middle-section/middle-section.module';
@@ -24,6 +25,8 @@ import { StockComponent } from './stock.component';
     TableModule,
     FilterModule,
     MiddleSectionModule,
+    FormsModule,
+    ReactiveFormsModule
 
   ]
 })
