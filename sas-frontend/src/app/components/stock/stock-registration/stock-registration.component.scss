@@ -25,8 +25,8 @@ h2 {
 }
 
 .add-product {
-    padding: 0;
-    align-self: center;
+    padding: 0 0 3px 0;
+    align-self: end;
 }
 
 .btn-add {
@@ -39,5 +39,10 @@ h2 {
     span {
         margin-top: 5px;
     }
+}
+
+.btn-remove {
+    padding: 0;
+ 
 }
 

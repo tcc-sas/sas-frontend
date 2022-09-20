@@ -1,5 +1,14 @@
-<app-filter-table-template 
-    [data]="data"
-    [constants]="constants"
-></app-filter-table-template>
-
+<app-main-background>
+    <app-filter
+      [constants]="constants"
+      [selectOptions]="selectOptions$ | async"
+    ></app-filter>
+  
+    <app-middle-section>
+      <app-table-details [data]="data" [constants]="constants"></app-table-details>
+      <app-registration-button [constants]="constants"></app-registration-button>
+    </app-middle-section>
+  
+    <app-table [data]="data" [constants]="constants"></app-table>
+  </app-main-background>
+  

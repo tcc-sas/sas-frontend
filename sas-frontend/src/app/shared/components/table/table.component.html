@@ -38,30 +38,12 @@
         </td>
 
         <td>
-          <button
-            mat-icon-button
-            class="menu-button icone-opcoes"
-            [matMenuTriggerFor]="menu"
-            aria-label="Example icon-button with a menu"
-          >
-            <mat-icon>more_horiz</mat-icon>
-          </button>
-
-          <mat-menu #menu="matMenu">
-            <button
-              routerLink="../cadastro-{{ constants.route }}/{{ row.id }}"
-              mat-menu-item
-              class="icone-opcoes"
-            >
-              <mat-icon>edit</mat-icon>
-              <span>Editar</span>
-            </button>
-
-            <button mat-menu-item class="icone-opcoes" (click)="delete(row?.id)">
-              <mat-icon>remove_circle_outline</mat-icon>
-              <span>Excluir</span>
-            </button>
-          </mat-menu>
+          <app-table-actions
+            [rowId]="row.id"
+            [constants]="constants"
+            (deleteDataById)="deleteDataById($event)"
+            [tableOptions]="constants.tableOptions"
+          ></app-table-actions>
         </td>
       </tr>
     </tbody>

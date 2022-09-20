@@ -1,0 +1,37 @@
+<button
+  mat-icon-button
+  class="menu-button icone-opcoes"
+  [matMenuTriggerFor]="menu"
+  aria-label="Example icon-button with a menu"
+>
+  <mat-icon>more_horiz</mat-icon>
+</button>
+
+<mat-menu #menu="matMenu">
+  <button
+    [disabled]="!tableOptions.update"
+    routerLink="../cadastro-{{ constants.route }}/{{ rowId }}"
+    mat-menu-item
+    class="icone-opcoes"
+  >
+    <mat-icon>edit</mat-icon>
+    <span>Editar</span>
+  </button>
+
+  <button 
+    [disabled]="!tableOptions.delete"
+    mat-menu-item class="icone-opcoes"
+    (click)="deleteRow(rowId)"
+  >
+    <mat-icon>remove_circle_outline</mat-icon>
+    <span>Excluir</span>
+  </button>
+
+  <button 
+    *ngIf="tableOptions.benefit"
+    mat-menu-item class="icone-opcoes"
+  >
+    <mat-icon>handshake</mat-icon>
+    <span>Beneficiar</span>
+  </button>
+</mat-menu>

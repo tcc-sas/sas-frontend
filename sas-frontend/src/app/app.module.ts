@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -7,16 +8,16 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BeneficiaryModule } from './components/beneficiary/beneficiary.module';
+import { StockModule } from './components/stock/stock.module';
 import { LoginModule } from './core/components/login/login.module';
 import { MainComponent } from './core/components/main/main.component';
 import { NavComponent } from './core/components/nav/nav.component';
 import { HttpErrorInterceptor } from './core/interceptor/http-error.interceptor';
 import { JwtInterceptor } from './core/interceptor/jwt.interceptor';
-import { StockComponent } from './components/stock/stock.component';
-import { StockModule } from './components/stock/stock.module';
 
 
 
@@ -26,8 +27,10 @@ import { StockModule } from './components/stock/stock.module';
     AppComponent,
     MainComponent,
     NavComponent,
+    
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     AppRoutingModule,
     MatSidenavModule,
@@ -38,10 +41,11 @@ import { StockModule } from './components/stock/stock.module';
     HttpClientModule,
     BrowserAnimationsModule,
     FormsModule,
+    RouterModule,
 
-    BeneficiaryModule,
     LoginModule,
-    StockModule
+    StockModule,
+    BeneficiaryModule
   ],
   providers: [
     {
@@ -58,6 +62,7 @@ import { StockModule } from './components/stock/stock.module';
   bootstrap: [
     AppComponent
   ],
+
  
 })
 export class AppModule { }

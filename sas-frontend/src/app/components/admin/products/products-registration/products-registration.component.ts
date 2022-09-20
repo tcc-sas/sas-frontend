@@ -63,6 +63,7 @@ export class ProductsRegistrationComponent implements OnInit {
       name: [product.name],
       unity: [product.unity],
       description: [product.description],
+      availableQuantity: [product.availableQuantity],
     });
   }
 

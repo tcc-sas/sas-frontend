@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 import { Constants } from 'src/app/core/constants/components-constants';
 import { BroadcastService } from 'src/app/core/service/broadcast.service';
 import { QueryUtilService } from 'src/app/core/service/query-util.service';
@@ -35,7 +36,7 @@ export class StockComponent implements OnInit {
   }
 
   private getStockSelectOptions(): void {
-    // this.selectOptions$ = this.stockService.getBeneficiarySelectOptions();
+    this.selectOptions$ = this.stockService.getStockSelectOptions();
   }
 
   private getStockData(): void {
@@ -51,9 +52,9 @@ export class StockComponent implements OnInit {
     this.reloadSubscription = this.broadcastService
       .listen(BroadcastType.Reload)
       .pipe(
-        // switchMap((value) =>
-        //   this.stockService.getAllBeneficiary(value.payload)
-        // )
+        switchMap((value) =>
+          this.stockService.getAllStock(value.payload)
+        )
       )
       .subscribe((stockData) => {
         return (this.data = stockData);
@@ -64,9 +65,9 @@ export class StockComponent implements OnInit {
     this.filterSubscription = this.broadcastService
       .listen(BroadcastType.Filter)
       .pipe(
-        // switchMap((value) =>
-        //   this.stockService.getBeneficiaryByFilter(value.payload)
-        // )
+        switchMap((value) =>
+          this.stockService.getAllStockByFilter(value.payload)
+        )
       )
       .subscribe((stockData) => {
         return (this.data = stockData);

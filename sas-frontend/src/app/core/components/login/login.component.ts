@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validator, Validators } from '@angular/forms';
-import { RouteConfigLoadEnd, Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/service/auth.service';
 import { SweetAlertService } from 'src/app/core/service/sweet-alert.service';
 

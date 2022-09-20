@@ -3,6 +3,8 @@ export interface IConstants {
     infoText: string;
     route: string;
     fields: Array<IFields>;
+    tableOptions: any;
+
 }
 
 export interface IFields {
@@ -20,4 +22,5 @@ export interface IFields {
     isObject: boolean;
     objectId: string;
     objectName: string;
+
 }

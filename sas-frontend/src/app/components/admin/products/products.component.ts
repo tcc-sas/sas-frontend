@@ -50,9 +50,10 @@ export class ProductsComponent implements OnInit, OnDestroy {
       .listen(BroadcastType.Delete)
       .pipe(
         switchMap((value) => this.productService.deleteProduct(value.payload))
-      ).subscribe((teste) => {
-        alert(teste)
-      })
+      )
+      .subscribe((teste) => {
+        alert(teste);
+      });
   }
 
   private reloadBroadcast() {
