@@ -1,19 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import {
-  AbstractControl,
   FormBuilder,
   FormGroup,
-  Validators,
+  Validators
 } from '@angular/forms';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Constants } from 'src/app/core/constants/components-constants';
 import { BeneficiaryService } from 'src/app/core/service/beneficiary.service';
-import { ProductService } from 'src/app/core/service/product.service';
 import { SweetAlertService } from 'src/app/core/service/sweet-alert.service';
 import {
   Beneficiary,
-  IBeneficiary,
+  IBeneficiary
 } from 'src/app/shared/models/beneficiary.models';
 import { IConstants } from 'src/app/shared/models/constants.models';
 import { ValidateObject } from 'src/app/shared/util/form-validators';

@@ -3,9 +3,14 @@ mat-sidenav-container {
     height: 100%;
 }
 
+.logo-box {
+    display: flex;
+    justify-content: center;
+    margin-top: 0.7rem;
+}
+
 .logo {
     width: 180px;
-    margin: 10px 0 0 30px;
 }
 
 .sidenav{
