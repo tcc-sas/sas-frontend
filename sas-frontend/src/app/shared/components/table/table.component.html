@@ -41,7 +41,7 @@
           <app-table-actions
             [rowId]="row.id"
             [constants]="constants"
-            (deleteDataById)="deleteDataById($event)"
+            (outputAction)="broadcastAction($event)"
             [tableOptions]="constants.tableOptions"
           ></app-table-actions>
         </td>

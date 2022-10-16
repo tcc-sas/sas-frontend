@@ -19,10 +19,12 @@ export class BeneficiaryComponent implements OnInit, OnDestroy {
   reloadSubscription = new Subscription();
   filterSubscription = new Subscription();
   deleteSubscription = new Subscription();
+  benefitSubscription = new Subscription();
   constructor(
     private broadcastService: BroadcastService,
     private queryUtilService: QueryUtilService,
-    private beneficiaryService: BeneficiaryService
+    private beneficiaryService: BeneficiaryService,
+    
   ) {
     this.queryUtilService.setFilterOptions = this.constants;
   }
@@ -45,6 +47,7 @@ export class BeneficiaryComponent implements OnInit, OnDestroy {
     this.reloadBroadcast();
     this.filterBroadcast();
     this.deleteBroadcast();
+    this.benefitBroadcast();
   }
 
   private deleteBroadcast() {
@@ -83,9 +86,29 @@ export class BeneficiaryComponent implements OnInit, OnDestroy {
       });
   }
 
+  private benefitBroadcast(){
+    this.benefitSubscription = this.broadcastService
+      .listen(BroadcastType.Benefit)
+      .pipe(
+        switchMap((value) => 
+          this.beneficiaryService.benefitBeneficiary(value.payload)
+        )
+      )
+      .subscribe(
+        (result) => {
+          console.log(result)
+        },
+        (error) => {
+          console.log(error)
+        }
+      )
+  }
+
+
   ngOnDestroy(): void {
     this.reloadSubscription.unsubscribe();
     this.filterSubscription.unsubscribe();
     this.deleteSubscription.unsubscribe();
+    this.benefitSubscription.unsubscribe();
   }
 }

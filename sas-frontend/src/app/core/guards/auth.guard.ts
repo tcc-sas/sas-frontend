@@ -23,7 +23,7 @@ export class AuthGuard implements CanActivate {
       return this.router.createUrlTree(['/login']);
     }
 
-    if (this.authService.isDefaultUser() || this.authService.isAdminUser) {
+    if (this.authService.isDefaultUser() || this.authService.isAdminUser()) {
       return true;
     }
 

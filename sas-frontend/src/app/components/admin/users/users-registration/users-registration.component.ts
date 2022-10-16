@@ -1,11 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  AbstractControl,
-  AbstractControlDirective,
-  FormBuilder,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Constants } from 'src/app/core/constants/components-constants';
 import { SweetAlertService } from 'src/app/core/service/sweet-alert.service';
@@ -53,12 +47,16 @@ export class UsersRegistrationComponent implements OnInit {
     const userId = this.activatedRoute.snapshot.paramMap.get('id');
     if (userId) {
       this.setActionText();
-      this.userService.getUserById(userId).subscribe((user) => {
-        if (user) {
-          this.user = user;
-          this.createUserRegistrationForm(user);
-        }
-      });
+      this.userService.getUserById(userId).subscribe(
+        (user) => {
+          if (user) {
+            this.user = user;
+            this.createUserRegistrationForm(user);
+          }
+      }, (error) => {
+
+      }
+      );
     }
   }
 
@@ -111,23 +109,33 @@ export class UsersRegistrationComponent implements OnInit {
   }
 
   private updateUser() {
-    this.userService
-      .updateUser(this.userRegistrationForm.value)
-      .subscribe((result) =>
+    this.userService.updateUser(this.userRegistrationForm.value).subscribe(
+      (success) => {
+        console.log(success);
         this.sweetAlert
           .success('Atualizado com sucesso!')
-          .then(() => this.router.navigate(['/admin/produto']))
-      );
+          .then(() => this.router.navigate(['/admin/usuario']));
+      },
+      (error) => {
+        console.log(error);
+        this.sweetAlert.error(error?.error?.message);
+      }
+    );
   }
 
   private registerUser(): void {
-    this.userService
-      .registerUser(this.userRegistrationForm.value)
-      .subscribe((result) =>
+    this.userService.registerUser(this.userRegistrationForm.value).subscribe(
+      (success) => {
+        console.log(success);
         this.sweetAlert
           .success('Cadastrado com sucesso!')
-          .then(() => this.router.navigate(['/admin/produto']))
-      );
+          .then(() => this.router.navigate(['/admin/usuario']));
+      },
+      (error) => {
+        console.log(error);
+        this.sweetAlert.error(error?.error?.message);
+      }
+    );
   }
 
   form(formField: string) {

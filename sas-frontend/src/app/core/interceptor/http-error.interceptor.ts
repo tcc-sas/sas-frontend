@@ -14,9 +14,7 @@ export class HttpErrorInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     return next.handle(request).pipe(
       catchError(e => {
-        
         this.sweetAlert.error(e?.error?.message)
-
         return throwError(e.error)
       })
     )

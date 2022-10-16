@@ -15,22 +15,12 @@ export class ProductService {
 
   getAllProducts(query = ''): Observable<IPage<IProduct>> {
     const url = PRODUCT_ENDPOINTS.getAllProducts(query);
-    return this.http
-      .get<IPage<IProduct>>(url)
-      .pipe(
-        catchError((error) => {
-          return of(error)
-        })
-      );
+    return this.http.get<IPage<IProduct>>(url);
   }
 
   getProductsByFilter(query = ''): Observable<any> {
     const url = PRODUCT_ENDPOINTS.getProductsByFilter(query);
-    return this.http.get(url).pipe(
-      catchError((error) => {
-        return of(error);
-      })
-    );
+    return this.http.get(url);
   }
 
   registerProduct(user: IProduct): Observable<any> {
@@ -40,38 +30,22 @@ export class ProductService {
 
   getProductById(userId: string): Observable<any> {
     const url = PRODUCT_ENDPOINTS.getProductById(userId);
-    return this.http.get(url).pipe(
-      catchError((error) => {
-        return of(null);
-      })
-    );
+    return this.http.get(url);
   }
 
   updateProduct(user: IProduct): Observable<any> {
     const url = PRODUCT_ENDPOINTS.updateProduct();
-    return this.http.put<IProduct>(url, user).pipe(
-      catchError((error) => {
-        return of(error?.error);
-      })
-    );
+    return this.http.put<IProduct>(url, user);
   }
 
   deleteProduct(id: string): Observable<IProduct> {
     const url = PRODUCT_ENDPOINTS.deleteProduct(id);
-    return this.http.delete<IProduct>(url).pipe(
-      catchError(error => {
-        return of(error?.error)
-      })
-    );
+    return this.http.delete<IProduct>(url);
   }
 
 
   getAllProductsForBeneficiary(){
     const url = PRODUCT_ENDPOINTS.getAllProductsForBeneficiary();
-    return this.http.get<any>(url).pipe(
-      catchError(error => {
-        return of(error?.error)
-      })
-    );
+    return this.http.get<any>(url);
   }
 }

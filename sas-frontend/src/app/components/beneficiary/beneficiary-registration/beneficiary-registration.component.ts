@@ -10,10 +10,15 @@ import { BeneficiaryService } from 'src/app/core/service/beneficiary.service';
 import { SweetAlertService } from 'src/app/core/service/sweet-alert.service';
 import {
   Beneficiary,
-  IBeneficiary
+  BeneficiaryProductDTO,
+  IBeneficiary,
+  IBeneficiaryProductDTO,
+  ISimpleProduct,
+  SimpleProduct
 } from 'src/app/shared/models/beneficiary.models';
 import { IConstants } from 'src/app/shared/models/constants.models';
 import { ValidateObject } from 'src/app/shared/util/form-validators';
+import { copyObject } from 'src/app/shared/util/util';
 
 @Component({
   selector: 'app-beneficiary-registration',
@@ -28,11 +33,12 @@ export class BeneficiaryRegistrationComponent implements OnInit {
   beneficiary!: IBeneficiary;
   actionText: string = 'Cadastrar';
 
-  screen = 'beneficiary';
+  registerScreen = 'beneficiary';
 
   //products
   productsOptions: any;
-  currentProduct!: any
+  currentProduct: ISimpleProduct = new SimpleProduct();
+  products: IBeneficiaryProductDTO = new BeneficiaryProductDTO();
 
 
   constructor(
@@ -47,14 +53,15 @@ export class BeneficiaryRegistrationComponent implements OnInit {
     this.createBeneficiaryRegistrationForm();
     this.retrieveSelectOptions();
     this.findBeneficiaryById();
+    this.findBeneficiaryProducts();
   }
 
-  retrieveSelectOptions() {
+  private retrieveSelectOptions() {
     this.selectOptions = this.activatedRoute.snapshot.data?.[0];
     this.productsOptions = this.activatedRoute.snapshot.data?.[1];
   }
 
-  findBeneficiaryById() {
+  private findBeneficiaryById(): void {
     const beneficiaryId = this.activatedRoute.snapshot.paramMap.get('id');
     if (beneficiaryId) {
       this.setActionText();
@@ -69,11 +76,26 @@ export class BeneficiaryRegistrationComponent implements OnInit {
     }
   }
 
+  private findBeneficiaryProducts(): void {
+    const beneficiaryId = this.activatedRoute.snapshot.paramMap.get('id');
+    if (beneficiaryId) {
+      this.beneficiaryService.getBeneficiaryProducts(beneficiaryId).subscribe(
+        (result) => {
+          this.products = result;
+        },
+        (error) => {
+          
+        }
+
+      )
+    }
+  }
+
   private setActionText(): void {
     this.actionText = 'Atualizar';
   }
 
-  createBeneficiaryRegistrationForm(
+  private createBeneficiaryRegistrationForm(
     beneficiary: IBeneficiary = new Beneficiary()
   ): void {
     this.beneficiaryRegistrationForm = this.fb.group({
@@ -99,7 +121,7 @@ export class BeneficiaryRegistrationComponent implements OnInit {
     });
   }
 
-  onSubmit() {
+  protected onSubmit() {
     if (this.beneficiaryRegistrationForm.invalid) {
       return;
     }
@@ -133,11 +155,50 @@ export class BeneficiaryRegistrationComponent implements OnInit {
       });
   }
 
-  form(formField: string) {
+  protected form(formField: string) {
     return this.beneficiaryRegistrationForm.get(formField);
   }
 
-  changeScreen(screen: string) {
-    this.screen = screen;
+  protected changeScreen(screen: string) {
+    this.registerScreen = screen;
   }
+
+  protected addProductToList(){
+
+    if(this.currentProduct.name == '' || this.currentProduct.quantity == 0) {
+      return;
+    }
+
+    const obj: ISimpleProduct = copyObject(this.currentProduct);
+    const index = this.products.productsDTO.findIndex(x => x.id == obj.id);
+
+    if(index !== -1) {
+      this.products.productsDTO[index].quantity += obj.quantity;
+    } else {
+      this.products.productsDTO.push(obj);
+    }
+
+    this.currentProduct = new SimpleProduct();
+    
+  }
+
+  protected removeProductsFromList(row: any, i: any){
+    this.products.productsDTO.splice(i, 1);
+  }
+
+  protected saveBeneficiaryProducts() {
+    this.products.beneficiaryId = this.beneficiary.id;
+    this.beneficiaryService.registerBeneficiaryProduct(this.products).subscribe(
+      (result) => {
+        this.sweetAlert
+          .success('Cadastrado com sucesso!')
+          .then(() => this.router.navigate(['/beneficiario']));
+      },
+      (error) => {
+        this.sweetAlert
+        .error(error.error)
+      }
+    );
+  }
+
 }

@@ -1,6 +1,6 @@
 <div class="background mat-elevation-z11">
   
-  <section *ngIf="screen === 'beneficiary'">
+  <section *ngIf="registerScreen === 'beneficiary'">
     <h2>{{ actionText }} Beneficiário</h2>
     <div class="linha"></div>
   
@@ -420,7 +420,7 @@
     </form>
   </section>
 
-  <section *ngIf="screen === 'products'">
+  <section *ngIf="registerScreen === 'products'">
 
 
     <header>
@@ -430,11 +430,13 @@
   
     <section name="inputs" class="row">
       <div class="form-group col-4">
-        <label for="product">Produto</label>
+        <label for="productToAdd">Produto</label>
         <div class="">
           <select
             class="form-select form-select-sm shadow-none"
             id="productToAdd"
+            [(ngModel)]="currentProduct"
+           
           >
             <option [defaultSelected]="true" value=""></option>
             <option
@@ -455,6 +457,7 @@
           min="1"
           name="quantity"
           id="quantity"
+          [(ngModel)]="currentProduct.quantity"
         />
       </div>
   
@@ -462,33 +465,33 @@
         <button
           type="button"
           class="btn btn-secondary btn-add"
+          (click)="addProductToList()"
+           
           >
           <span class="material-icons"> chevron_right </span>
         </button>
       </div>
     </section>
   
-    <!-- <section name="productsList" class="mt-5">
+    <section name="productsList" class="mt-5">
       <table class="table table-hover">
         <thead>
           <tr>
             <th><span>Produto</span></th>
-            <th><span>Unidade</span></th>
             <th><span>Quantidade</span></th>
             <th><span>&nbsp;</span></th>
           </tr>
         </thead>
   
         <tbody>
-          <tr scope="row" *ngFor="let row of productsList; let i = index">
-            <td>{{ row?.product?.name }}</td>
-            <td>{{ row?.cras?.name }}</td>
-            <td>{{ row?.productQuantity }}</td>
+          <tr scope="row" *ngFor="let product of products.productsDTO; let i = index">
+            <td>{{ product?.name }}</td>
+            <td>{{ product?.quantity }}</td>
             <td>
               <button
-                (click)="removeProductsFromList(row, i)"
+                (click)="removeProductsFromList(product, i)"
                 type="button"
-                class="btn btn-remove"
+                class="btn btn-remove shadow-none"
               >
                 <span class="material-icons">delete</span>
               </button>
@@ -497,12 +500,13 @@
         </tbody>
       </table>
 
-    </section> -->
+    </section>
 
     <div class="d-flex">
       <button
         class="btn shadow-none btn-sm btn-primary mt-5"
         type="submit"
+        (click)="saveBeneficiaryProducts()"
       >
         Salvar
       </button>

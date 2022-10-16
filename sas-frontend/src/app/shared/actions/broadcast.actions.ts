@@ -20,3 +20,10 @@ export const Delete = (query: any): Broadcast => {
     payload: query
   }
 }
+
+export const Benefit = (query: any): Broadcast => {
+  return {
+    type: BroadcastType.Benefit,
+    payload: query
+  }
+}

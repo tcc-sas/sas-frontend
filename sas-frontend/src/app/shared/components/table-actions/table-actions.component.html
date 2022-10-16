@@ -21,7 +21,7 @@
   <button 
     [disabled]="!tableOptions.delete"
     mat-menu-item class="icone-opcoes"
-    (click)="deleteRow(rowId)"
+    (click)="output(rowId, BroadcastType.Delete)"
   >
     <mat-icon>remove_circle_outline</mat-icon>
     <span>Excluir</span>
@@ -30,6 +30,7 @@
   <button 
     *ngIf="tableOptions.benefit"
     mat-menu-item class="icone-opcoes"
+    (click)="output(rowId, BroadcastType.Benefit)"
   >
     <mat-icon>handshake</mat-icon>
     <span>Beneficiar</span>
