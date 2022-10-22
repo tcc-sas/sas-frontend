@@ -142,6 +142,9 @@ export class BeneficiaryRegistrationComponent implements OnInit {
         this.sweetAlert
           .success('Atualizado com sucesso!')
           .then(() => this.router.navigate(['/beneficiario']));
+      }, (error) => {
+        this.sweetAlert
+          .error(error.error.message)
       });
   }
 
@@ -152,6 +155,9 @@ export class BeneficiaryRegistrationComponent implements OnInit {
         this.sweetAlert
           .success('Cadastrado com sucesso!')
           .then(() => this.router.navigate(['/beneficiario']));
+      }, (error) => {
+        this.sweetAlert
+          .error(error.error.message)
       });
   }
 
@@ -193,10 +199,6 @@ export class BeneficiaryRegistrationComponent implements OnInit {
         this.sweetAlert
           .success('Cadastrado com sucesso!')
           .then(() => this.router.navigate(['/beneficiario']));
-      },
-      (error) => {
-        this.sweetAlert
-        .error(error.error)
       }
     );
   }

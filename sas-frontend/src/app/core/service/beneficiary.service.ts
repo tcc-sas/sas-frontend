@@ -1,17 +1,21 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
 import { catchError, map, mapTo, shareReplay, take, tap } from 'rxjs/operators';
 import { BeneficiaryProductDTO, IBeneficiary, IBeneficiaryProductDTO } from 'src/app/shared/models/beneficiary.models';
 import { IUser } from 'src/app/shared/models/user.model';
 import { environment } from 'src/environments/environment';
+import { ErrorHandler } from './error-handler.service';
 
 const BENEFICIARY_ENDPOINTS = environment.endpoints.beneficiaryController;
 @Injectable({
   providedIn: 'root',
 })
 export class BeneficiaryService {
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private eh: ErrorHandler
+  ) {}
 
   getAllBeneficiary(query = ''): Observable<IBeneficiary[]> {
     const url = BENEFICIARY_ENDPOINTS.getAllBeneficiary(query);
@@ -60,6 +64,9 @@ export class BeneficiaryService {
 
   benefitBeneficiary(id: string): Observable<any>{
     const url = BENEFICIARY_ENDPOINTS.benefitBeneficiary();
-    return this.http.post<any>(url, id);
+    return this.http.post<any>(url, id)
+    .pipe(
+      catchError(async e => this.eh.handleBenefitError(e))
+    );
   }
 }
