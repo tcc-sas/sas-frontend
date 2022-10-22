@@ -29,6 +29,10 @@ h2 {
     align-self: end;
 }
 
+tr td{
+    vertical-align: middle;
+}
+
 .btn-add {
     padding: 0;
     height: 35px;
@@ -39,4 +43,8 @@ h2 {
     span {
         margin-top: 5px;
     }
+}
+.btn-remove {
+    padding: 0;
+ 
 }

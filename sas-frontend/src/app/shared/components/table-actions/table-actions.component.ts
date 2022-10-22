@@ -1,4 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { BroadcastType } from '../../models/broadcast.models';
+import { OutputAction } from '../../models/output-action';
 
 @Component({
   selector: 'app-table-actions',
@@ -10,15 +12,23 @@ export class TableActionsComponent implements OnInit {
   @Input() rowId!: string;
   @Input() constants: any;
   @Input() tableOptions: any;
-  @Output() deleteDataById = new EventEmitter<string>();
+  @Output() outputAction = new EventEmitter<OutputAction>();
   
+  BroadcastType = BroadcastType;
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  deleteRow(rowId: string){
-    this.deleteDataById.emit(rowId);
+  output(rowId: string, action: BroadcastType){
+    let actionToOutput: OutputAction = {
+      id: rowId,
+      action: action
+    };
+    this.outputAction.emit(actionToOutput);
   }
+
+  
 
 }

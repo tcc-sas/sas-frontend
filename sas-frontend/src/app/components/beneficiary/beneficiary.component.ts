@@ -5,6 +5,7 @@ import { Constants } from 'src/app/core/constants/components-constants';
 import { BeneficiaryService } from 'src/app/core/service/beneficiary.service';
 import { BroadcastService } from 'src/app/core/service/broadcast.service';
 import { QueryUtilService } from 'src/app/core/service/query-util.service';
+import { SweetAlertService } from 'src/app/core/service/sweet-alert.service';
 import { BroadcastType } from 'src/app/shared/models/broadcast.models';
 
 @Component({
@@ -19,10 +20,12 @@ export class BeneficiaryComponent implements OnInit, OnDestroy {
   reloadSubscription = new Subscription();
   filterSubscription = new Subscription();
   deleteSubscription = new Subscription();
+  benefitSubscription = new Subscription();
   constructor(
     private broadcastService: BroadcastService,
     private queryUtilService: QueryUtilService,
-    private beneficiaryService: BeneficiaryService
+    private beneficiaryService: BeneficiaryService,
+    private sweetAlert: SweetAlertService
   ) {
     this.queryUtilService.setFilterOptions = this.constants;
   }
@@ -45,16 +48,20 @@ export class BeneficiaryComponent implements OnInit, OnDestroy {
     this.reloadBroadcast();
     this.filterBroadcast();
     this.deleteBroadcast();
+    this.benefitBroadcast();
   }
 
   private deleteBroadcast() {
     this.deleteSubscription = this.broadcastService
       .listen(BroadcastType.Delete)
       .pipe(
-        switchMap((value) => this.beneficiaryService.deleteProduct(value.payload))
-      ).subscribe((teste) => {
-        alert(teste)
-      })
+        switchMap((value) =>
+          this.beneficiaryService.deleteProduct(value.payload)
+        )
+      )
+      .subscribe((teste) => {
+        alert(teste);
+      });
   }
 
   private reloadBroadcast() {
@@ -83,9 +90,25 @@ export class BeneficiaryComponent implements OnInit, OnDestroy {
       });
   }
 
+  private benefitBroadcast() {
+    this.benefitSubscription = this.broadcastService
+      .listen(BroadcastType.Benefit)
+      .pipe(
+        switchMap((value) =>
+          this.beneficiaryService.benefitBeneficiary(value.payload)
+        )
+      )
+      .subscribe((result) => {
+        if (result) {
+          this.sweetAlert.success("Beneficiado com sucesso!")
+        }
+      });
+  }
+
   ngOnDestroy(): void {
     this.reloadSubscription.unsubscribe();
     this.filterSubscription.unsubscribe();
     this.deleteSubscription.unsubscribe();
+    this.benefitSubscription.unsubscribe();
   }
 }

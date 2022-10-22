@@ -53,11 +53,11 @@ import { JwtInterceptor } from './core/interceptor/jwt.interceptor';
       useClass: JwtInterceptor, 
       multi: true,
     },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: HttpErrorInterceptor, 
-      multi: true,
-    },
+    // {
+    //   provide: HTTP_INTERCEPTORS,
+    //   useClass: HttpErrorInterceptor, 
+    //   multi: true,
+    // },
   ],
   bootstrap: [
     AppComponent

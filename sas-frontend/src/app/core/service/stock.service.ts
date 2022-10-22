@@ -16,49 +16,28 @@ export class StockService {
 
   getAllStock(query = ''): Observable<any> {
     const url = STOCK_ENDPOINTS.getAllStock(query);
-    return this.httpClient.get<any>(url).pipe(
-      catchError((error) => {
-        return of([]);
-      })
-    );
+    return this.httpClient.get<any>(url);
   }
 
   getAllStockByFilter(query = ''): Observable<any> {
     const url = STOCK_ENDPOINTS.getAllStock(query);
-    return this.httpClient.get<any>(url).pipe(
-      catchError((error) => {
-        return of([]);
-      })
-    );
+    return this.httpClient.get<any>(url);
   }
 
 
   getRegistrationOptions(): Observable<any> {
     const url = STOCK_ENDPOINTS.getRegistrationOptions();
-    return this.httpClient.get<any>(url).pipe(
-      catchError((error) => {
-        return of([]);
-      })
-    );
+    return this.httpClient.get<any>(url);
   }
 
   getStockSelectOptions(): Observable<any> {
     const url = STOCK_ENDPOINTS.getSockSelectOptions();
-    return this.httpClient.get<any>(url).pipe(
-      catchError((error) => {
-        return of([]);
-      })
-    );
+    return this.httpClient.get<any>(url);
   }
 
 
   saveProductsInStock(productsList: IStockProductRegistration[]){
     const url = STOCK_ENDPOINTS.registerStock();
-    return this.httpClient.post<IStockProductRegistration>(url, productsList)
-      .pipe(
-        catchError((error) => {
-          return of([]);
-        })
-      );
+    return this.httpClient.post<IStockProductRegistration>(url, productsList);
   }
 }

@@ -6,7 +6,7 @@ export function endpoints(host: string) {
         userController: userController(host + '/api/user'),
         beneficiaryController: beneficiaryController(host + '/api/beneficiary'),
         productController: productController(host + '/api/product'),
-        stockController: stockController(host + '/api/stock')
+        stockController: stockController(host + '/api/stock'),
     }
 }
 
@@ -30,7 +30,11 @@ const beneficiaryController = (baseApiUrl: string) => ({
     getBeneficiaryById: (beneficiaryId: string) => baseApiUrl + `/${beneficiaryId}`,
     registerBeneficiary: () => baseApiUrl + `/register`,
     updateBeneficiary: () => baseApiUrl + `/update`,
-    deleteProduct: (id: string) => baseApiUrl + `/delete?id=${id}`
+    deleteProduct: (id: string) => baseApiUrl + `/delete?id=${id}`,
+
+    registerBeneficiaryProducts: () => baseApiUrl + `/register-beneficiary-product`,
+    getBeneficiaryProducts: (id: string) => baseApiUrl  + `/beneficiary-products?id=${id}`,
+    benefitBeneficiary: () => baseApiUrl  + `/benefit-beneficiary`
 });
 
 const productController = (baseApiUrl: string) => ({

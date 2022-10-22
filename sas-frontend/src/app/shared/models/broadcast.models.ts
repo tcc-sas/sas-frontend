@@ -8,5 +8,6 @@ export class Broadcast {
 export enum BroadcastType {
     Reload = 'RELOAD',
     Filter = 'FILTER',
-    Delete = 'DELETE'
+    Delete = 'DELETE',
+    Benefit = 'BENEFIT'
 }

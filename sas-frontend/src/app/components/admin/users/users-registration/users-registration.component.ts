@@ -1,13 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  AbstractControl,
-  AbstractControlDirective,
-  FormBuilder,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Constants } from 'src/app/core/constants/components-constants';
+import { SweetAlertService } from 'src/app/core/service/sweet-alert.service';
 import { UserService } from 'src/app/core/service/user.service';
 import { IConstants } from 'src/app/shared/models/constants.models';
 import { IUser, User } from 'src/app/shared/models/user.model';
@@ -32,7 +27,9 @@ export class UsersRegistrationComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private activatedRoute: ActivatedRoute,
-    private userService: UserService
+    private userService: UserService,
+    private sweetAlert: SweetAlertService,
+    private router: Router
   ) {
     this.retrieveSelectOptions();
   }
@@ -50,12 +47,16 @@ export class UsersRegistrationComponent implements OnInit {
     const userId = this.activatedRoute.snapshot.paramMap.get('id');
     if (userId) {
       this.setActionText();
-      this.userService.getUserById(userId).subscribe((user) => {
-        if (user) {
-          this.user = user;
-          this.createUserRegistrationForm(user);
-        }
-      });
+      this.userService.getUserById(userId).subscribe(
+        (user) => {
+          if (user) {
+            this.user = user;
+            this.createUserRegistrationForm(user);
+          }
+      }, (error) => {
+
+      }
+      );
     }
   }
 
@@ -108,15 +109,33 @@ export class UsersRegistrationComponent implements OnInit {
   }
 
   private updateUser() {
-    this.userService
-      .updateUser(this.userRegistrationForm.value)
-      .subscribe((result) => console.log(result));
+    this.userService.updateUser(this.userRegistrationForm.value).subscribe(
+      (success) => {
+        console.log(success);
+        this.sweetAlert
+          .success('Atualizado com sucesso!')
+          .then(() => this.router.navigate(['/admin/usuario']));
+      },
+      (error) => {
+        console.log(error);
+        this.sweetAlert.error(error?.error?.message);
+      }
+    );
   }
 
   private registerUser(): void {
-    this.userService
-      .registerUser(this.userRegistrationForm.value)
-      .subscribe((result) => console.log(result));
+    this.userService.registerUser(this.userRegistrationForm.value).subscribe(
+      (success) => {
+        console.log(success);
+        this.sweetAlert
+          .success('Cadastrado com sucesso!')
+          .then(() => this.router.navigate(['/admin/usuario']));
+      },
+      (error) => {
+        console.log(error);
+        this.sweetAlert.error(error?.error?.message);
+      }
+    );
   }
 
   form(formField: string) {

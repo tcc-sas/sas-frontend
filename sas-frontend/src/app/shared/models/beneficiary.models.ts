@@ -1,4 +1,5 @@
 import { Cras, ICras } from './cras.models';
+import { Product } from './product.models';
 
 export interface IBeneficiary {
   id: number | null;
@@ -30,4 +31,31 @@ export class Beneficiary implements IBeneficiary {
     public phoneNumber  = '',
     public birthDate = []
   ) {}
+}
+
+export interface IBeneficiaryProductDTO {
+  beneficiaryId: number | null;
+  productsDTO: ISimpleProduct[];
+}
+
+export interface ISimpleProduct {
+  id: number | null;
+  name: string;
+  quantity: number;
+}
+
+export class SimpleProduct implements ISimpleProduct {
+  constructor(
+    public id = null,
+    public name = '',
+    public quantity = 0
+  ) {}
+}
+
+
+export class BeneficiaryProductDTO implements IBeneficiaryProductDTO {
+  constructor(
+    public beneficiaryId = null,
+    public productsDTO = [],
+  ){}
 }

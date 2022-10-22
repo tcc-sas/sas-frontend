@@ -24,4 +24,15 @@ export class SweetAlertService {
       confirmButtonColor: '#f27474',
     })
   }
+
+  benefitError(text: string){
+    return Swal.fire({
+      html: `${text}`,
+      icon: 'error',
+      confirmButtonColor: '#f27474',
+    })
+  }
+
+
+
 }

@@ -4,9 +4,10 @@ import { Data } from '@angular/router';
 import { BroadcastService } from 'src/app/core/service/broadcast.service';
 import { IConstants } from 'src/app/shared/models/constants.models';
 import { QueryUtilService } from '../../../core/service/query-util.service';
-import { Delete } from '../../actions/broadcast.actions';
+import { Benefit, Delete } from '../../actions/broadcast.actions';
 import { IBeneficiary } from '../../models/beneficiary.models';
 import { BroadcastType } from '../../models/broadcast.models';
+import { OutputAction } from '../../models/output-action';
 import { IPage } from '../../models/page.models';
 import { PaginationOptions } from '../../models/pagination-options.models';
 import { IProduct } from '../../models/product.models';
@@ -95,7 +96,14 @@ export class TableComponent implements OnInit {
     this.queryUtilService.fetchDataByUrl(paginationQuery);
   }
 
-  deleteDataById(rowId: string) {
-    this.broadcastService.notify(Delete(rowId));
+  broadcastAction(output: OutputAction) {
+    let action;
+    if(output.action == BroadcastType.Delete) {
+      action = Delete(output.id)
+    } else {
+      action = Benefit(output.id)
+    }
+
+    this.broadcastService.notify(action);
   }
 }
