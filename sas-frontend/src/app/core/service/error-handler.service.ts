@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { SweetAlertService } from './sweet-alert.service';
 
 @Injectable({
@@ -12,6 +12,7 @@ export class ErrorHandler {
 
   handle(error: any){
     this.sweetAlert.error(error.error.message)
+    return of(null);
   }
 
   handleBenefitError(error: any){

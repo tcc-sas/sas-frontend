@@ -7,6 +7,7 @@ export function endpoints(host: string) {
         beneficiaryController: beneficiaryController(host + '/api/beneficiary'),
         productController: productController(host + '/api/product'),
         stockController: stockController(host + '/api/stock'),
+        coveredController: coveredController(host + '/api/covered')
     }
 }
 
@@ -56,4 +57,10 @@ const stockController = (baseApiUrl: string) => ({
     getAllStock: (query?: string) => baseApiUrl + `/all${query}`,
     getSockSelectOptions: () => baseApiUrl + `/select-options`,
     getRegistrationOptions: () => baseApiUrl + `/registration-options`
+});
+
+const coveredController = (baseApiUrl: string) => ({
+    getAllCovered: (query?: string) => baseApiUrl + `/all${query}`,
+    getCoveredByFilter: (query: string) => baseApiUrl + `/filter${query}`,
+    getCoveredSelectOptions: () => baseApiUrl + `/select-options`,
 });

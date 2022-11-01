@@ -75,6 +75,21 @@ export class Constants {
     tableOptions: {}
   };
 
+  public static covered: IConstants = {
+    name: 'Contemplados',
+    infoText: 'Contemplados!',
+    route: 'contemplados',
+    fields: [
+      { id: 1, name: 'ID',                     apiField: 'id',                    isTableField: false, tableType: '',  isFilterField: false,  filterType: '',      isObject: false,  objectId: '',   objectName: '',      },
+      { id: 2, name: 'ID Beneficiario',        apiField: 'beneficiaryId',         isTableField: false, tableType: '',  isFilterField: false,  filterType: '',      isObject: false,  objectId: '',   objectName: '',      },
+      { id: 3, name: 'Beneficiario',           apiField: 'beneficiaryName',       isTableField: true,  tableType: '',  isFilterField: true,   filterType: '',      isObject: false,  objectId: '',   objectName: '',      },
+      { id: 4, name: 'CPF',                    apiField: 'beneficiaryCpf',        isTableField: true,  tableType: '',  isFilterField: true,   filterType: '',      isObject: false,  objectId: '',   objectName: '',      },
+      { id: 5, name: 'Data Entrega Beneficio', apiField: 'benefitDeliveryDate',   isTableField: true,  tableType: '',  isFilterField: true,   filterType: 'date',  isObject: false,  objectId: '',   objectName: '',      },
+      { id: 6, name: 'Undidade',               apiField: 'crasName',              isTableField: true,  tableType: '',  isFilterField: true,   filterType: '',      isObject: false,  objectId: '',   objectName: '',      },
+    ],
+    tableOptions: {}
+  };
+
 }
 
 

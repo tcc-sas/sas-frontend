@@ -11,6 +11,7 @@ import { StockComponent } from './components/stock/stock.component';
 import { StockRegistrationComponent } from './components/stock/stock-registration/stock-registration.component';
 import { StockResolver } from './core/resolvers/stock-route.resolver';
 import { ProductResolver } from './core/resolvers/product-route.resolver';
+import { CoveredComponent } from './components/covered/covered.component';
 
 const routes: Routes = [
   {
@@ -36,6 +37,10 @@ const routes: Routes = [
       {
         path: 'beneficiario',
         component: BeneficiaryComponent,
+      },
+      {
+        path: 'contemplados',
+        component: CoveredComponent,
       },
       {
         path: 'cadastro-beneficiario',
