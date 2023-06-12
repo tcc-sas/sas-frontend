@@ -31,6 +31,10 @@
               {{ row[field.apiField] | currency: "R$ " }}
             </span>
 
+            <span *ngIf="field.tableType == 'dateTime'">
+              {{ row[field.apiField] | date: 'dd/MM/yyyy hh:mm:ss' }}
+            </span>
+
             <span *ngIf="!field.tableType">
               {{ row[field.apiField] }}
             </span>

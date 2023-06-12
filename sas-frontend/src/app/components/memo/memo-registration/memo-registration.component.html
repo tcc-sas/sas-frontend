@@ -1,0 +1,186 @@
+<div class="background mat-elevation-z11">
+  <section *ngIf="!this.memo?.id">
+    <header>
+      <h2>Criar Memorando</h2>
+      <div class="header-division"></div>
+    </header>
+
+    <section name="inputs" class="row">
+      <div class="form-group col-4">
+        <label for="product">Produto</label>
+        <div class="">
+          <select
+            class="form-select form-select-sm shadow-none"
+            id="productToAdd"
+            [(ngModel)]="currentProduct.name"
+          >
+            <option [defaultSelected]="true" value=""></option>
+            <option
+              [ngValue]="product.name"
+              *ngFor="let product of selectOptions.products"
+            >
+              {{ product.name }}
+            </option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group col-3">
+        <label> Quantidade </label>
+        <input
+          class="form-control form-control-sm shadow-none"
+          type="number"
+          min="1"
+          name="quantity"
+          id="quantity"
+          [(ngModel)]="currentProduct.quantity"
+        />
+      </div>
+
+      <div class="col-1 add-product">
+        <button
+          (click)="addProductToList()"
+          type="button"
+          class="btn btn-secondary btn-add"
+          [disabled]="disableAddButton()"
+        >
+          <span class="material-icons"> chevron_right </span>
+        </button>
+      </div>
+    </section>
+
+    <section name="productsList" class="mt-5">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th><span>Produto</span></th>
+            <th><span>Quantidade</span></th>
+            <th><span>&nbsp;</span></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr scope="row" *ngFor="let row of productsList; let i = index">
+            <td>{{ row?.name }}</td>
+            <td>{{ row?.quantity }}</td>
+            <td>
+              <button
+                (click)="removeProductsFromList(row, i)"
+                type="button"
+                class="btn btn-remove shadow-none"
+              >
+                <span class="material-icons">delete</span>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section name="sendButton" class="d-flex">
+      <button
+        [disabled]="!productsList.length"
+        class="btn shadow-none btn-sm btn-primary mt-5"
+        type="submit"
+        (click)="saveInStock()"
+      >
+        Enviar
+      </button>
+    </section>
+  </section>
+
+  <section *ngIf="this.memo?.id">
+    <div class="row">
+      <section class="col-12">
+        <div>
+          <header>
+            <h2>Produtos Encomendados</h2>
+            <div class="header-division"></div>
+          </header>
+
+          <section name="productsList" class="mt-5">
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th><span>Produto</span></th>
+                  <th><span>Quantidade</span></th>
+                  <th>
+                    <span
+                      ><strong>Status: </strong> {{ this.memo.statusMemo }}
+                    </span>
+                  </th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr
+                  scope="row"
+                  *ngFor="
+                    let row of this.memo.orderedProductsArray;
+                    let i = index
+                  "
+                >
+                  <td>{{ row?.name }}</td>
+                  <td>{{ row?.quantity }}</td>
+                  <td>&nbsp;</td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
+        </div>
+      </section>
+
+      <div class="" >
+        <button
+          class="btn shadow-none btn-sm btn-primary mt-5"
+          type="submit"
+          (click)="updateStatus('APROVADO')"
+        >
+          Aprovar
+        </button>
+
+        <button
+          class="btn shadow-none btn-sm btn-primary mt-5 mx-3"
+          type="submit"
+          (click)="updateStatus('APROVADO_PARCIALMENTE')"
+        >
+          Aprovar Parcialmente
+        </button>
+      </div>
+
+      <!-- <section class="col-6" *ngIf="this.memo.statusMemo === 'APROVADO' || this.memo.statusMemo === 'APROVADO_PARCIALMENTE' ">
+        <div >
+          <header>
+            <h2>Produtos a serem entregues</h2>
+            <div class="header-division"></div>
+          </header>
+
+          <section name="productsList" class="mt-5">
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th><span>Produto</span></th>
+                  <th><span>Quantidade</span></th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr
+                  scope="row"
+                  *ngFor="
+                    let row of this.memo.deliveredProductsArray;
+                    let i = index
+                  "
+                >
+                  <td>{{ row?.name }}</td>
+                  <td>{{ row?.quantity }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
+        </div>
+      </section>
+    </div>
+  </section> -->
+    </div>
+  </section>
+</div>

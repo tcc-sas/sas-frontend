@@ -54,9 +54,6 @@
       </a>
 
 
-
-
-
       <a
         *ngIf="isAdminUser"
         mat-list-item
@@ -65,6 +62,8 @@
           pressedBtn == 'memorando' ? 'pressed-btn' : 'not-pressed-btn'
         "
         class="text-button"
+        routerLink="memorando"
+        routerLinkActive="active"
       >
         Painel Memorando
         <i class="material-icons"> dashboard </i>

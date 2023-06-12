@@ -13,6 +13,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BeneficiaryModule } from './components/beneficiary/beneficiary.module';
 import { CoveredModule } from './components/covered/covered.module';
+import { MemoModule } from './components/memo/memo.module';
 import { StockModule } from './components/stock/stock.module';
 import { LoginModule } from './core/components/login/login.module';
 import { MainComponent } from './core/components/main/main.component';
@@ -44,6 +45,7 @@ import { JwtInterceptor } from './core/interceptor/jwt.interceptor';
     StockModule,
     BeneficiaryModule,
     CoveredModule,
+    MemoModule,
   ],
   providers: [
     {

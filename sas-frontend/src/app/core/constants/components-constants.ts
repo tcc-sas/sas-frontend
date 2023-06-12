@@ -80,14 +80,31 @@ export class Constants {
     infoText: 'Contemplados!',
     route: 'contemplados',
     fields: [
-      { id: 1, name: 'ID',                     apiField: 'id',                    isTableField: false, tableType: '',  isFilterField: false,  filterType: '',      isObject: false,  objectId: '',   objectName: '',      },
-      { id: 2, name: 'ID Beneficiario',        apiField: 'beneficiaryId',         isTableField: false, tableType: '',  isFilterField: false,  filterType: '',      isObject: false,  objectId: '',   objectName: '',      },
-      { id: 3, name: 'Beneficiario',           apiField: 'beneficiaryName',       isTableField: true,  tableType: '',  isFilterField: true,   filterType: '',      isObject: false,  objectId: '',   objectName: '',      },
-      { id: 4, name: 'CPF',                    apiField: 'beneficiaryCpf',        isTableField: true,  tableType: '',  isFilterField: true,   filterType: '',      isObject: false,  objectId: '',   objectName: '',      },
-      { id: 5, name: 'Data Entrega Beneficio', apiField: 'benefitDeliveryDate',   isTableField: true,  tableType: '',  isFilterField: true,   filterType: 'date',  isObject: false,  objectId: '',   objectName: '',      },
-      { id: 6, name: 'Undidade',               apiField: 'crasName',              isTableField: true,  tableType: '',  isFilterField: true,   filterType: '',      isObject: false,  objectId: '',   objectName: '',      },
+      { id: 1, name: 'ID',                     apiField: 'id',                    isTableField: false, tableType: '',  isFilterField: false,  filterType: '',       isObject: false,  objectId: '',   objectName: '',  },
+      { id: 2, name: 'ID Beneficiario',        apiField: 'beneficiaryId',         isTableField: false, tableType: '',  isFilterField: false,  filterType: '',       isObject: false,  objectId: '',   objectName: '',  },
+      { id: 3, name: 'Beneficiario',           apiField: 'beneficiaryName',       isTableField: true,  tableType: '',  isFilterField: true,   filterType: '',       isObject: false,  objectId: '',   objectName: '',  },
+      { id: 4, name: 'CPF',                    apiField: 'beneficiaryCpf',        isTableField: true,  tableType: '',  isFilterField: true,   filterType: '',       isObject: false,  objectId: '',   objectName: '',  },
+      { id: 5, name: 'Data Entrega Beneficio', apiField: 'benefitDeliveryDate',   isTableField: true,  tableType: '',  isFilterField: true,   filterType: 'date',   isObject: false,  objectId: '',   objectName: '',  },
+      { id: 6, name: 'Undidade',               apiField: 'crasName',              isTableField: true,  tableType: '',  isFilterField: true,   filterType: 'select', isObject: false,  objectId: '',   objectName: '',  },
     ],
     tableOptions: {}
+  };
+
+  public static memo: IConstants = {
+    name: 'Memorando',
+    infoText: 'Registrados!',
+    route: 'memorando',
+    fields: [
+      { id: 1, name: 'Nº Pedido',               apiField: 'id',                  isTableField: true,   tableType: '',          isFilterField: false,    filterType: '',          isObject: false,  objectId: '',   objectName: '', },
+      { id: 2, name: 'Data de Requisição',      apiField: 'requestDate',         isTableField: true,    tableType: 'dateTime',  isFilterField: true,     filterType: 'date',      isObject: false,  objectId: '',   objectName: '', },
+      { id: 3, name: 'Status do pedido',        apiField: 'statusMemo',          isTableField: true,    tableType: '',          isFilterField: true,     filterType: 'select',    isObject: false,  objectId: '',   objectName: '', },
+      { id: 4, name: 'Produtos Encomendados',   apiField: 'orderedProducts',     isTableField: false,   tableType: '',          isFilterField: false,    filterType: '',          isObject: false,  objectId: '',   objectName: '', },
+      { id: 5, name: 'Status da entrega',       apiField: 'statusDelivery',      isTableField: true,    tableType: '',          isFilterField: true,     filterType: 'select',    isObject: false,  objectId: '',   objectName: '', },
+      { id: 6, name: 'Produtos Entregues',      apiField: 'deliveredProducts',   isTableField: false,   tableType: '',          isFilterField: false,    filterType: '',          isObject: false,  objectId: '',   objectName: '', },
+    ],
+    tableOptions: {
+      update: true,
+    }
   };
 
 }

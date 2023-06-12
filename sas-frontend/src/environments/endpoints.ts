@@ -5,6 +5,7 @@ export function endpoints(host: string) {
         authController: authController(host + '/api/auth'),
         userController: userController(host + '/api/user'),
         beneficiaryController: beneficiaryController(host + '/api/beneficiary'),
+        memoController: memoController(host + '/api/memo'),
         productController: productController(host + '/api/product'),
         stockController: stockController(host + '/api/stock'),
         coveredController: coveredController(host + '/api/covered')
@@ -36,6 +37,17 @@ const beneficiaryController = (baseApiUrl: string) => ({
     registerBeneficiaryProducts: () => baseApiUrl + `/register-beneficiary-product`,
     getBeneficiaryProducts: (id: string) => baseApiUrl  + `/beneficiary-products?id=${id}`,
     benefitBeneficiary: () => baseApiUrl  + `/benefit-beneficiary`
+});
+
+const memoController = (baseApiUrl: string) => ({
+    getAllMemo: (query?: string) => baseApiUrl + `/all${query}`,
+    getMemoByFilter: (query: string) => baseApiUrl + `/filter${query}`,
+    getMemoSelectOptions: () => baseApiUrl + `/select-options`,
+    getMemoRegisterSelectOptions: () => baseApiUrl + `/register-select-options`,
+    getMemoById: (beneficiaryId: string) => baseApiUrl + `/${beneficiaryId}`,
+    registerMemo: () => baseApiUrl + `/register`,
+    updateMemo: () => baseApiUrl + `/update`,
+    deleteMemo: (id: string) => baseApiUrl + `/delete?id=${id}`,
 });
 
 const productController = (baseApiUrl: string) => ({

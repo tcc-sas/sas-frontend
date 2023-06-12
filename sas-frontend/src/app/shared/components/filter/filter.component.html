@@ -28,6 +28,21 @@
                 </option>
                 </ng-container>
             </select>
+
+            <select
+                *ngIf="field.filterType === 'select' && !field.isObject"
+                class="form-select form-select-sm form-control form-control-sm shadow-none" 
+                [(ngModel)]="filterObj[field.apiField]"
+            >
+                <ng-container *ngIf="selectOptions">
+                    <option 
+                    *ngFor="let option of selectOptions[field.apiField]"
+                    [value]="option"
+                >
+                    {{option}}
+                </option>
+                </ng-container>
+            </select>
             
 
         </div>
