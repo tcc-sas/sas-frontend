@@ -1,0 +1,48 @@
+h2 {
+    margin-bottom: 0;
+}
+
+.background {
+    background-color: white;
+    max-width: 900px;
+    padding: 50px;
+    margin: 0 auto;
+}
+
+.header-division {
+    height: 2px;
+    background-color: black;
+    margin-bottom: 30px;
+}
+
+
+.green-input {
+    border-color: #198754;
+}
+
+.default-input {
+    border-color: #ced4da;
+}
+
+.add-product {
+    padding: 0 0 3px 0;
+    align-self: end;
+}
+
+.btn-add {
+    padding: 0;
+    height: 35px;
+    width: 35px;
+    box-shadow: none;
+    border-radius: 100%;
+
+    span {
+        margin-top: 5px;
+    }
+}
+
+.btn-remove {
+    padding: 0;
+ 
+}
+

@@ -5,8 +5,10 @@ export function endpoints(host: string) {
         authController: authController(host + '/api/auth'),
         userController: userController(host + '/api/user'),
         beneficiaryController: beneficiaryController(host + '/api/beneficiary'),
+        memoController: memoController(host + '/api/memo'),
         productController: productController(host + '/api/product'),
         stockController: stockController(host + '/api/stock'),
+        coveredController: coveredController(host + '/api/covered')
     }
 }
 
@@ -30,11 +32,22 @@ const beneficiaryController = (baseApiUrl: string) => ({
     getBeneficiaryById: (beneficiaryId: string) => baseApiUrl + `/${beneficiaryId}`,
     registerBeneficiary: () => baseApiUrl + `/register`,
     updateBeneficiary: () => baseApiUrl + `/update`,
-    deleteProduct: (id: string) => baseApiUrl + `/delete?id=${id}`,
+    deleteBeneficiary: (id: string) => baseApiUrl + `/delete?id=${id}`,
 
     registerBeneficiaryProducts: () => baseApiUrl + `/register-beneficiary-product`,
     getBeneficiaryProducts: (id: string) => baseApiUrl  + `/beneficiary-products?id=${id}`,
     benefitBeneficiary: () => baseApiUrl  + `/benefit-beneficiary`
+});
+
+const memoController = (baseApiUrl: string) => ({
+    getAllMemo: (query?: string) => baseApiUrl + `/all${query}`,
+    getMemoByFilter: (query: string) => baseApiUrl + `/filter${query}`,
+    getMemoSelectOptions: () => baseApiUrl + `/select-options`,
+    getMemoRegisterSelectOptions: () => baseApiUrl + `/register-select-options`,
+    getMemoById: (beneficiaryId: string) => baseApiUrl + `/${beneficiaryId}`,
+    registerMemo: () => baseApiUrl + `/register`,
+    updateMemo: () => baseApiUrl + `/update`,
+    deleteMemo: (id: string) => baseApiUrl + `/delete?id=${id}`,
 });
 
 const productController = (baseApiUrl: string) => ({
@@ -56,4 +69,10 @@ const stockController = (baseApiUrl: string) => ({
     getAllStock: (query?: string) => baseApiUrl + `/all${query}`,
     getSockSelectOptions: () => baseApiUrl + `/select-options`,
     getRegistrationOptions: () => baseApiUrl + `/registration-options`
+});
+
+const coveredController = (baseApiUrl: string) => ({
+    getAllCovered: (query?: string) => baseApiUrl + `/all${query}`,
+    getCoveredByFilter: (query: string) => baseApiUrl + `/filter${query}`,
+    getCoveredSelectOptions: () => baseApiUrl + `/select-options`,
 });

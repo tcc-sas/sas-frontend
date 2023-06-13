@@ -20,8 +20,10 @@ export class StockService {
   }
 
   getAllStockByFilter(query = ''): Observable<any> {
-    const url = STOCK_ENDPOINTS.getAllStock(query);
-    return this.httpClient.get<any>(url);
+    const url = STOCK_ENDPOINTS.getStockByFilter(query);
+    return this.httpClient.get<any>(url).pipe(
+      catchError(e => {return of(e)})
+    );
   }
 
 

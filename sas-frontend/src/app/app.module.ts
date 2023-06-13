@@ -12,13 +12,14 @@ import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BeneficiaryModule } from './components/beneficiary/beneficiary.module';
+import { CoveredModule } from './components/covered/covered.module';
+import { MemoModule } from './components/memo/memo.module';
 import { StockModule } from './components/stock/stock.module';
 import { LoginModule } from './core/components/login/login.module';
 import { MainComponent } from './core/components/main/main.component';
 import { NavComponent } from './core/components/nav/nav.component';
-import { HttpErrorInterceptor } from './core/interceptor/http-error.interceptor';
 import { JwtInterceptor } from './core/interceptor/jwt.interceptor';
-
+import { CrasPipe } from './shared/util/cras.pipe';
 
 
 
@@ -27,7 +28,6 @@ import { JwtInterceptor } from './core/interceptor/jwt.interceptor';
     AppComponent,
     MainComponent,
     NavComponent,
-    
   ],
   imports: [
     CommonModule,
@@ -42,17 +42,23 @@ import { JwtInterceptor } from './core/interceptor/jwt.interceptor';
     BrowserAnimationsModule,
     FormsModule,
     RouterModule,
-
     LoginModule,
     StockModule,
-    BeneficiaryModule
+    BeneficiaryModule,
+    CoveredModule,
+    MemoModule,
   ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
       useClass: JwtInterceptor, 
       multi: true,
-    },
+    }
+    // ,
+    // {
+    //   provide: ErrorHandler,
+    //   useClass: Teste
+    // }   
     // {
     //   provide: HTTP_INTERCEPTORS,
     //   useClass: HttpErrorInterceptor, 

@@ -1,0 +1,18 @@
+<app-main-background>
+  <app-filter
+    [constants]="constants"
+    [selectOptions]="selectOptions$ | async"
+  ></app-filter>
+
+  <app-middle-section>
+    <app-table-details
+      [data]="data"
+      [constants]="constants"
+    ></app-table-details>
+  </app-middle-section>
+
+  <app-table 
+    [data]="data" 
+    [constants]="constants"
+  ></app-table>
+</app-main-background>

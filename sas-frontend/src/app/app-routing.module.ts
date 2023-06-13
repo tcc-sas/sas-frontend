@@ -11,6 +11,10 @@ import { StockComponent } from './components/stock/stock.component';
 import { StockRegistrationComponent } from './components/stock/stock-registration/stock-registration.component';
 import { StockResolver } from './core/resolvers/stock-route.resolver';
 import { ProductResolver } from './core/resolvers/product-route.resolver';
+import { CoveredComponent } from './components/covered/covered.component';
+import { MemoComponent } from './components/memo/memo.component';
+import { MemoRegistrationComponent } from './components/memo/memo-registration/memo-registration.component';
+import { MemoResolver } from './core/resolvers/memo-route.resolver';
 
 const routes: Routes = [
   {
@@ -38,6 +42,10 @@ const routes: Routes = [
         component: BeneficiaryComponent,
       },
       {
+        path: 'contemplados',
+        component: CoveredComponent,
+      },
+      {
         path: 'cadastro-beneficiario',
         component: BeneficiaryRegistrationComponent,
         resolve: [BeneficiaryResolver]
@@ -56,6 +64,21 @@ const routes: Routes = [
         component: StockRegistrationComponent,
         resolve: [StockResolver]
       },
+      {
+        path: 'memorando',
+        component: MemoComponent,
+      },
+      {
+        path: 'cadastro-memorando',
+        component: MemoRegistrationComponent,
+        resolve: [MemoResolver]
+      },
+      {
+        path: 'cadastro-memorando/:id',
+        component: MemoRegistrationComponent,
+        resolve: [MemoResolver]
+
+      }
     ]
   },
 

@@ -23,4 +23,6 @@ export interface IFields {
     objectId: string;
     objectName: string;
 
+    mask?: string;
+
 }
