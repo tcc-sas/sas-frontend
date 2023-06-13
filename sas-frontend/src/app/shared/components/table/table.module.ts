@@ -6,16 +6,13 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { RouterModule } from '@angular/router';
 import { TableActionsModule } from '../table-actions/table-actions.module';
 import { TableComponent } from './table.component';
+import { CrasPipe } from '../../util/cras.pipe';
+import { RolePipe } from '../../util/role.pipe';
 
 @NgModule({
-  declarations: [TableComponent],
+  declarations: [TableComponent, CrasPipe, RolePipe],
 
-  imports: [
-    CommonModule,
-    MatPaginatorModule,
-    RouterModule,
-    TableActionsModule
-  ],
+  imports: [CommonModule, MatPaginatorModule, RouterModule, TableActionsModule],
   exports: [TableComponent],
 })
 export class TableModule {}

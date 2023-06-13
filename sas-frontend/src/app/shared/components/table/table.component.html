@@ -1,7 +1,5 @@
 <div class="main-table">
-  
   <table class="table table-hover">
-    
     <thead class="bg-main">
       <tr>
         <th
@@ -19,7 +17,10 @@
 
     <tbody>
       <tr scope="row" *ngFor="let row of data?.content">
-        <td class="y-align text-nowrap" *ngFor="let field of tableOptions.tableFields">
+        <td
+          class="y-align text-nowrap"
+          *ngFor="let field of tableOptions.tableFields"
+        >
           <div *ngIf="field.isObject">
             <span>
               {{ row[field.apiField][field.objectName] }}
@@ -28,11 +29,15 @@
 
           <div *ngIf="!field.isObject">
             <span *ngIf="field.tableType == 'currency'">
-              {{ row[field.apiField] | currency: "R$ " }}
+              {{ row[field.apiField] | currency : "R$ " }}
             </span>
 
             <span *ngIf="field.tableType == 'dateTime'">
-              {{ row[field.apiField] | date: 'dd/MM/yyyy hh:mm:ss' }}
+              {{ row[field.apiField] | date : "dd/MM/yyyy hh:mm:ss" }}
+            </span>
+
+            <span *ngIf="field.tableType == 'date'">
+              {{ row[field.apiField] | date : "dd/MM/yyyy" }}
             </span>
 
             <span *ngIf="!field.tableType">
@@ -51,9 +56,7 @@
         </td>
       </tr>
     </tbody>
-
   </table>
-
 </div>
 <mat-paginator
   [length]="paginationOptions.paginatorLength"

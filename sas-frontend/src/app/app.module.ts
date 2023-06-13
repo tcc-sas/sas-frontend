@@ -19,6 +19,7 @@ import { LoginModule } from './core/components/login/login.module';
 import { MainComponent } from './core/components/main/main.component';
 import { NavComponent } from './core/components/nav/nav.component';
 import { JwtInterceptor } from './core/interceptor/jwt.interceptor';
+import { CrasPipe } from './shared/util/cras.pipe';
 
 
 

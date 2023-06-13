@@ -1,11 +1,12 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Observable, Subscription } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { Observable, Subject, Subscription } from 'rxjs';
+import { switchMap, takeUntil } from 'rxjs/operators';
 import { Constants } from 'src/app/core/constants/components-constants';
 import { BeneficiaryService } from 'src/app/core/service/beneficiary.service';
 import { BroadcastService } from 'src/app/core/service/broadcast.service';
 import { QueryUtilService } from 'src/app/core/service/query-util.service';
 import { SweetAlertService } from 'src/app/core/service/sweet-alert.service';
+import { Reload } from 'src/app/shared/actions/broadcast.actions';
 import { BroadcastType } from 'src/app/shared/models/broadcast.models';
 
 @Component({
@@ -21,6 +22,7 @@ export class BeneficiaryComponent implements OnInit, OnDestroy {
   filterSubscription = new Subscription();
   deleteSubscription = new Subscription();
   benefitSubscription = new Subscription();
+
   constructor(
     private broadcastService: BroadcastService,
     private queryUtilService: QueryUtilService,
@@ -56,11 +58,14 @@ export class BeneficiaryComponent implements OnInit, OnDestroy {
       .listen(BroadcastType.Delete)
       .pipe(
         switchMap((value) =>
-          this.beneficiaryService.deleteProduct(value.payload)
+          this.beneficiaryService.deleteBeneficiary(value.payload)
         )
       )
-      .subscribe((teste) => {
-        alert(teste);
+      .subscribe((success) => {
+        if(success){
+          this.sweetAlert.success("Beneficiario excluído com sucesso!")
+          this.broadcastService.notify(Reload())
+        } 
       });
   }
 

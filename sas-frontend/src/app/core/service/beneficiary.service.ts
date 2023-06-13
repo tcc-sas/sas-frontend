@@ -47,9 +47,11 @@ export class BeneficiaryService {
     return this.http.put<IUser>(url, user);
   }
 
-  deleteProduct(id: string): Observable<any> {
-    const url = BENEFICIARY_ENDPOINTS.deleteProduct(id);
-    return this.http.delete<string>(url);
+  deleteBeneficiary(id: string): Observable<any> {
+    const url = BENEFICIARY_ENDPOINTS.deleteBeneficiary(id);
+    return this.http.delete<string>(url).pipe(
+      catchError(async e => this.eh.handle(e)),
+    );
   }
 
   getBeneficiaryProducts(id: string): Observable<any>{

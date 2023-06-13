@@ -32,7 +32,7 @@ const beneficiaryController = (baseApiUrl: string) => ({
     getBeneficiaryById: (beneficiaryId: string) => baseApiUrl + `/${beneficiaryId}`,
     registerBeneficiary: () => baseApiUrl + `/register`,
     updateBeneficiary: () => baseApiUrl + `/update`,
-    deleteProduct: (id: string) => baseApiUrl + `/delete?id=${id}`,
+    deleteBeneficiary: (id: string) => baseApiUrl + `/delete?id=${id}`,
 
     registerBeneficiaryProducts: () => baseApiUrl + `/register-beneficiary-product`,
     getBeneficiaryProducts: (id: string) => baseApiUrl  + `/beneficiary-products?id=${id}`,
