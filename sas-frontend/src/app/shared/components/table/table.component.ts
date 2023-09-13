@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
-import { PageEvent } from '@angular/material/paginator';
+import { LegacyPageEvent as PageEvent } from '@angular/material/legacy-paginator';
 import { Data } from '@angular/router';
 import { BroadcastService } from 'src/app/core/service/broadcast.service';
 import { IConstants } from 'src/app/shared/models/constants.models';
